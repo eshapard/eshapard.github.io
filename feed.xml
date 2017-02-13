@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Crappy Code Blog</title>
+    <description>Watch me code stuff... poorly</description>
+    <link>http://eshapard.github.io</link>
+    <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Working On Anki Auto-Calibrate</title>
+        <description>
+          
+          I’m working on an addon for Anki that will do the following things for deck options that you select: Set starting ease factor of cards to the average ease factor of cards with intervals &amp;gt; 90 days Adjust the interval modifier to try to hit your selected success rate (80%,...
+        </description>
+        <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</guid>
+      </item>
+    
+      <item>
+        <title>Spell Check In Vim</title>
+        <description>
+          
+          Tip: you can use spell checking in vim! :set spell spelllang=en_us Actually, leaving off the spelllang will probably work for you too. Your system is probably set to use a default language. I’ve been using vim for years and didn’t know about this… so much to learn about vi/vim. When...
+        </description>
+        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/spell-check-in-vim.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/spell-check-in-vim.html</guid>
+      </item>
+    
+      <item>
+        <title>Create a Jekyll Post Inbox for Multiple Blogs</title>
+        <description>
+          
+          I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: Write a markdown-format post on another computer. Save it to a google-drive folder synced with my main...
+        </description>
+        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</guid>
+      </item>
+    
+      <item>
+        <title>Automate Jekyll Posting With Python In Windows</title>
+        <description>
+          
+          Why was this so hard!? I just coded a little python script to help automate the process of posting via Jekyll. In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can...
+        </description>
+        <pubDate>Thu, 09 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</guid>
+      </item>
+    
+  </channel>
+</rss>
