@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;code&rdquo;</title>
+  <title>Categories</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,27 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;code&rdquo;" />
+  <meta property="og:title" content="Categories" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;code&amp;rdquo;: Create a Jekyll Post Inbox for Multiple Blogs Posted on February 11, 2017 I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1....">
+  <meta property="og:description" content="
+
+{% for category in site.categories %}
+    {% capture category_name %}{{ category | first }}{% endcapture %}
+    {{ category_name }}
+{% endfor %}
+
+
+">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/code/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/code/" />
+  <meta property="og:url" content="http://eshapard.github.io/categories/" />
+  <link rel="canonical" href="http://eshapard.github.io/categories/" />
   
 
   
@@ -78,11 +86,19 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;code&rdquo;" />
+  <meta name="twitter:title" content="Categories" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;code&amp;rdquo;: Create a Jekyll Post Inbox for Multiple Blogs Posted on February 11, 2017 I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1....">
+  <meta name="twitter:description" content="
+
+{% for category in site.categories %}
+    {% capture category_name %}{{ category | first }}{% endcapture %}
+    {{ category_name }}
+{% endfor %}
+
+
+">
   
 
   
@@ -158,54 +174,59 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;code&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article class="post-preview">
-    <a href="/jekyll/auto-sort-jekyll-posts-to-different-blogs.html">
-      <h3 class="post-title">Create a Jekyll Post Inbox for Multiple Blogs</h3>
 
-      
-    </a>
 
-    <p class="post-meta">
-    Posted on February 11, 2017
-    </p>
 
-    <div class="post-entry">
-      I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1. Write a markdown-format post on another computer. 2. Save it to a google-drive folder synced with...
-      <a href="/jekyll/auto-sort-jekyll-posts-to-different-blogs.html" class="post-read-more">[Read&nbsp;More]</a>
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-heading">
+          <h1>Categories</h1>
+		  
+		  
+		  
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+</header>
 
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/code">code</a>
-      
-    </div>
-  </article>
-  
-  
-  
-  
-  
-  
-  
+
+
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div id="archives">
+<ul>
+
+    
+    <li class="category-head"><a name="code" href="/code/">code</a></li>
+
+    
+    <li class="category-head"><a name="jekyll" href="/jekyll/">jekyll</a></li>
+
+    
+    <li class="category-head"><a name="linux" href="/linux/">linux</a></li>
+
+    
+    <li class="category-head"><a name="anki" href="/anki/">anki</a></li>
+
+</ul>
 </div>
 
+	    
+    </div>
+  </div>
 </div>
+
 
     <footer>
   <div class="container beautiful-jekyll-footer">
