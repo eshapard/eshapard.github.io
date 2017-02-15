@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Anki's Starting Ease Factor Setting</title>
+        <description>
+          
+          In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. How Anki’s Algorithm Works Briefly, Anki’s scheduling algorithm works like this: Cards get an initial ease factor (a percentage) When you...
+        </description>
+        <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</guid>
+      </item>
+    
+      <item>
         <title>Working On Anki Auto-Calibrate</title>
         <description>
           
