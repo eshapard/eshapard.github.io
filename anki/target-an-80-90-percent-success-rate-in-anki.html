@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Target An 80-90 Percent Success Rate In Anki</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Target An 80-90 Percent Success Rate In Anki" />
+  
+
+   
+  <meta property="og:description" content="In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/avatar-icon.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Target An 80-90 Percent Success Rate In Anki" />
+  
+
+  
+  <meta name="twitter:description" content="In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/avatar-icon.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/aboutme.html">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/avatar-icon.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Target An 80-90 Percent Success Rate In Anki</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 15, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h2 id="in-a-nutshell">In a Nutshell</h2>
+
+<p>Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you.</p>
+
+<h2 id="anki-isnt-magic">Anki isn’t magic</h2>
+
+<p>If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic algorithm that selects the perfect interval for every card.</p>
+
+<p>Bull shit.</p>
+
+<p>Anki’s algorithm is very crude. Unless you change the default settings, it works basically like this:</p>
+
+<ul>
+  <li>User marked card <em>Good</em>? Set next interval to 250% of last interval.</li>
+  <li>User marked card <em>Again</em>? Start over and make each new interval 230% (-20%) of the last.</li>
+  <li>User marked card <em>Easy</em>? Set next interval to a 265% (+15%) of the last.</li>
+  <li>User marked card <em>Hard</em>? Set next interval to 235% (-15%) of the last.</li>
+</ul>
+
+<p>There’s a little more to it than that, but as you can see, it’s pretty crude. We have a basic assumption that each interval should be a certain percentage of the last and we use user feedback to stumble around until we’re pretty close to that percentage.</p>
+
+<p>Effective, but no magic bullet.</p>
+
+<h2 id="common-misconceptions">Common misconceptions</h2>
+
+<p>Even more experienced users seem to think that the algorithm <em>“predicts when you’re just about to forget the card”</em>, or <em>“predicts when you have a 90% chance of remembering the card”</em>, or something along those lines.</p>
+
+<p>This isn’t the case.</p>
+
+<p>As you can see from the rules above, Anki attempts to set an interval such that you’ll mark the card as <em>Good</em> the next time you see it… and Anki needs a lot of feedback from you to do it. Basically, Anki is just adjusting how quickly the interval grows based on how you rate your own reviews.</p>
+
+<p>If you want to target a certain success rate in your reviews, there are two ways to do it:</p>
+
+<ul>
+  <li>Carefully select the <em>Hard</em> and <em>Easy</em> options</li>
+  <li>Adjust the interval modifier</li>
+</ul>
+
+<h2 id="judging-hard-and-easy-sucks">Judging Hard and Easy sucks</h2>
+
+<p>From my experience, it really slows you down if you’re always trying to figure out whether a card you remembered was <em>Good</em>, <em>Hard</em>, or <em>Easy</em>. These are really subjective categories and it’s a lot of work to try to use these options for all but the most obvious cases.</p>
+
+<p>So in my case, I use <em>Good</em> most of the time when I remember a card, and <em>Hard</em> or <em>Easy</em> only in pretty extreme cases.</p>
+
+<p>Trying to remember the facts is mental effort enough for me. I don’t need to split hairs over how difficult the card was.</p>
+
+<h2 id="the-interval-modifier">The interval modifier</h2>
+
+<p>In the deck options, there’s also an interval modifier you can set. What this does is it increases all your intervals for <em>Hard</em>, <em>Good</em>, and <em>Easy</em> reviews.</p>
+
+<p>So instead of just making the next interval for a card equal to 250% of the last interval, the new interval is also multiplied by the interval modifier.</p>
+
+<p>Now these percentages that I’ve been talking about are called the ease factor. And this ease factor is what gets recorded and modified for every card. Given enough reviews, and enough feedback, this ease factor should settle around a value where you’re consistently rating your reviews as <em>Good</em>.</p>
+
+<p>What the interval modifiers does, is it basically allows you to raise or lower <strong>all the ease factors</strong> of every card under that particular deck option.</p>
+
+<p>This is super handy.</p>
+
+<p>Imagine that you notice you’re hitting <em>Easy</em> all the time. You’re seeing cards again too soon.</p>
+
+<p>Now you <em>could</em> just have patience and know that if you keep on hitting <em>Easy</em>, the intervals will grow, and eventually you’ll end up with appropriate intervals. But a better option is to increase the interval modifier from 100% to maybe 150%. Now all the intervals that Anki generates for remembered cards will be 50% larger than they normally would have been.</p>
+
+<p>Now you won’t be hitting <em>Easy</em> nearly as often.</p>
+
+<h2 id="desirable-difficulty">Desirable difficulty</h2>
+
+<p>Researchers have found that reviews are more <em>effective</em> when they’re difficult. That is, if you have to work at remembering a card, it’ll have a stronger effect on your memory. The harder a review is, the more it boosts your memory.</p>
+
+<p>This is called “desirable difficulty” in the literature.</p>
+
+<p>The problem is, that hard reviews are also hard on motivation. If your reviews make you feel like Sisyphus pushing a bolder up a hill, you aren’t going to be able to keep it up for very long.</p>
+
+<p>On the other hand, if you’re reviews are too easy, you’ll feel like you’re wasting your time. You simply don’t need to review the cards that often.</p>
+
+<p>Somewhere between too hard and too easy, there’s a sweet-spot where reviews are challenging enough to hold your interest, but not so hard that it feels like torture.</p>
+
+<p>When the challenge of reviews is just right, you’ll actually get a sense of accomplishment and a little bolt of dopamine as you do them. Our brains actually enjoy challenges as long as they aren’t too hard or too easy.</p>
+
+<p>As I see it, this level of challenge is where you want to be.</p>
+
+<p>I suspect that for most people, this sweet-spot is found when the reviews are hard enough that you get somewhere between 80 and 90 percent of them right. Everyone might be a little different, but if you aim for 85% and then experiment, you should be able to find what feels good for you.</p>
+
+<h2 id="using-the-interval-modifier-to-target-a-success-rate">Using the interval modifier to target a success rate</h2>
+
+<p>Let’s say we want to target an 85% success rate in our reviews. We think that this might be close to our sweet-spot; the right amount of challenge to make reviews rewarding rather than taxing.</p>
+
+<p>What we can do is look at the statistics for the last month or so. Anki already has some reports that will let you see what percentage of reviews you got right and what percentage you got wrong.</p>
+
+<p>If our success rate over the last month was too low, we can set our interval modifier to 95%. This way, all the intervals will be 95% of what they normally would have been; they’ll be a little shorter. That should make things easier, and over the next month, our success rate should go up.</p>
+
+<p>If we keep doing this on a monthly basis, we should get to the point where we’re pretty close to that 85% success rate.</p>
+
+<h3 id="a-fly-in-the-ointment">A fly in the ointment</h3>
+
+<p>Unfortunately, after a month, not all of the cards we’ve seen will have been adjusted with our new interval modifier. Some of them will be old cards whose intervals were set long ago.</p>
+
+<p>A more sophisticated approach is to look at the average ease factor, for all <em>Good</em> reviews in the past month, look at their average intervals, and calculate what the average interval modifier must have been.</p>
+
+<p>This is possible because Anki’s algorithm for calculating intervals is so simple. If there were not interval modifier, the average interval would be equal to the average ease factor times the average previous interval. Anything beyond that is due to the interval modifier.</p>
+
+<blockquote>
+  <p>Actually, Anki introduces a <em>fuzz</em> factor that makes intervals randomly larger or shorter. But given a large number of reviews, that should average out to nothing as it makes intervals both larger and shorter with equal probability.</p>
+</blockquote>
+
+<h3 id="a-mathematical-approach">A mathematical approach</h3>
+
+<p>Although it’s possible to simply increase or decrease the interval modifier by a set number until you reach a good value, there’s also a formula that you can use to try to calculate an optimal value.</p>
+
+<p>An equation for Ebbinghaus’s forgetting curve (see <a href="https://en.wikipedia.org/wiki/Forgetting_curve">Forgetting Curve</a> at Wikipedia) can be used to calculate the following equation found in the Anki manual:</p>
+
+<p><code class="highlighter-rouge">New Modifier = Current Modifier * log(desired success%) / log(current success%)</code></p>
+
+<p>Warning: This equation will give you very large values if your current success rate is close to 100%. A 100% success rate is very possible with a young deck full of very familiar material. For this reason, I tend to not change the interval modifier by more than 20%; otherwise I go with what the equation suggests.</p>
+
+<h2 id="my-personal-experience">My personal experience</h2>
+
+<p>I’ve had some surprising results from playing around with interval modifiers and targeting a success rate of between 80 and 90 percent.</p>
+
+<p>The most surprising thing I’ve found is that for some decks, I had to raise use a very large interval modifier… greater than 1000%. Some of my decks are on familiar material and I use a lot of mnemonic devices, so I guess those decks had cards that were very easy for me.</p>
+
+<p>How you formulate your cards and the content they contain can have a <em>huge</em> impact on how difficult they are for you!</p>
+
+<p>If the interval modifier is larger than 999%, it actually doesn’t show up correctly in Anki’s gui interface. For that reason, if it gets greater than 700%, I just go into the database, increase all the ease factors, and set the modifier back to 100%.</p>
+
+<p>I do feel that adjusting things to give myself about an 80% success rate has made review sessions more enjoyable, but because of the large interval modifiers I have in some deck options, I set a 3-year maximum interval on those decks just in case.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/anki">anki</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/ankis-initial-ease-factor-setting.html" data-toggle="tooltip" data-placement="top" title="Anki's Starting Ease Factor Setting">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/anki/what-anki-learning-steps-to-use.html" data-toggle="tooltip" data-placement="top" title="What Anki Learning Steps To Use">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+		  
+	  
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2017
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

@@ -7,6 +7,50 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Thoughts On A New Algorithm For Anki</title>
+        <description>
+          
+          I’ve had some thoughts about a change to the way Anki handles ease factors. In a nutshell Instead of simply increasing the ease factor a little when the user marks a review as Easy and decreasing it when they mark the review as Again or Hard, set target success rate...
+        </description>
+        <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</guid>
+      </item>
+    
+      <item>
+        <title>Anki New Interval After A Lapse</title>
+        <description>
+          
+          In a nutshell In deck settings, set the New Interval under the Lapses tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards. Anki’s default behavior I’m pretty sure that...
+        </description>
+        <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</guid>
+      </item>
+    
+      <item>
+        <title>What Anki Learning Steps To Use</title>
+        <description>
+          
+          Anki, and spaced-repetition in general, are geared towards retaining information you’ve already learned rather than learning new information. That’s because in general, flashcards are good at reminding you of some learning experience, but not so good at creating a memorable experience to begin with. Still, Ank provides some support for...
+        </description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</guid>
+      </item>
+    
+      <item>
+        <title>Target An 80-90 Percent Success Rate In Anki</title>
+        <description>
+          
+          In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...
+        </description>
+        <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</guid>
+      </item>
+    
+      <item>
         <title>Anki's Starting Ease Factor Setting</title>
         <description>
           
