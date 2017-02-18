@@ -175,7 +175,7 @@
 		  
 		  
 		  
-		  <span class="post-meta">Posted on February 17, 2017</span>
+		  <span class="post-meta">Posted on February 18, 2017</span>
 		  
         </div>
       </div>
@@ -293,7 +293,7 @@
 
 <h2 id="down-to-two-options">Down to two options</h2>
 
-<p>With this equation, it won’t matter whether you choose <em>Easy</em>, <em>Good</em>, or <em>Hard</em>. The success rate over time will tell us whether the ease factor is too easy (over 85% success), or too hard (under 85% success). We don’t have to think about it anymore.</p>
+<p>With this equation, it won’t matter whether you choose <em>Easy</em>, <em>Good</em>, or <em>Hard</em>. The success rate over time will tell us whether the ease factor is too easy (over 85% success), or too hard (under 85% success). We don’t have to think about it anymore. We can just select between <em>Again</em> and <em>Good</em>; a simple binary choice between getting a card right and getting it wrong.</p>
 
 <p>This frees up all that mental energy previously devoted to choosing among the three buttons. You can now use it for what you should be using it for; remembering the cards and getting through review sessions.</p>
 
@@ -304,6 +304,14 @@
 <p>This means that we could see a lot of whip-sawing up and down in the ease factor of young cards before they settle in to a good range. The good news is that this won’t affect the small intervals of young review cards nearly as much as it would affect the intervals of more mature cards.</p>
 
 <p>On the other hand, Anki’s current system means that we often spend a very long time slowly creeping towards an appropriate ease factor.</p>
+
+<blockquote>
+  <p>One other potential problem is that if you’ve been using an interval modifier, then the ease factor in the reviews database isn’t really the ease factor that was used. Instead, the effective ease factor was the ease factor listed in the database times the interval modifier in effect at that time (which is <strong>not</strong> listed).</p>
+
+  <p>However, the effective interval modifier can be deduced by taking the interval and dividing it by the previous interval; both of which are listed in the reviews database. You then have to multiply by 1000, because of the way that Anki stores these values (a 250% factor is stored as 2500 in Anki).</p>
+
+  <p>A great resource for understanding Anki’s database structure is the <a href="https://github.com/ankidroid/Anki-Android/wiki/Database-Structure">AnkiDroid Database Schema</a> page on Github. But also, compare that to the section on <a href="https://apps.ankiweb.net/docs/manual.html#manual-analysis">Manual Analysis</a> in the Anki manual.</p>
+</blockquote>
 
 <h2 id="what-about-all-that-forgetting">What about all that forgetting?</h2>
 

@@ -12,7 +12,7 @@
           
           I’ve had some thoughts about a change to the way Anki handles ease factors. In a nutshell Instead of simply increasing the ease factor a little when the user marks a review as Easy and decreasing it when they mark the review as Again or Hard, set target success rate...
         </description>
-        <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</guid>
       </item>
