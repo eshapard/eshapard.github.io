@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Open The Anki Database From Python</title>
+        <description>
+          
+          At some point, you might want to script something to open up the Anki database and collect some information without having to run as an add-on. For example, I have a script that runs from cron. It copies the anki collection to the /tmp directory and then opens it up,...
+        </description>
+        <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/open-the-anki-database-from-python.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/open-the-anki-database-from-python.html</guid>
+      </item>
+    
+      <item>
         <title>Thoughts On A New Algorithm For Anki</title>
         <description>
           
