@@ -63,12 +63,12 @@
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://localhost:4000/code/automate-jekyll-posting-with-python-in-windows.html" />
-  <link rel="canonical" href="http://localhost:4000/code/automate-jekyll-posting-with-python-in-windows.html" />
+  <meta property="og:url" content="http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html" />
+  <link rel="canonical" href="http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html" />
   
 
   
-  <meta property="og:image" content="http://localhost:4000/img/ejs_logo.png" />
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
   
   
 
@@ -86,7 +86,7 @@
   
 
   
-  <meta name="twitter:image" content="http://localhost:4000/img/ejs_logo.png" />
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
   
 
 </head>
@@ -106,7 +106,7 @@
         <span class="icon-bar"></span>
       </button>
       
-        <a class="navbar-brand" href="http://localhost:4000">My Crappy Code Blog</a>
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
       
     </div>
 
@@ -147,7 +147,7 @@
 	
 	<div class="avatar-container">
 	  <div class="avatar-img-border">
-	    <a href="http://localhost:4000 ">
+	    <a href="http://eshapard.github.io ">
 	      <img class="avatar-img" src="/img/ejs_logo.png" />
 		</a>
 	  </div>
@@ -192,9 +192,7 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
       <article role="main" class="blog-post">
-        <p><img src="/img/python.jpg" alt="Python:" title="Photo Credit: Thomas Hawk CCL 2.0" /></p>
-
-<h1 id="why-was-this-so-hard">Why was this so hard!?</h1>
+        <h1 id="why-was-this-so-hard">Why was this so hard!?</h1>
 
 <p>I just coded a little python script to help automate the process of posting via Jekyll.</p>
 
@@ -270,11 +268,18 @@
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">postfile</span><span class="p">:</span>
     <span class="n">postfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
-<span class="n">command</span><span class="o">=</span><span class="s">'"</span><span class="si">%</span><span class="s">s" "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">command</span><span class="o">=</span><span class="s">'"</span><span class="si">%</span><span class="s">s" -c "set spell spelllang=en_us" -c "setf markdown" + "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'"'</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
 </code></pre>
 </div>
+<p>### Key to the Vim command</p>
+
+<ul>
+  <li><em>set spell spelllange=en_us</em> - turns on spell checking</li>
+  <li><em>setf markdown</em> - sets syntax highlighting to markdown</li>
+  <li><em>+</em> moves cursor to the last line</li>
+</ul>
 
 <blockquote>
   <p><strong>Note:</strong> As you can probably tell, I’m not an expert in python, or any other programming language. I’m pretty much entirely self-taught and I rarely program for Windows anymore, so don’t expect that this will the best, cleanest, most elegant way to accomplish this.</p>
@@ -299,7 +304,7 @@
         
         
         <li class="next">
-          <a href="/jekyll/auto-sort-jekyll-posts-to-different-blogs.html" data-toggle="tooltip" data-placement="top" title="Create a Jekyll Post Inbox for Multiple Blogs">Next Post &rarr;</a>
+          <a href="/jekyll/github-jekyll-theme-changes.html" data-toggle="tooltip" data-placement="top" title="Github Jekyll Theme Changes">Next Post &rarr;</a>
         </li>
         
       </ul>
@@ -355,7 +360,7 @@
 
 		  
 		  &nbsp;&bull;&nbsp;
-		  <a href="http://localhost:4000">eshapard.github.io</a>
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
 		  
 	    </p>
 	        <!-- Please don't remove this, keep my open source work credited :) -->
