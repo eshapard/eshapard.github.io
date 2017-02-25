@@ -65,7 +65,7 @@
         <title>Anki's Starting Ease Factor Setting</title>
         <description>
           
-          In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically or all decks. To install from within Anki, use Tools » Addons »...
+          In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically for all decks. To install from within Anki, use Tools » Addons »...
         </description>
         <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</link>
