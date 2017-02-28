@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Format PDFs for Kindle</title>
+        <description>
+          
+          Here’s a quick tip: Use k2pdfopt to re-format pdf files for the kindle screen. When to use I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle...
+        </description>
+        <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</guid>
+      </item>
+    
+      <item>
         <title>Open The Anki Database From Python</title>
         <description>
           

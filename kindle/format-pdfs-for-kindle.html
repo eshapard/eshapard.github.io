@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;code&rdquo;</title>
+  <title>Format PDFs for Kindle</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,19 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;code&rdquo;" />
+  <meta property="og:title" content="Format PDFs for Kindle" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;code&amp;rdquo;: Create a Jekyll Post Inbox for Multiple Blogs Posted on February 11, 2017 I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1....">
+  <meta property="og:description" content="Here’s a quick tip: Use k2pdfopt to re-format pdf files for the kindle screen. When to use I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/code/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/code/" />
+  <meta property="og:url" content="http://eshapard.github.io/kindle/format-pdfs-for-kindle.html" />
+  <link rel="canonical" href="http://eshapard.github.io/kindle/format-pdfs-for-kindle.html" />
   
 
   
@@ -78,11 +78,11 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;code&rdquo;" />
+  <meta name="twitter:title" content="Format PDFs for Kindle" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;code&amp;rdquo;: Create a Jekyll Post Inbox for Multiple Blogs Posted on February 11, 2017 I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1....">
+  <meta name="twitter:description" content="Here’s a quick tip: Use k2pdfopt to re-format pdf files for the kindle screen. When to use I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle...">
   
 
   
@@ -158,91 +158,91 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;code&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article class="post-preview">
-    <a href="/jekyll/auto-sort-jekyll-posts-to-different-blogs.html">
-      <h3 class="post-title">Create a Jekyll Post Inbox for Multiple Blogs</h3>
 
-      
-    </a>
 
-    <p class="post-meta">
-    Posted on February 11, 2017
-    </p>
 
-    <div class="post-entry">
-      I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: 1. Write a markdown-format post on another computer. 2. Save it to a google-drive folder synced with...
-      <a href="/jekyll/auto-sort-jekyll-posts-to-different-blogs.html" class="post-read-more">[Read&nbsp;More]</a>
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Format PDFs for Kindle</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 28, 2017</span>
+		  
+        </div>
+      </div>
     </div>
-
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/code">code</a>
-      
-        <a href="/tag/jekyll">jekyll</a>
-      
-    </div>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </div>
 </div>
+</header>
 
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>Here’s a quick tip: Use <a href="http://www.willus.com/k2pdfopt/">k2pdfopt</a> to re-format pdf files for the kindle screen.</p>
+
+<h2 id="when-to-use">When to use</h2>
+
+<p>I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle experience from mobi; not pdf.</p>
+
+<blockquote>
+  <p>Amazon uses mobi format for kindle books, but renames the extension to ‘.azw’… as far as I know, it’s still mobi though.</p>
+</blockquote>
+
+<p>But every once in a while I find myself with pdf as the only option. That’s when I break out k2pdfopt.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<p>The problem with PDFs on kindle is that they’re almost always sized for a much larger page; A4 or letter. And that means the text is going to be teeny tiny on your kindle.</p>
+
+<p>Enter k2pdfopt.</p>
+
+<p>K2pdfopt doesn’t just resize the pages of the pdf, it completely re-paginates it; making the pages the right size for your kindle, without scrunching up all the text. It can even convert two-column pdfs into one column for you.</p>
+
+<p>It’s a super useful tool when the only version of a text is in pdf format.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/kindle">kindle</a>
+          
+            <a href="/tag/tools">tools</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/open-the-anki-database-from-python.html" data-toggle="tooltip" data-placement="top" title="Open The Anki Database From Python">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
 </div>
 
     <footer>
