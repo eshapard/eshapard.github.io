@@ -56,7 +56,7 @@
   
 
    
-  <meta property="og:description" content="Here’s a quick tip: Use k2pdfopt to re-format pdf files for the kindle screen. When to use I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle...">
+  <meta property="og:description" content="Here’s a quick tip: Use Calibre to convert pdfs to mobi and use k2pdfopt to re-format particularly tough pdf files for the kindle screen… then try using Calibre to convert those pdfs to mobi. When to use I prefer to get ebooks and documents in epub or mobi format (kindle...">
   
 
 
@@ -82,7 +82,7 @@
   
 
   
-  <meta name="twitter:description" content="Here’s a quick tip: Use k2pdfopt to re-format pdf files for the kindle screen. When to use I prefer to get ebooks and documents in epub or mobi format (kindle uses mobi). Either of those can be easily converted into the other using Calibre. And you’ll get the best kindle...">
+  <meta name="twitter:description" content="Here’s a quick tip: Use Calibre to convert pdfs to mobi and use k2pdfopt to re-format particularly tough pdf files for the kindle screen… then try using Calibre to convert those pdfs to mobi. When to use I prefer to get ebooks and documents in epub or mobi format (kindle...">
   
 
   
@@ -192,7 +192,7 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
       <article role="main" class="blog-post">
-        <p>Here’s a quick tip: Use <a href="http://www.willus.com/k2pdfopt/">k2pdfopt</a> to re-format pdf files for the kindle screen.</p>
+        <p>Here’s a quick tip: Use Calibre to convert pdfs to mobi and use <a href="http://www.willus.com/k2pdfopt/">k2pdfopt</a> to re-format particularly tough pdf files for the kindle screen… then try using Calibre to convert those pdfs to mobi.</p>
 
 <h2 id="when-to-use">When to use</h2>
 
@@ -202,19 +202,35 @@
   <p>Amazon uses mobi format for kindle books, but renames the extension to ‘.azw’… as far as I know, it’s still mobi though.</p>
 </blockquote>
 
-<p>But every once in a while I find myself with pdf as the only option. That’s when I break out k2pdfopt.</p>
+<p>But every once in a while I find myself with pdf as the only option. Often Calibre can convert those books into mobi just fine. If that doesn’t work well, you can try using Calibre to convert the pdf into a pdf optimized for kindles (dig around in the conversion settings under page format).</p>
+
+<p>But sometimes you get a pdf that Calibre just can’t handle. That’s when I break out k2pdfopt.</p>
 
 <h2 id="the-problem">The problem</h2>
 
 <p>The problem with PDFs on kindle is that they’re almost always sized for a much larger page; A4 or letter. And that means the text is going to be teeny tiny on your kindle.</p>
 
+<p>Calibre continues to amaze me at what it can do. Your first step should be to try converting the pdf to mobi and see if it looks good. If not, try converting it to a kindle-optimized pdf.</p>
+
+<p>But if that doesn’t work, you’ll need to pull out the big guns.</p>
+
 <h2 id="enter-k2pdfopt">Enter k2pdfopt</h2>
 
 <p>K2pdfopt doesn’t just resize the pages of the pdf, it completely re-paginates it; making the pages the right size for your kindle, without scrunching up all the text. It can even convert two-column pdfs into one column for you.</p>
 
-<p>It’s a super useful tool when the only version of a text is in pdf format.</p>
+<p>Calibre can do this sort of conversion for you, but multiple columns can really throw it for a loop. That’s where k2pdfopt comes to the rescue.</p>
+
+<p>It’s a super useful tool when the only version of a text is in a multi-column pdf format.</p>
 
 <p>There’s a gui version for windows, but only a command-line version for linux. Because there are a lot of bewildering options, it’s handy to have the gui. The nice thing is that the gui will show you the command-line version of the settings you choose. So once you figure out a setting that works well for you, you can just copy the command-line parameters into a batch file or something an use it on linux without having to be an expert in all the possible options… that’s what I did.</p>
+
+<p>After that, you might try running it through Calibre again to convert to mobi… it might work well.</p>
+
+<h2 id="issues">Issues</h2>
+
+<p>K2pfopt can increase the file size of the pdf it’s converting. There are probably options you can use to prevent this, but the defaults can produce a big complicated pdf sometimes. But the output should be readable by Calibre, which means you can then re-convert the file using Calibre and hopefully simplify it.</p>
+
+<p>In writing this post, I came accross a <a href="https://www.howtogeek.com/69481/how-to-convert-pdf-files-for-easy-ebook-reading/">post at how-to-geek</a> that covers the same thing and has some helpful screenshots. I had to figure this out the hard way, but this post had been there the whole time… if only I had seen it sooner.</p>
 
       </article>
 
