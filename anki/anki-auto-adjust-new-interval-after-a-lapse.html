@@ -263,30 +263,30 @@
 <span class="n">LapseConffile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">)),</span> <span class="s">"autoLapseNewInterval.data"</span><span class="p">)</span>
 <span class="n">LapseConffile</span> <span class="o">=</span> <span class="n">LapseConffile</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getfilesystemencoding</span><span class="p">())</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">):</span>
-	<span class="n">previous</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">))</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">))</span>
 
 
 <span class="k">def</span> <span class="nf">save_lapseStats</span><span class="p">():</span>
-	<span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">previous</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'w'</span><span class="p">))</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">previous</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'w'</span><span class="p">))</span>
 
 
 <span class="c"># Find settings group ID</span>
 <span class="k">def</span> <span class="nf">find_settings_group_id</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-	<span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
-	<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dconf</span><span class="p">:</span>
-		<span class="k">if</span> <span class="n">dconf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
-			<span class="k">return</span> <span class="n">k</span>
-	<span class="k">return</span> <span class="bp">False</span>
+    <span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dconf</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dconf</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="bp">False</span>
 
 
 <span class="c"># Find decks in settings group</span>
 <span class="k">def</span> <span class="nf">find_decks_in_settings_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">):</span>
-	<span class="n">members</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="n">decks</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">decks</span>
-	<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">:</span>
-		<span class="k">if</span> <span class="s">'conf'</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">decks</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="s">'conf'</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">group_id</span><span class="p">):</span>
-			<span class="n">members</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">members</span>
+    <span class="n">members</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">decks</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">decks</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s">'conf'</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">decks</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="s">'conf'</span><span class="p">])</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">group_id</span><span class="p">):</span>
+            <span class="n">members</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">members</span>
 
 
 
@@ -298,7 +298,7 @@
 
 <span class="c"># Main Function</span>
 <span class="k">def</span> <span class="nf">adjLapse_all</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-	<span class="n">eval_lapsed_newIvl</span><span class="p">(</span><span class="n">silent</span><span class="p">)</span>
+    <span class="n">eval_lapsed_newIvl</span><span class="p">(</span><span class="n">silent</span><span class="p">)</span>
 
 
 <span class="c"># Startup Function</span>
@@ -307,7 +307,7 @@
         <span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
         <span class="k">if</span> <span class="n">profile</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">:</span>
             <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-	<span class="n">adjLapse_all</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> <span class="c"># Includes functions below</span>
+    <span class="n">adjLapse_all</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> <span class="c"># Includes functions below</span>
 
 <span class="c">#Run when profile is loaded, save stats when unloaded</span>
 <span class="n">addHook</span><span class="p">(</span><span class="s">"profileLoaded"</span><span class="p">,</span> <span class="n">adjLapse_startup</span><span class="p">)</span>
@@ -316,126 +316,126 @@
 
 <span class="c">#Find the success rate for a deck</span>
 <span class="k">def</span> <span class="nf">deck_lapsed_success_rate</span><span class="p">(</span><span class="n">deck_ids</span><span class="p">,</span> <span class="n">lapsed_rev_records</span><span class="p">):</span>
-	<span class="n">lapsed_query</span> <span class="o">=</span> <span class="s">"""select count() from
-			  (select * from 
-			  (select min(b.id) as bid, a.id as aid, a.ivl, a.lastIvl as aLastIvl, b.ivl as bIvl, b.lastIvl as bLastIvl, b.ease
-			  from revlog as a, revlog as b, cards as c
-			  where
-			  a.type = 1
-			  and a.ease = 1
-			  and a.cid = b.cid
-			  and a.cid = c.id
-	       		  and ("""</span>
-	<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-	<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">deck_ids</span><span class="p">:</span>
-		<span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-			<span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">"c.did = </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">d</span>
-			<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">" or c.did = </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">d</span>
-	<span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">""") and b.type = 1
-			and b.id &gt; a.id
-			group by a.id
-			order by a.id) as s
-			where bLastIvl &lt; aLastIvl
-			limit </span><span class="si">%</span><span class="s">s) as o
-			where ease &gt; 1"""</span> <span class="o">%</span> <span class="n">lapsed_rev_records</span>
-	<span class="n">lapsed_successes</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">lapsed_query</span><span class="p">)</span>
+    <span class="n">lapsed_query</span> <span class="o">=</span> <span class="s">"""select count() from
+              (select * from 
+              (select min(b.id) as bid, a.id as aid, a.ivl, a.lastIvl as aLastIvl, b.ivl as bIvl, b.lastIvl as bLastIvl, b.ease
+              from revlog as a, revlog as b, cards as c
+              where
+              a.type = 1
+              and a.ease = 1
+              and a.cid = b.cid
+              and a.cid = c.id
+              and ("""</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">deck_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">"c.did = </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">d</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">" or c.did = </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">d</span>
+    <span class="n">lapsed_query</span> <span class="o">+=</span> <span class="s">""") and b.type = 1
+            and b.id &gt; a.id
+            group by a.id
+            order by a.id) as s
+            where bLastIvl &lt; aLastIvl
+            limit </span><span class="si">%</span><span class="s">s) as o
+            where ease &gt; 1"""</span> <span class="o">%</span> <span class="n">lapsed_rev_records</span>
+    <span class="n">lapsed_successes</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">lapsed_query</span><span class="p">)</span>
 
-	<span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">lapsed_successes</span> <span class="o">/</span> <span class="n">lapsed_rev_records</span><span class="p">)</span>
-	<span class="k">return</span> <span class="n">lapsed_success_rate</span>
+    <span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">lapsed_successes</span> <span class="o">/</span> <span class="n">lapsed_rev_records</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lapsed_success_rate</span>
 
 <span class="c">#Find number of lapsed review records in deck</span>
 <span class="k">def</span> <span class="nf">lapsed_records_in_deck</span><span class="p">(</span><span class="n">deck_id</span><span class="p">,</span> <span class="n">from_date</span><span class="p">):</span>
-	<span class="n">lapsed_query</span> <span class="o">=</span> <span class="s">"""select count() from
-			(select min(b.id) as bid, a.id as aid, a.ivl, a.lastIvl as aLastIvl, b.ivl as bIvl, b.lastIvl as bLastIvl, b.ease
-			from revlog as a, revlog as b, cards as c
-			where
-			a.id &gt; </span><span class="si">%</span><span class="s">s
-			and a.type = 1
-			and a.ease = 1
-			and a.cid = b.cid
-			and a.cid = c.id
-			and c.did = </span><span class="si">%</span><span class="s">s
-			and b.type = 1
-			and b.id &gt; a.id
-			group by a.id
-			order by a.id) as s
-			where bLastIvl &lt; aLastIvl"""</span> <span class="o">%</span> <span class="p">(</span><span class="n">from_date</span><span class="p">,</span> <span class="n">deck_id</span><span class="p">)</span>
-	<span class="n">lapsed_records</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">lapsed_query</span><span class="p">)</span>
-	<span class="k">if</span> <span class="n">lapsed_records</span><span class="p">:</span>
-		<span class="k">return</span> <span class="n">lapsed_records</span>
-	<span class="k">else</span><span class="p">:</span>
-		<span class="k">return</span> <span class="mi">0</span>
+    <span class="n">lapsed_query</span> <span class="o">=</span> <span class="s">"""select count() from
+            (select min(b.id) as bid, a.id as aid, a.ivl, a.lastIvl as aLastIvl, b.ivl as bIvl, b.lastIvl as bLastIvl, b.ease
+            from revlog as a, revlog as b, cards as c
+            where
+            a.id &gt; </span><span class="si">%</span><span class="s">s
+            and a.type = 1
+            and a.ease = 1
+            and a.cid = b.cid
+            and a.cid = c.id
+            and c.did = </span><span class="si">%</span><span class="s">s
+            and b.type = 1
+            and b.id &gt; a.id
+            group by a.id
+            order by a.id) as s
+            where bLastIvl &lt; aLastIvl"""</span> <span class="o">%</span> <span class="p">(</span><span class="n">from_date</span><span class="p">,</span> <span class="n">deck_id</span><span class="p">)</span>
+    <span class="n">lapsed_records</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">lapsed_query</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lapsed_records</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lapsed_records</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
 <span class="c"># Calculate the Lapse success rate of an options group</span>
 <span class="k">def</span> <span class="nf">og_lapsed_success_rate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">min_look_back</span><span class="p">):</span>
-	<span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
-	<span class="n">creation_date</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">crt</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-	<span class="n">deck_ids</span> <span class="o">=</span> <span class="p">[]</span>
-	<span class="n">lapsed_rev_records</span> <span class="o">=</span> <span class="mi">0</span>
-	<span class="n">group_id</span> <span class="o">=</span> <span class="n">find_settings_group_id</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">creation_date</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">crt</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">deck_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lapsed_rev_records</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">group_id</span> <span class="o">=</span> <span class="n">find_settings_group_id</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="c">#add profile to previous dates dictionary</span>
-	<span class="k">if</span> <span class="s">'lapsed'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">]:</span>
-		<span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">creation_date</span>
-	<span class="n">from_date</span> <span class="o">=</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span>
-	<span class="c">#exit if it has been less than 24 hours since last adjustment</span>
-	<span class="n">cur_date</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">cur_date</span> <span class="o">-</span> <span class="n">from_date</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">):</span>
-		<span class="c">#utils.showInfo("Waiting 24 hours to adjust Lapse Next Interval for %s." % name)</span>
-		<span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
-	<span class="k">if</span> <span class="n">group_id</span><span class="p">:</span>
-		<span class="c"># Find decks and cycle through</span>
-		<span class="n">decks</span> <span class="o">=</span> <span class="n">find_decks_in_settings_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span>
-		<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">:</span>
-			<span class="n">deck_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-			<span class="n">lapsed_rev_records</span> <span class="o">+=</span> <span class="n">lapsed_records_in_deck</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">from_date</span><span class="p">)</span>
-		<span class="c"># make sure we have enough records in review to</span>
-		<span class="k">if</span> <span class="n">lapsed_rev_records</span> <span class="o">&gt;=</span> <span class="n">min_look_back</span><span class="p">:</span>
-			<span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="n">deck_lapsed_success_rate</span><span class="p">(</span><span class="n">deck_ids</span><span class="p">,</span> <span class="n">lapsed_rev_records</span><span class="p">)</span> <span class="c">#look back over all records since last adjustment</span>
-		<span class="k">else</span><span class="p">:</span>
-			<span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="bp">False</span>
-		<span class="k">return</span> <span class="n">lapsed_success_rate</span><span class="p">,</span> <span class="n">lapsed_rev_records</span>
-	<span class="k">else</span><span class="p">:</span>
-		<span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="s">'lapsed'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">]:</span>
+        <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">creation_date</span>
+    <span class="n">from_date</span> <span class="o">=</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span>
+    <span class="c">#exit if it has been less than 24 hours since last adjustment</span>
+    <span class="n">cur_date</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cur_date</span> <span class="o">-</span> <span class="n">from_date</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">):</span>
+        <span class="c">#utils.showInfo("Waiting 24 hours to adjust Lapse Next Interval for %s." % name)</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">group_id</span><span class="p">:</span>
+        <span class="c"># Find decks and cycle through</span>
+        <span class="n">decks</span> <span class="o">=</span> <span class="n">find_decks_in_settings_group</span><span class="p">(</span><span class="n">group_id</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">decks</span><span class="p">:</span>
+            <span class="n">deck_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">lapsed_rev_records</span> <span class="o">+=</span> <span class="n">lapsed_records_in_deck</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">from_date</span><span class="p">)</span>
+        <span class="c"># make sure we have enough records in review to</span>
+        <span class="k">if</span> <span class="n">lapsed_rev_records</span> <span class="o">&gt;=</span> <span class="n">min_look_back</span><span class="p">:</span>
+            <span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="n">deck_lapsed_success_rate</span><span class="p">(</span><span class="n">deck_ids</span><span class="p">,</span> <span class="n">lapsed_rev_records</span><span class="p">)</span> <span class="c">#look back over all records since last adjustment</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lapsed_success_rate</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">lapsed_success_rate</span><span class="p">,</span> <span class="n">lapsed_rev_records</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
 
 <span class="c">#Adjust the lapsed new interval setting for an options group</span>
 <span class="k">def</span> <span class="nf">adj_lapsed_newIvl</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
         <span class="k">global</span> <span class="n">previous</span>
-	<span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
-	<span class="n">tsr</span> <span class="o">=</span> <span class="n">defaultTSR</span>
-	<span class="c"># Return if target success rate is false or 0.</span>
-	<span class="k">if</span> <span class="ow">not</span> <span class="n">tsr</span><span class="p">:</span> <span class="k">return</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">tsr</span> <span class="o">=</span> <span class="n">defaultTSR</span>
+    <span class="c"># Return if target success rate is false or 0.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tsr</span><span class="p">:</span> <span class="k">return</span>
         <span class="c">#find name of group</span>
         <span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]:</span>
             <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-	<span class="n">cur_LNIvl</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'lapse'</span><span class="p">][</span><span class="s">'mult'</span><span class="p">])</span>
-	<span class="n">lapsed_success_rate</span><span class="p">,</span> <span class="n">lapsed_rev_records</span> <span class="o">=</span> <span class="n">og_lapsed_success_rate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">card_sample_size</span><span class="p">)</span>
-	<span class="c"># Returns False, False if we don't have enough review records since last time.</span>
-	<span class="k">if</span> <span class="n">lapsed_success_rate</span> <span class="ow">and</span> <span class="n">lapsed_rev_records</span> <span class="ow">and</span> <span class="n">lapsed_success_rate</span> <span class="o">!=</span> <span class="n">tsr</span><span class="p">:</span>
-		<span class="n">target_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tsr</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-		<span class="n">cur_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lapsed_success_rate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">cur_LNIvl</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'lapse'</span><span class="p">][</span><span class="s">'mult'</span><span class="p">])</span>
+    <span class="n">lapsed_success_rate</span><span class="p">,</span> <span class="n">lapsed_rev_records</span> <span class="o">=</span> <span class="n">og_lapsed_success_rate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">card_sample_size</span><span class="p">)</span>
+    <span class="c"># Returns False, False if we don't have enough review records since last time.</span>
+    <span class="k">if</span> <span class="n">lapsed_success_rate</span> <span class="ow">and</span> <span class="n">lapsed_rev_records</span> <span class="ow">and</span> <span class="n">lapsed_success_rate</span> <span class="o">!=</span> <span class="n">tsr</span><span class="p">:</span>
+        <span class="n">target_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tsr</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+        <span class="n">cur_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lapsed_success_rate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
                 <span class="c">#Simplistic ratio adjustment</span>
                 <span class="n">new_LNIvl</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">cur_LNIvl</span> <span class="o">*</span> <span class="n">cur_rate</span><span class="o">/</span><span class="n">target_rate</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-		<span class="k">if</span> <span class="n">new_LNIvl</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-			<span class="n">new_LNIvl</span> <span class="o">=</span> <span class="mi">1</span>
-		<span class="k">if</span> <span class="n">utils</span><span class="o">.</span><span class="n">askUser</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s"</span>
-				<span class="s">"</span><span class="se">\n\n</span><span class="s">Lapsed Card Success Rate: </span><span class="si">%</span><span class="s">s"</span>
-				<span class="s">"</span><span class="se">\n</span><span class="s">Target Success Rate: </span><span class="si">%</span><span class="s">s"</span>
-				<span class="s">"</span><span class="se">\n</span><span class="s">Current lapsed new interval: </span><span class="si">%</span><span class="s">s"</span>
-				<span class="s">"</span><span class="se">\n</span><span class="s">Suggested interval: </span><span class="si">%</span><span class="s">s"</span>
-				<span class="s">"</span><span class="se">\n\n</span><span class="s">Accept new Lapsed new interval?"</span> <span class="o">%</span> <span class="p">(</span>
-				<span class="n">name</span><span class="p">,</span> <span class="n">cur_rate</span><span class="p">,</span> <span class="n">target_rate</span><span class="p">,</span> <span class="n">cur_LNIvl</span><span class="p">,</span> <span class="n">new_LNIvl</span><span class="p">)):</span>
-			<span class="c"># make changes</span>
-			<span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'lapse'</span><span class="p">][</span><span class="s">'mult'</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_LNIvl</span>
-			<span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">])</span>
-			<span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-			<span class="c">#utils.showInfo("Updating lapsed new interval currently disabled")</span>
-	<span class="k">else</span><span class="p">:</span>
-		<span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
-			<span class="n">utils</span><span class="o">.</span><span class="n">showInfo</span><span class="p">(</span><span class="s">"Lapsed New Interval</span><span class="se">\n\n</span><span class="s">Not enough records for options group </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_LNIvl</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">new_LNIvl</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">utils</span><span class="o">.</span><span class="n">askUser</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s"</span>
+                <span class="s">"</span><span class="se">\n\n</span><span class="s">Lapsed Card Success Rate: </span><span class="si">%</span><span class="s">s"</span>
+                <span class="s">"</span><span class="se">\n</span><span class="s">Target Success Rate: </span><span class="si">%</span><span class="s">s"</span>
+                <span class="s">"</span><span class="se">\n</span><span class="s">Current lapsed new interval: </span><span class="si">%</span><span class="s">s"</span>
+                <span class="s">"</span><span class="se">\n</span><span class="s">Suggested interval: </span><span class="si">%</span><span class="s">s"</span>
+                <span class="s">"</span><span class="se">\n\n</span><span class="s">Accept new Lapsed new interval?"</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">cur_rate</span><span class="p">,</span> <span class="n">target_rate</span><span class="p">,</span> <span class="n">cur_LNIvl</span><span class="p">,</span> <span class="n">new_LNIvl</span><span class="p">)):</span>
+            <span class="c"># make changes</span>
+            <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'lapse'</span><span class="p">][</span><span class="s">'mult'</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_LNIvl</span>
+            <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">])</span>
+            <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">][</span><span class="s">'lapsed'</span><span class="p">]</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+            <span class="c">#utils.showInfo("Updating lapsed new interval currently disabled")</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
+            <span class="n">utils</span><span class="o">.</span><span class="n">showInfo</span><span class="p">(</span><span class="s">"Lapsed New Interval</span><span class="se">\n\n</span><span class="s">Not enough records for options group </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">eval_lapsed_newIvl</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
