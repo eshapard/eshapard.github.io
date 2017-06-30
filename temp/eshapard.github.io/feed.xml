@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Crappy Code Blog</title>
+    <description>Watch me code stuff... poorly</description>
+    <link>http://eshapard.github.io</link>
+    <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Hacking Nut</title>
+        <description>
+          
+          I’m a big fan of Jim Jozwiak’s nutrition tracking software NUT. But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an amount equal to 10% of your total calories for the...
+        </description>
+        <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/health/hacking-nut.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/health/hacking-nut.html</guid>
+      </item>
+    
+      <item>
+        <title>Format PDFs for Kindle</title>
+        <description>
+          
+          Here’s a quick tip: Use Calibre to convert pdfs to mobi and use k2pdfopt to re-format particularly tough pdf files for the kindle screen… then try using Calibre to convert those pdfs to mobi. When to use I prefer to get ebooks and documents in epub or mobi format (kindle...
+        </description>
+        <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</guid>
+      </item>
+    
+      <item>
+        <title>Open The Anki Database From Python</title>
+        <description>
+          
+          At some point, you might want to script something to open up the Anki database and collect some information without having to run as an add-on. For example, I have a script that runs from cron. It copies the anki collection to the /tmp directory and then opens it up,...
+        </description>
+        <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/open-the-anki-database-from-python.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/open-the-anki-database-from-python.html</guid>
+      </item>
+    
+      <item>
+        <title>Thoughts On A New Algorithm For Anki</title>
+        <description>
+          
+          I’ve had some thoughts about a change to the way Anki handles ease factors. In a nutshell Instead of simply increasing the ease factor a little when the user marks a review as Easy and decreasing it when they mark the review as Again or Hard, set target success rate...
+        </description>
+        <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</guid>
+      </item>
+    
+      <item>
+        <title>Anki New Interval After A Lapse</title>
+        <description>
+          
+          In a nutshell In deck settings, set the New Interval under the Lapses tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards. Anki’s default behavior I’m pretty sure that...
+        </description>
+        <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</guid>
+      </item>
+    
+      <item>
+        <title>What Anki Learning Steps To Use</title>
+        <description>
+          
+          Anki, and spaced-repetition in general, are geared towards retaining information you’ve already learned rather than learning new information. That’s because in general, flashcards are good at reminding you of some learning experience, but not so good at creating a memorable experience to begin with. Still, Ank provides some support for...
+        </description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</guid>
+      </item>
+    
+      <item>
+        <title>Target An 80-90 Percent Success Rate In Anki</title>
+        <description>
+          
+          In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...
+        </description>
+        <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</guid>
+      </item>
+    
+      <item>
+        <title>Anki's Starting Ease Factor Setting</title>
+        <description>
+          
+          In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically for all decks. To install from within Anki, use Tools » Addons »...
+        </description>
+        <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</guid>
+      </item>
+    
+      <item>
+        <title>Working On Anki Auto-Calibrate</title>
+        <description>
+          
+          I’m working on an addon for Anki that will do the following things for deck options that you select: Set starting ease factor of cards to the average ease factor of cards with intervals &amp;gt; 90 days Adjust the interval modifier to try to hit your selected success rate (80%,...
+        </description>
+        <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</guid>
+      </item>
+    
+      <item>
+        <title>Spell Check In Vim</title>
+        <description>
+          
+          Tip: you can use spell checking in vim! set spell spelllang=en_us Actually, leaving off the spelllang will probably work for you too. Your system is probably set to use a default language. I’ve been using vim for years and didn’t know about this… so much to learn about vi/vim. When...
+        </description>
+        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/spell-check-in-vim.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/spell-check-in-vim.html</guid>
+      </item>
+    
+      <item>
+        <title>Create a Jekyll Post Inbox for Multiple Blogs</title>
+        <description>
+          
+          I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: Write a markdown-format post on another computer. Save it to a google-drive folder synced with my main...
+        </description>
+        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</guid>
+      </item>
+    
+      <item>
+        <title>Github Jekyll Theme Changes</title>
+        <description>
+          
+          OK, so I changed the theme of my github pages site by changing the theme: setting in the _config.yaml file. The theme did not change right away. I thought maybe I’d have to wait a while, but after 12 hours or so, still no change to the theme. I know...
+        </description>
+        <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</guid>
+      </item>
+    
+      <item>
+        <title>Automate Jekyll Posting With Python In Windows</title>
+        <description>
+          
+          Why was this so hard!? I just coded a little python script to help automate the process of posting via Jekyll. In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can...
+        </description>
+        <pubDate>Thu, 09 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</guid>
+      </item>
+    
+  </channel>
+</rss>

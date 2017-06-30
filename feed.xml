@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Anki Auto-Adjust New Interval After A Lapse</title>
+        <description>
+          
+          In a nutshell The code below will loop through each of your deck options groups, find the success rate for post-lapse reviews, and attempt to adjust the Lapse New Interval percentage to hit an 85% average success rate. Background Previously, I wrote about using efficient settings for the new interval...
+        </description>
+        <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/anki-auto-adjust-new-interval-after-a-lapse.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-auto-adjust-new-interval-after-a-lapse.html</guid>
+      </item>
+    
+      <item>
         <title>Hacking Nut</title>
         <description>
           
