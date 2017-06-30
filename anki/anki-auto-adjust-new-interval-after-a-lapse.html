@@ -303,10 +303,10 @@
 
 <span class="c"># Startup Function</span>
 <span class="k">def</span> <span class="nf">adjLapse_startup</span><span class="p">():</span>
-        <span class="k">global</span> <span class="n">previous</span>
-        <span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">if</span> <span class="n">profile</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">:</span>
-            <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">global</span> <span class="n">previous</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">aqt</span><span class="o">.</span><span class="n">mw</span><span class="o">.</span><span class="n">pm</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="n">profile</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">:</span>
+        <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">adjLapse_all</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> <span class="c"># Includes functions below</span>
 
 <span class="c">#Run when profile is loaded, save stats when unloaded</span>
@@ -443,8 +443,6 @@
     <span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
     <span class="k">for</span> <span class="n">og</span> <span class="ow">in</span> <span class="n">dconf</span><span class="p">:</span>
         <span class="n">adj_lapsed_newIvl</span><span class="p">(</span><span class="n">og</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
-
-
 
 
 </code></pre>
