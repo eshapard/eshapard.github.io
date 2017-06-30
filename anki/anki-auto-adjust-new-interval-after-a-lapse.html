@@ -244,7 +244,6 @@
 <span class="kn">from</span> <span class="nn">aqt.main</span> <span class="kn">import</span> <span class="n">AnkiQt</span>
 <span class="kn">from</span> <span class="nn">anki.utils</span> <span class="kn">import</span> <span class="n">intTime</span>
 <span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
-<span class="n">OGS</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="c"># card_sample_size</span>
 <span class="c"># Number of cards needed for adequate sample size</span>
@@ -265,14 +264,6 @@
 <span class="n">LapseConffile</span> <span class="o">=</span> <span class="n">LapseConffile</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getfilesystemencoding</span><span class="p">())</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">):</span>
 	<span class="n">previous</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">OGS</span><span class="p">:</span>
-	<span class="k">if</span> <span class="n">profile</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">:</span>
-		<span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-	<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">OGS</span><span class="p">[</span><span class="n">profile</span><span class="p">]:</span>
-		<span class="n">options_group</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-		<span class="k">if</span> <span class="n">options_group</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]:</span>
-			<span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">options_group</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-
 
 
 <span class="k">def</span> <span class="nf">save_lapseStats</span><span class="p">():</span>
