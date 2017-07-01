@@ -417,8 +417,8 @@
     <span class="k">if</span> <span class="n">lapsed_success_rate</span> <span class="ow">and</span> <span class="n">lapsed_rev_records</span> <span class="ow">and</span> <span class="n">lapsed_success_rate</span> <span class="o">!=</span> <span class="n">tsr</span><span class="p">:</span>
         <span class="n">target_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tsr</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
         <span class="n">cur_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lapsed_success_rate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
-                <span class="c">#Simplistic ratio adjustment</span>
-                <span class="n">new_LNIvl</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">cur_LNIvl</span> <span class="o">*</span> <span class="n">cur_rate</span><span class="o">/</span><span class="n">target_rate</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="c">#Simplistic ratio adjustment</span>
+        <span class="n">new_LNIvl</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">cur_LNIvl</span> <span class="o">*</span> <span class="n">cur_rate</span><span class="o">/</span><span class="n">target_rate</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">new_LNIvl</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">new_LNIvl</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">utils</span><span class="o">.</span><span class="n">askUser</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">s"</span>
