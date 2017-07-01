@@ -406,11 +406,11 @@
     <span class="n">tsr</span> <span class="o">=</span> <span class="n">defaultTSR</span>
     <span class="c"># Return if target success rate is false or 0.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">tsr</span><span class="p">:</span> <span class="k">return</span>
-        <span class="c">#find name of group</span>
-        <span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]:</span>
-            <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c">#find name of group</span>
+    <span class="n">dconf</span> <span class="o">=</span> <span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">]:</span>
+        <span class="n">previous</span><span class="p">[</span><span class="n">profile</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">cur_LNIvl</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mw</span><span class="o">.</span><span class="n">col</span><span class="o">.</span><span class="n">decks</span><span class="o">.</span><span class="n">dconf</span><span class="p">[</span><span class="n">group_id</span><span class="p">][</span><span class="s">'lapse'</span><span class="p">][</span><span class="s">'mult'</span><span class="p">])</span>
     <span class="n">lapsed_success_rate</span><span class="p">,</span> <span class="n">lapsed_rev_records</span> <span class="o">=</span> <span class="n">og_lapsed_success_rate</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">card_sample_size</span><span class="p">)</span>
     <span class="c"># Returns False, False if we don't have enough review records since last time.</span>
