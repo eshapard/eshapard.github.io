@@ -338,7 +338,7 @@
 
 <p>Cloze-deletion notes can contain multiple close-deletion fields. That means Field1 can contain cloze-deletions and Field2 can contain cloze-deletions too.</p>
 
-<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge">; not as</code>, as in regular cards.</p>
+<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge"><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span></code>; not as <code class="highlighter-rouge"><span class="p">{</span><span class="err">{Field1</span><span class="p">}</span><span class="err">}</span></code>, as in regular cards.</p>
 
 <p>In the template for a cloze-deletion card, you can have <strong>multiple cloze-deletion fields</strong>.</p>
 
@@ -365,8 +365,8 @@
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">{Header</span><span class="p">}</span><span class="err">}</span><span class="w">
 
-</span><span class="p">{</span><span class="err">{cloze:-Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
-</span><span class="p">{</span><span class="err">{cloze:-Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="err">{cloze:Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
 </span></code></pre>
 </div>
 
