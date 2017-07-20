@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>My Crappy Code Blog</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="My Crappy Code Blog" />
+  
+
+   
+  <meta property="og:description" content="OK, so you’ve found Anki and started using it, or you’ve used it for a long time and you’re taking advantage of the efficiency of spaced repetition. Maybe you’ve studied Piotr Wozniak’s “20 Rules” article, so you’re formatting your cards well too. But how do you handle leeches? How do...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/2017-07-20-the-power-of-making-new-cards-on-the-fly-in-anki.html" />
+  <link rel="canonical" href="http://eshapard.github.io/2017-07-20-the-power-of-making-new-cards-on-the-fly-in-anki.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="My Crappy Code Blog" />
+  
+
+  
+  <meta name="twitter:description" content="OK, so you’ve found Anki and started using it, or you’ve used it for a long time and you’re taking advantage of the efficiency of spaced repetition. Maybe you’ve studied Piotr Wozniak’s “20 Rules” article, so you’re formatting your cards well too. But how do you handle leeches? How do...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/aboutme.html">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+<div class="intro-header"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>OK, so you’ve found Anki and started using it, or you’ve used it for a long time and you’re taking advantage of the efficiency of spaced repetition. Maybe you’ve studied Piotr Wozniak’s “20 Rules” article, so you’re formatting your cards well too.</p>
+
+<p>But how do you handle leeches? How do you respond when you notice that certain cards are proving particularly difficult?</p>
+
+<h2 id="in-a-nutshell">In a nutshell</h2>
+
+<p>Often when a card is hard to memorize, it’s best to create more cards; ones with hints or contextual clues; ones that test you on a smaller chunk of what you’re trying to learn.</p>
+
+<p>You can set up your card templates in Anki to make this quick and easy. That way, you can quickly generate new cards on the fly; making these additional cards as you go about your review sessions instead of coming back later and doing a search for leeches or something.</p>
+
+<h2 id="an-example">An example</h2>
+
+<p>OK, let’s say you have a bunch of cards related to history. We’ll imagine that these are all cloze deletion cards, and they’re all good quality, but one of them just happens to be pretty hard for you to remember.</p>
+
+<p>Let’s say that card is:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in 
+</code></pre>
+</div>
+
+<p>Now most kids in North America remember this easily with the rhyme “In 1492, Columbus sailed the ocean blue.”, but this is just an example.</p>
+
+<p>So there you are, studying cards and you just keep forgetting this one. Sooner or later, Anki pops up a message telling you that this card is a leech.</p>
+
+<p>What should you do?</p>
+
+<h2 id="baby-steps">Baby steps</h2>
+
+<p>I view the problem this way:</p>
+
+<p>The card is hard for you to remember because making a connection directly between ‘Columbus’ and ‘1492’ is a big step for you. Apparently, your mind is having trouble building a bridge between these two concepts.</p>
+
+<p>So instead of trying to force this connection to happen, let’s try builing a couple of smaller bridges. Let’s try taking smaller, ‘baby’ steps.</p>
+
+<p>We’ll create some new cards.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in 
+
+</code></pre>
+</div>
+
+<p>If you’re having trouble parsing that, it’ll create the following cards:</p>
+
+<ol>
+  <li>Columbus first sailed across the Atlantic in […]92</li>
+  <li>Columbus first sailed across the Atlantic in 14[…]2</li>
+  <li>Columbus first sailed across the Atlantic in 149[…]</li>
+</ol>
+
+<p>With each of these cards, we practice remembering a smaller chunk. We’ve essentially taken three baby steps towards being able to remember the whole year number without any prompts.</p>
+
+<p>Because the simpler cards are easier to remember, you’ll hit ‘Good’ or ‘Easy’ on them often and eventually you won’t see them very much. Not seeing them much, they won’t be around to remind you of the answer to the origional card, which you should now find much easier. The training wheels have been taken away and you find you can now ride the bicycle without them!</p>
+
+<h2 id="mnemonic-devices">Mnemonic devices</h2>
+
+<p>Another way to respond to this problem is to add a card that tests you on a mnemonic device.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>People trying to make a living selling books on how to use mnemonic devices often over-sell their effectiveness. They claim that you'll be able to create images so bizarre, violent, sexy, or colorful that you'll "remember them forever".
+
+This is bullshit.
+
+Mnemonic devices are just like anything else; you have to practice remembering them. And spaced-repetition flashcards are a great way to do this. The big difference is that mnemonic devices are much much easier to remember than regular bits of information, so you won't have to review them very often.
+</code></pre>
+</div>
+
+<p>Let’s use the familiar rhyme, but make a couple of cards.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>In , Columbus sailed the ocean .
+
+</code></pre>
+</div>
+
+<p>We could have broken down the number a bit more (as we did in the last example), but the rhythmic structure is going to do a lot to help us remember this, so we might find that these two cards are all the extra support we need.</p>
+
+<h3 id="mnemonic-devices-are-baby-steps">Mnemonic devices ARE baby steps</h3>
+
+<p>I just thought I’d point out here that mnemonic devices <strong>are</strong> baby steps. Instead of making a direct connection between ‘Columbus’ and ‘1492’, we make one between ‘Columbus’, and ‘sailed the ocean blue’ (the baby step). And that leads us in turn, to ‘1492’. When we use the rhyme to remember the connection, we travel from ‘Columbus’ to ‘1492’ using two baby steps instead of tackling the whole thing at once.</p>
+
+<p>As you practice taking these baby steps, the direct connection is strengthened until you find yourself not taking them anymore; your brain, not wanting to be slowed down by the extra steps, casts them aside like un-needed training wheels and goes directly to the answer.</p>
+
+<h2 id="making-new-cards">Making new cards</h2>
+
+<p>From the card review screen, you can always hit the <em>Add</em> link at the top to make a new card, but you’ll quickly find this isn’t a great way to make these extra cards.</p>
+
+<p>You may have a whole lot of fields in the original card that you’ll need to copy over by hand. For example, you could have fields for a heading, a sub-heading, images, tags, a sort-ID, etc. You’re going to have a lot of resistance to making new cards if it’s a lot of work to do so.</p>
+
+<p>Luckily, Anki’s note/card structure allows you to create new cards very easily… but you have to set up your templates ahead of time to allow for this.</p>
+
+<h3 id="easily-making-new-cards-on-the-fly">Easily making new cards on the fly</h3>
+
+<p>I’m not going to delve into all the intricacies of card templates here… that would take a lot of work.</p>
+
+<p>But let me point you in the right direction, and then I’ll give you a small example of doing this with a cloze deletion card (because how to do that is not obvious).</p>
+
+<p>Your basic tactic is to create a card template that takes advantage of what the Anki manual calls <strong>Conditional Replacement</strong>. Conditional replacement is more than it’s name implies; it’s a way to control which cards get made and which ones don’t.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>In Anki, if any card has no field replacements on the front side, Anki doesn't generate that card. This is extremely powerful.
+</code></pre>
+</div>
+
+<p>So the basic idea is that your card templates will all have an extra field (or more) that’s blank by default. As you review cards, if you decide a card needs to have some baby steps, you just hit ‘E’ to edit the card, add something to one of the blank fields, and presto: you have new cards.</p>
+
+<p>These cards are called ‘sibling’ cards because they are attatched to the same note, and you can have Anki bury siblings so that you don’t review two siblings on the same day. I.E. You would review your mnemonic, or your regular card, but not both in the same day.</p>
+
+<p>I’ll give you an example using cloze deletion cards because there’s a trick to it that I don’t think many people know (It’s right there in the manual, but it’s not as clear is it could be).</p>
+
+<h3 id="the-problem-with-cloze-deletions">The problem with cloze deletions</h3>
+
+<p>Cloze deletions are often the easiest, quickest, most efficient way to create cards. I remember in the old days, Anki’s cloze deletions worked just like any other card, but now they are much improved and they use a special cloze deletion note type.</p>
+
+<p>The new cloze-deletion method (although superior), comes at a cost: You can’t add cloze-deletions to other note-types, and you can’t add regular cards to close-deletion notes.</p>
+
+<p>So if you want to add new cloze deletion cards to a note, you can’t do it the way you would with a regular note type. How then would we add a set of mnemonic cards to our cloze deletion card about Columbus!?</p>
+
+<p>The answer is somewhat cryptically explained in the manual.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template
+</code></pre>
+</div>
+
+<p>Got it yet?… No, OK well maybe the rest of the manual will make it clear.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template
+````
+Text1 field:  in 1913
+
+Text2 field:  was founded in 1913
+
+````
+</code></pre>
+</div>
+
+<p>Crystal clear now, right?… No!?</p>
+
+<p>Yeah, it wasn’t for me either. It took some experimentation to figure it out.</p>
+
+<p>What’s being said in the manual is very important and has implications for overlapping clozes, but also for doing what we want; essentially creating ‘sibling’ cards in a cloze-type note.</p>
+
+<p>Let me try to explain the way Anki handles cloze-deletion fields in a way that makes it clearer.</p>
+
+<h4 id="the-keys-to-cloze-deletions">The keys to cloze deletions</h4>
+
+<p>Cloze-deletion notes can contain multiple close-deletion fields. That means Field1 can contain cloze-deletions and Field2 can contain cloze-deletions too.</p>
+
+<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge">; not as</code>, as in regular cards.</p>
+
+<p>In the template for a cloze-deletion card, you can have <strong>multiple cloze-deletion fields</strong>.</p>
+
+<p>Example Front-Side Template:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+
+
+
+</code></pre>
+</div>
+
+<p>Now here’s the key: When Anki creates cloze deletion cards, of the <em>cloze:</em> fields, it’ll show <strong>only one of the cloze fields</strong>; not all of them.</p>
+
+<p>So our template above would generate cards for all the cloze deletions in Field1. And all of those cards would <strong>contain only Field1</strong>; not Field 2. Cloze deletions in Field2 would generate cards that <strong>contain only Field2</strong>; not Field1.</p>
+
+<p>Powerful stuff, once you understand it.</p>
+
+<h3 id="a-working-example">A working example</h3>
+
+<p>OK, now let’s pull it all together and I’ll call it a day.</p>
+
+<p>Imagine that we have a cloze-type note with the following front-side card template:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+
+
+
+
+</code></pre>
+</div>
+<p>We’re studying a card with the following fields</p>
+
+<ul>
+  <li>Header: History</li>
+  <li>Field1: <code class="highlighter-rouge">Columbus first crossed the Atlantic in </code></li>
+  <li>Field2: Blank</li>
+</ul>
+
+<p>We notice that we just can’t remember the year for this card, and we decide to start testing ourselves on a mnemonic device for this.</p>
+
+<p>So when this card pops up and we fail it, we take action. We hit ‘E’ to edit it, and make some changes.</p>
+
+<ul>
+  <li>Header: History</li>
+  <li>Field1: <code class="highlighter-rouge">Columbus first crossed the Atlantic in </code></li>
+  <li>Field2: <code class="highlighter-rouge">In , Columbus sailed the ocean .</code></li>
+</ul>
+
+<p>And presto! This note now has three cards; the original card, and two more testing us on a mnemonic device to help us remember the original.</p>
+
+<p>Card 1:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>History
+
+Columbus furst crossed the Atlantic in [...]
+</code></pre>
+</div>
+
+<p>Card 2:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>History
+
+In [...], Columbus sailed the ocen blue.
+</code></pre>
+</div>
+
+<p>And finally, Card 3:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>History
+
+In 1492, Columbus sailed the ocen [...].
+</code></pre>
+</div>
+
+<h2 id="just-one-last-nagging-detail">Just one last nagging detail</h2>
+
+<p>OK, so we have a cloze-note template that allows us to quickly generate new cards on the fly just by adding text to one field as we review cards. Nice.</p>
+
+<p>But there’s a fly in the ointment.</p>
+
+<p>If you’re like most Anki users, you downloaded a shit-load of notes in a shared deck and now you’re working through them (you’re only about 3% of the way and there’s a good chance you’ll never make it to the end).</p>
+
+<p>The problem for you is that now, as you create new cards, they get added to the end of your new-card-queue…. somewhere around slot 10,000. You won’t be seeing these new cards anytime soon.</p>
+
+<p>The fix is to use Anki’s browser to re-order the cards in the new-card-queue. The best way to go about doing this is by starting with a sortID field from the start so that you have something convenient to sort by.</p>
+
+<p>There is a way to write an addon to do this sorting automatically, but that’s another post for another time.</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/anki-auto-adjust-new-interval-after-a-lapse.html" data-toggle="tooltip" data-placement="top" title="Anki Auto-Adjust New Interval After A Lapse">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2017
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
