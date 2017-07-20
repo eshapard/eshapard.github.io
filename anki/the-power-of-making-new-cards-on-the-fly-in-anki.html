@@ -208,7 +208,7 @@
 
 <p>Let’s say that card is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in 
+<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c1::1492}}
 
 </code></pre>
 </div>
@@ -229,7 +229,7 @@
 
 <p>We’ll create some new cards.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in 
+<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c2::14}}{{c3::9}}{{c4::2}}
 
 </code></pre>
 </div>
@@ -260,7 +260,7 @@ Mnemonic devices are just like anything else; you have to practice remembering t
 
 <p>Let’s use the familiar rhyme, but make a couple of cards.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>In , Columbus sailed the ocean .
+<div class="highlighter-rouge"><pre class="highlight"><code>In {{c1::1492}}, Columbus sailed the ocean {{c2::blue}}.
 
 </code></pre>
 </div>
@@ -309,21 +309,21 @@ Mnemonic devices are just like anything else; you have to practice remembering t
 
 <p>The answer is somewhat cryptically explained in the manual.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template
-</code></pre>
-</div>
+<blockquote>
+  <p>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template</p>
+</blockquote>
 
 <p>Got it yet?… No, OK well maybe the rest of the manual will make it clear.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template
-````
-Text1 field:  in 1913
+<blockquote>
+  <p>If you need to create clozes from overlapping text, add another Text field to your cloze, add it to the template
+    ````
+   Text1 field: {{c1::Canberra was founded}} in 1913</p>
 
-Text2 field:  was founded in 1913
+  <p>Text2 field: {{c2::Canberra}} was founded in 1913</p>
 
-````
-</code></pre>
-</div>
+  <p>````</p>
+</blockquote>
 
 <p>Crystal clear now, right?… No!?</p>
 
@@ -343,12 +343,12 @@ Text2 field:  was founded in 1913
 
 <p>Example Front-Side Template:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">{Header</span><span class="p">}</span><span class="err">}</span><span class="w">
 
+</span><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="err">{cloze:Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
 
-
-
-</code></pre>
+</span></code></pre>
 </div>
 
 <p>Now here’s the key: When Anki creates cloze deletion cards, of the <em>cloze:</em> fields, it’ll show <strong>only one of the cloze fields</strong>; not all of them.</p>
@@ -363,13 +363,14 @@ Text2 field:  was founded in 1913
 
 <p>Imagine that we have a cloze-type note with the following front-side card template:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">{Header</span><span class="p">}</span><span class="err">}</span><span class="w">
 
+</span><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
+</span><span class="p">{</span><span class="err">{cloze:Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
 
-
-
-</code></pre>
+</span></code></pre>
 </div>
+
 <p>We’re studying a card with the following fields</p>
 
 <ul>
