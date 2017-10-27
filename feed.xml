@@ -7,6 +7,28 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>My Current Anki Deck Settings</title>
+        <description>
+          
+          In a nutshell Here are the settings I currently use for most of my decks: New Cards Steps: 15 2160 10080 40320 Order: Show new cards in order added New cards/day: varies Graduating Interval: 45 days Easy Interval: 4 days (not used; I don’t use the easy button anymore) Starting...
+        </description>
+        <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/my-current-anki-deck-settings.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/my-current-anki-deck-settings.html</guid>
+      </item>
+    
+      <item>
+        <title>Anki And The Hidden Dangers Of Filtered Decks</title>
+        <description>
+          
+          In a Nutshell If you move a card in the learning queue into or out of a filtered deck (including by rebuilding or deleting the deck), then Anki will set all learning cards to new status and re-learning cards back to review status. While not quite a fix, you can...
+        </description>
+        <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html</guid>
+      </item>
+    
+      <item>
         <title>Anki - The Power of Making New Cards on the Fly</title>
         <description>
           
