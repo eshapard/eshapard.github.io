@@ -221,12 +221,12 @@
 
 <p>The above equation is derived from a model of Ebbinghaus’s forgetting curve. You can find the original equation in the Wikipedia article for <a href="https://en.wikipedia.org/wiki/Forgetting_curve">The Forgetting Curve</a>.</p>
 
-<p><img src="/latex/latex-a5422aa4dc73a54229279f6b70445484.png" /></p>
+<p><img src="/latex/latex-58e190683620f36702b35f7d75eac4ef.png" /></p>
 
 <p>From this, you can derive that first formula. I actually did this myself once, so I know it’s valid. If I remember correctly, when you work this out, you end up with some natural logs, but because you have a log divided by another log, it actually doesn’t matter which base you use.</p>
 
 <blockquote>
-  <p>You need to solve for the ratio of t2 to t1 where strength is a constant. This gives you a ratio of how much longer or shorter the optimal interval should be compared to the current interval. Since Anki calculates intervals by simply multiplying the last interval by the ease factor, you can just adjust the ease factor by that ratio and presto!</p>
+  <p>Basically, you need to solve for the ratio of t2 to t1 where strength (S) is a constant. This gives you a ratio of how much longer or shorter the optimal interval should be making your intervals. Since Anki calculates intervals by simply multiplying the last interval by the ease factor, you can just adjust the ease factor by that ratio and presto!</p>
 </blockquote>
 
 <p>The Anki Manual describes essentially this same formula in the <a href="https://apps.ankiweb.net/docs/manual.html#reviews">Deck Options » Reviews</a> section, but there it is used to calculate a deck-wide interval modifier. Here, I’m suggesting that we apply this modifier directly to the ease factor of a card on a card-by-card basis rather than a deck-wide adjustment. (<em>Actually, the interval modifier applies to all cards within the deck options group; several decks can share the same options group.</em>)</p>
