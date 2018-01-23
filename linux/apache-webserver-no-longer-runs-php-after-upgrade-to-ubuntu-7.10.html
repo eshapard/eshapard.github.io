@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;health&rdquo;</title>
+  <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,19 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;health&rdquo;" />
+  <meta property="og:title" content="Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;health&amp;rdquo;: Hacking Nut Posted on March 22, 2017 I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an...">
+  <meta property="og:description" content="The fix See code below The story I recently upgraded to 7.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but something always breaks when you upgrade. This time, it was my webserver. All the packages were installed, but turns...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/health/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/health/" />
+  <meta property="og:url" content="http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-7.10.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-7.10.html" />
   
 
   
@@ -78,11 +78,11 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;health&rdquo;" />
+  <meta name="twitter:title" content="Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;health&amp;rdquo;: Hacking Nut Posted on March 22, 2017 I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an...">
+  <meta name="twitter:description" content="The fix See code below The story I recently upgraded to 7.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but something always breaks when you upgrade. This time, it was my webserver. All the packages were installed, but turns...">
   
 
   
@@ -158,129 +158,89 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;health&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article class="post-preview">
-    <a href="/health/hacking-nut.html">
-      <h3 class="post-title">Hacking Nut</h3>
 
-      
-    </a>
 
-    <p class="post-meta">
-    Posted on March 22, 2017
-    </p>
 
-    <div class="post-entry">
-      I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an amount equal to 10% of your total calories for the...
-      <a href="/health/hacking-nut.html" class="post-read-more">[Read&nbsp;More]</a>
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on January 22, 2018</span>
+		  
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+</header>
 
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/hack">hack</a>
-      
-        <a href="/tag/health">health</a>
-      
-        <a href="/tag/nut">nut</a>
-      
-    </div>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h2 id="the-fix">The fix</h2>
+
+<p>See code below</p>
+
+<h2 id="the-story">The story</h2>
+
+<p>I recently upgraded to 7.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but <em>something</em> always breaks when you upgrade.</p>
+
+<p>This time, it was my webserver.</p>
+
+<p>All the packages were installed, but turns out, the Apache php7.1 module needed to be <em>enabled</em>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo a2enmod php7.1
+
+sudo systemctl restart apache2
+</code></pre>
 </div>
 
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/php">php</a>
+          
+            <a href="/tag/apache">apache</a>
+          
+            <a href="/tag/ubuntu">ubuntu</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/anki-auto-adjust-new-cards-per-day-to-meet-a-deadline.html" data-toggle="tooltip" data-placement="top" title="Anki - Auto Adjust New Cards per Day to Meet a Deadline">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
 </div>
 
     <footer>
