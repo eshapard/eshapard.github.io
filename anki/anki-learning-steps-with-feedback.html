@@ -204,12 +204,12 @@
   <li>1440 * Starting Ease</li>
   <li>1440 * Starting Ease^2</li>
   <li>1440 * Starting Ease^3</li>
-  <li>
-    <p>Graduating Interval = 1440 * Starting Ease^4</p>
-
-    <p>*Steps are in minutes.</p>
-  </li>
+  <li>Graduating Interval = 1440 * Starting Ease^4</li>
 </ol>
+
+<blockquote>
+  <p>Steps are in minutes.</p>
+</blockquote>
 
 <h2 id="background">Background</h2>
 
@@ -227,7 +227,7 @@
 
 <p>I started thinking about the learning steps differently. Assuming that the basic premise of Anki’s algorithm is correct (a big assumption), then we might extend that premise to the learning steps.</p>
 
-<p>This is what I mean: Anki’s algorithm assumes that the next review interval should be pretty much a percentage of the last. By default, decks start out with 250%. That’s known as the ease factor. 250% means that a card is easy enough that the next review card be 2.5 times as long as the last and you’ll still remember it. Obviously this is very simplistic, but that’s the foundation of how Anki’s algorithm works.</p>
+<p>This is what I mean: Anki’s algorithm assumes that the next review interval should be pretty much a percentage of the last. By default, decks start out with 250%. That’s known as the ease factor. 250% means that a card is easy enough that the next review can be 2.5 times as long as the last and you’ll still remember it. Obviously this is very simplistic, but that’s the foundation of how Anki’s algorithm works.</p>
 
 <p>I decided to see what sort of learning steps I’d get if I started with a step of 1 day and then multiplied it by 2.5 to get the next. The series was pretty close to the one I was already using:</p>
 
@@ -259,7 +259,7 @@
 
 <h2 id="fine-tuning">Fine-Tuning</h2>
 
-<p>Now some decks have harder cards than others, so it might not make the most sense to use the default ease factor of 250 for this. Instead it might be a good idea to use the average ease factor of the mature cards in the deck. This is exactly what I suggested using in <a href="anki/ankis-initial-ease-factor-setting.html">Anki’s Starting Ease Factor Settings</a> and I released an addon (see that page) that automatically sets the starting ease factor to this value for all decks.</p>
+<p>Now some decks have harder cards than others, so it might not make the most sense to use the default ease factor of 250 for this. Instead it might be a good idea to use the average ease factor of the mature cards in the deck. This is exactly what I suggested using in <a href="/anki/ankis-initial-ease-factor-setting.html">Anki’s Starting Ease Factor Settings</a> and I released an addon (see that page) that automatically sets the starting ease factor to this value for all decks.</p>
 
 <p>If we grab the starting ease factor from the deck options, we can then use it to automatically generate a sequence of learning steps (past the first 15-minute one).</p>
 
@@ -303,9 +303,9 @@
 
 <p>Well, one think I can say is that the learning queue is different. At least with the way I set it up, in the review queue, the [next interval after a lapse] is only about 25% shorter than the last one and cards that you forget 4 times get tagged as a leech.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Now that I think of it, if we're targeting an 85% forgetting rate, then all cards will eventually be marked as leeches... probably best to to turn that feature of if using my addon.
-</code></pre>
-</div>
+<blockquote>
+  <p>Now that I think of it, if we’re targeting an 85% forgetting rate, then all cards will eventually be marked as leeches… probably best to to turn that feature of if using my addon.</p>
+</blockquote>
 
 <p>With the learning queue, you always go back to step 1 after you forget, which is less efficient, but more effective; exactly what you might want for newer cards.</p>
 
