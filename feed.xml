@@ -10,7 +10,7 @@
         <title>Anki - Learning Steps With Feedback</title>
         <description>
           
-          In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set to the average ease factor of the mature cards in the deck). Set the initial graduation interval according to the same pattern. 15 1440 (1...
+          Use the average ease of mature cards as feedback to generate efficient learning steps for new cards. In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set to the average ease factor of the mature...
         </description>
         <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</link>
