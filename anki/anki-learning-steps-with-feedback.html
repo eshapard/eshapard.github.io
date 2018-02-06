@@ -199,12 +199,15 @@
 <p>Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set to the average ease factor of the mature cards in the deck). Set the initial graduation interval according to the same pattern.</p>
 
 <ol>
-  <li>15</li>
-  <li>1440 (1 day)</li>
-  <li>1440 * Starting Ease</li>
-  <li>1440 * Starting Ease^2</li>
-  <li>1440 * Starting Ease^3</li>
-  <li>Graduating Interval = 1440 * Starting Ease^4</li>
+  <li>15
+    <ul>
+      <li>1440 (1 day)</li>
+      <li>1440 * Starting Ease</li>
+      <li>1440 * Starting Ease^2</li>
+      <li>1440 * Starting Ease^3</li>
+      <li>Graduating Interval = 1440 * Starting Ease^4</li>
+    </ul>
+  </li>
 </ol>
 
 <blockquote>
@@ -232,12 +235,13 @@
 <p>I decided to see what sort of learning steps I’d get if I started with a step of 1 day and then multiplied it by 2.5 to get the next. The series was pretty close to the one I was already using:</p>
 
 <ol>
-  <li>1 day</li>
-  <li>2.5 days</li>
-  <li>6.25 days</li>
-  <li>15.625 days</li>
-  <li>
-    <p>39.0265 days</p>
+  <li>1 day
+    <ul>
+      <li>2.5 days</li>
+      <li>6.25 days</li>
+      <li>15.625 days</li>
+      <li>39.0265 days</li>
+    </ul>
 
     <p>Note: If learning steps cross the day line, Anki sets them as due at the start of the day rather than scheduling them for the exact minute. Thus, the learning steps above would essentially be rounded down.</p>
   </li>
@@ -246,10 +250,11 @@
 <p>These are pretty close to the ones I use:</p>
 
 <ol>
-  <li>1.5 days</li>
-  <li>7 days</li>
-  <li>
-    <p>30 days</p>
+  <li>1.5 days
+    <ul>
+      <li>7 days</li>
+      <li>30 days</li>
+    </ul>
 
     <p>Actually, I use a 15 min step for step number 1, but Anki only uses that when you forget the card.</p>
   </li>
@@ -264,29 +269,35 @@
 <p>If we grab the starting ease factor from the deck options, we can then use it to automatically generate a sequence of learning steps (past the first 15-minute one).</p>
 
 <ol>
-  <li>15 (only used after you forget)</li>
-  <li>1440 (1 day)</li>
-  <li>1440 * Starting Ease</li>
-  <li>1440 * Starting Ease^2</li>
-  <li>1440 * Starting Ease^3</li>
-  <li>1440 * Starting Ease^4</li>
+  <li>15 (only used after you forget)
+    <ul>
+      <li>1440 (1 day)</li>
+      <li>1440 * Starting Ease</li>
+      <li>1440 * Starting Ease^2</li>
+      <li>1440 * Starting Ease^3</li>
+      <li>1440 * Starting Ease^4</li>
+    </ul>
+  </li>
 </ol>
 
 <p>But this also gives us a natural progression that gives us an obvious graduating interval. Just apply the ease factor once again.</p>
 
-<ol>
+<ul>
   <li>Graduating Interval = 1440 * Starting Ease^5</li>
-</ol>
+</ul>
 
 <p>Although looking at the series, I think I’d be happy with a slightly shorter one:</p>
 
 <ol>
-  <li>15 (only used after you forget)</li>
-  <li>1440 (1 day)</li>
-  <li>1440 * Starting Ease</li>
-  <li>1440 * Starting Ease^2</li>
-  <li>1440 * Starting Ease^3</li>
-  <li>Graduating Interval = 1440 * Starting Ease^4</li>
+  <li>15 (only used after you forget)
+    <ul>
+      <li>1440 (1 day)</li>
+      <li>1440 * Starting Ease</li>
+      <li>1440 * Starting Ease^2</li>
+      <li>1440 * Starting Ease^3</li>
+      <li>Graduating Interval = 1440 * Starting Ease^4</li>
+    </ul>
+  </li>
 </ol>
 
 <h2 id="the-theory">The Theory</h2>
