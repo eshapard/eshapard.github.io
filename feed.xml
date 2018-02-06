@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Anki - Learning Steps With Feedback</title>
+        <description>
+          
+          In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set to the average ease factor of the mature cards in the deck). Set the initial graduation interval according to the same pattern. 15 1440 (1...
+        </description>
+        <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</guid>
+      </item>
+    
+      <item>
         <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</guid>
-      </item>
-    
-      <item>
-        <title>Automate Jekyll Posting With Python In Windows</title>
-        <description>
-          
-          Why was this so hard!? I just coded a little python script to help automate the process of posting via Jekyll. In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can...
-        </description>
-        <pubDate>Thu, 09 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html</guid>
       </item>
     
   </channel>
