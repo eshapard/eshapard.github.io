@@ -10,7 +10,7 @@
         <title>Anki - Dynamic Efficient Learning Steps With Feedback</title>
         <description>
           
-          Use the average ease of mature cards as feedback to generate efficient learning steps for new cards. In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set to the average ease factor of the mature...
+          Use the average ease of mature cards as feedback to generate efficient learning steps for new cards. Udate 2018-03-14: Addon coded; see bottom of page. In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set...
         </description>
         <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</link>
