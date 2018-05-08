@@ -208,9 +208,8 @@
 
 <p>Let’s say that card is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c1::1492}}
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c1::1492}}
+</code></pre></div></div>
 
 <p>Now most kids in North America remember this easily with the rhyme “In 1492, Columbus sailed the ocean blue.”, but this is just an example.</p>
 
@@ -228,9 +227,8 @@
 
 <p>We’ll create some new cards.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c2::14}}{{c3::9}}{{c4::2}}
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c2::14}}{{c3::9}}{{c4::2}}
+</code></pre></div></div>
 
 <p>If you’re having trouble parsing that, it’ll create the following cards:</p>
 
@@ -258,10 +256,9 @@
 
 <p>Let’s use the familiar rhyme, but make a couple of cards.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>In {{c1::1492}}, Columbus sailed the ocean {{c2::blue}}.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {{c1::1492}}, Columbus sailed the ocean {{c2::blue}}.
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We could have broken down the number a bit more (as we did in the last example), but the rhythmic structure is going to do a lot to help us remember this, so we might find that these two cards are all the extra support we need.</p>
 
@@ -333,18 +330,17 @@
 
 <p>Cloze-deletion notes can contain multiple cloze-deletion fields. That means Field1 can contain cloze-deletions and Field2 can contain cloze-deletions too.</p>
 
-<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge"><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span></code>; not as <code class="highlighter-rouge"><span class="p">{</span><span class="err">{Field1</span><span class="p">}</span><span class="err">}</span></code>, as in regular cards.</p>
+<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge">{{cloze:Field1}}</code>; not as <code class="highlighter-rouge">{{Field1}}</code>, as in regular cards.</p>
 
 <p>In the template for a cloze-deletion card, you can have <strong>multiple cloze-deletion fields</strong>.</p>
 
 <p>Example Front-Side Template:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">{Header</span><span class="p">}</span><span class="err">}</span><span class="w">
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
 
-</span><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
-</span><span class="p">{</span><span class="err">{cloze:Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
-</span></code></pre>
-</div>
+{{cloze:Field1}}
+{{cloze:Field2}}
+</code></pre></div></div>
 
 <p>Now here’s the key: When Anki creates cloze deletion cards, of the <em>cloze:</em> fields, it’ll show <strong>only one of the cloze fields</strong>; not all of them.</p>
 
@@ -358,12 +354,11 @@
 
 <p>Imagine that we have a cloze-type note with the following front-side card template:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="err">{Header</span><span class="p">}</span><span class="err">}</span><span class="w">
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
 
-</span><span class="p">{</span><span class="err">{cloze:Field1</span><span class="p">}</span><span class="err">}</span><span class="w">
-</span><span class="p">{</span><span class="err">{cloze:Field2</span><span class="p">}</span><span class="err">}</span><span class="w">
-</span></code></pre>
-</div>
+{{cloze:Field1}}
+{{cloze:Field2}}
+</code></pre></div></div>
 
 <p>We’re studying a card with the following fields</p>
 
@@ -387,27 +382,24 @@
 
 <p>Card 1:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>History
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 Columbus furst crossed the Atlantic in [...]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Card 2:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>History
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 In [...], Columbus sailed the ocean blue.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And finally, Card 3:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>History
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 In 1492, Columbus sailed the ocean [...].
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="just-one-last-nagging-detail">Just one last nagging detail</h2>
 

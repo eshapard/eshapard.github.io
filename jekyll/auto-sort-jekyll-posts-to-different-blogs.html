@@ -209,8 +209,8 @@
 
 <p>Here’s the program that I have cron run every 15 minutes:</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">frontmatter</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">frontmatter</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">os</span>
 <span class="n">inbox</span> <span class="o">=</span> <span class="s">"/{path}/jekyllInbox/"</span>
 <span class="n">blogs</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">blogs</span><span class="p">[</span><span class="s">'blog1'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"/{blog1 path}/_posts"</span>
@@ -235,20 +235,18 @@
     <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".md"</span><span class="p">):</span>
         <span class="n">fpath</span> <span class="o">=</span> <span class="n">inbox</span> <span class="o">+</span> <span class="n">f</span>
         <span class="n">movePost</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The frontmatter for your post just needs to indicate which blog it goes to:</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nn">---</span>
-<span class="s">blog</span><span class="pi">:</span> <span class="s">blog1</span>
-<span class="s">title</span><span class="pi">:</span> <span class="s">Dummy Post</span>
-<span class="s">categories</span><span class="pi">:</span> <span class="s">examples</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">blog</span><span class="pi">:</span> <span class="s">blog1</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Dummy Post</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">examples</span>
 <span class="nn">---</span>
 
 Hello World
-</code></pre>
-</div>
+</code></pre></div></div>
 
       </article>
 
