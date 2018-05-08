@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 18</title>
+        <description>
+          
+          The fix See code below The story Upgraded to Ubuntu 18 and the webserver broke. Something always breaks when you upgrade. This time, it was my webserver… just like last time All the packages were installed, but turns out, the Apache php7.2 module needed to be enabled. sudo a2enmod php7.2...
+        </description>
+        <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</guid>
+      </item>
+    
+      <item>
         <title>Anki - Dynamic Efficient Learning Steps With Feedback</title>
         <description>
           
@@ -18,14 +29,14 @@
       </item>
     
       <item>
-        <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 7.10</title>
+        <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 17.10</title>
         <description>
           
-          The fix See code below The story I recently upgraded to 7.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but something always breaks when you upgrade. This time, it was my webserver. All the packages were installed, but turns...
+          The fix See code below The story I recently upgraded to 17.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but something always breaks when you upgrade. This time, it was my webserver. All the packages were installed, but turns...
         </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-7.10.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-7.10.html</guid>
+        <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</guid>
       </item>
     
       <item>
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</guid>
-      </item>
-    
-      <item>
-        <title>Github Jekyll Theme Changes</title>
-        <description>
-          
-          OK, so I changed the theme of my github pages site by changing the theme: setting in the _config.yaml file. The theme did not change right away. I thought maybe I’d have to wait a while, but after 12 hours or so, still no change to the theme. I know...
-        </description>
-        <pubDate>Fri, 10 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/jekyll/github-jekyll-theme-changes.html</guid>
       </item>
     
   </channel>
