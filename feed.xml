@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Delete Old Uncategorized Tomboy Notes From Cron</title>
+        <description>
+          
+          I read an article about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own. In a Nutshell Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days...
+        </description>
+        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html</guid>
+      </item>
+    
+      <item>
         <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 18</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/spell-check-in-vim.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/spell-check-in-vim.html</guid>
-      </item>
-    
-      <item>
-        <title>Create a Jekyll Post Inbox for Multiple Blogs</title>
-        <description>
-          
-          I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: Write a markdown-format post on another computer. Save it to a google-drive folder synced with my main...
-        </description>
-        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html</guid>
       </item>
     
   </channel>
