@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Two Short Python Scripts For Tomboy Notes</title>
+        <description>
+          
+          OK, here are two more scripts I wrote to do useful things with python and Tomboy notes. tbclip This first one copies whatever text is currently selected and creates a Tomboy note with it. NB: You must have xclip installed. #!/usr/bin/python import sys, dbus, subprocess #Get the D-Bus session bus...
+        </description>
+        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</guid>
+      </item>
+    
+      <item>
         <title>Display Your Most Recent Tomboy Note</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Tue, 14 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html</guid>
-      </item>
-    
-      <item>
-        <title>Working On Anki Auto-Calibrate</title>
-        <description>
-          
-          I’m working on an addon for Anki that will do the following things for deck options that you select: Set starting ease factor of cards to the average ease factor of cards with intervals &amp;gt; 90 days Adjust the interval modifier to try to hit your selected success rate (80%,...
-        </description>
-        <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</guid>
       </item>
     
   </channel>
