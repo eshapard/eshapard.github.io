@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Delete Old Uncategorized Tomboy Notes From Cron</title>
+  <title>Display Your Most Recent Tomboy Note</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,19 @@
   
 
   
-  <meta property="og:title" content="Delete Old Uncategorized Tomboy Notes From Cron" />
+  <meta property="og:title" content="Display Your Most Recent Tomboy Note" />
   
 
    
-  <meta property="og:description" content="I read an article about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own. In a Nutshell Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days...">
+  <meta property="og:description" content="This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting escape or something. Creating a hot-key for this...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html" />
-  <link rel="canonical" href="http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html" />
+  <meta property="og:url" content="http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html" />
   
 
   
@@ -78,11 +78,11 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Delete Old Uncategorized Tomboy Notes From Cron" />
+  <meta name="twitter:title" content="Display Your Most Recent Tomboy Note" />
   
 
   
-  <meta name="twitter:description" content="I read an article about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own. In a Nutshell Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days...">
+  <meta name="twitter:description" content="This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting escape or something. Creating a hot-key for this...">
   
 
   
@@ -171,7 +171,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="post-heading">
-          <h1>Delete Old Uncategorized Tomboy Notes From Cron</h1>
+          <h1>Display Your Most Recent Tomboy Note</h1>
 		  
 		  
 		  
@@ -192,40 +192,10 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
       <article role="main" class="blog-post">
-        <p>I read an <a href="https://arstechnica.com/information-technology/2007/09/using-the-tomboy-d-bus-interface/">article</a> about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own.</p>
-
-<h2 id="in-a-nutshell">In a Nutshell</h2>
-
-<p>Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days ago and never placed in a notebook. This will prevent unimportant notes from cluttering up your collection.</p>
-
-<h2 id="background">Background</h2>
-
-<p>Tomboy notes is something I’ve gone back and forth with. Sometimes I use it, sometimes I use Evernote. I’ve had a tough time deciding which I like more, but I’m leaning towards Tomboy these days since it’s fast, free, and runs on linux.</p>
-
-<h2 id="i3wm-and-the-scratchpad">i3wm and the Scratchpad</h2>
-
-<p>I started using Tomboy a lot when I found <a href="http://i3wm.org">i3wm</a> and discovered the <em>scratchpad</em> function. Basically, you can hide a floating window and hit a hot-key combo to toggle it’s visibility.</p>
-
-<p>I had a Tomboy note called <em>Scratchpad</em> that I would load and keep in i3’s scratchpad so I could put random bits of code and stuff in it. The problem was, though, that I rarely deleted anything. Instead, it grew to a monster disorganized mess.</p>
-
-<h2 id="a-new-tactic">A new tactic</h2>
-
-<p>What I decided to do was to make new notes on the fly. I created a hot-key in i3 to launch a new Tomboy note <code class="highlighter-rouge">tomboy --new-note</code>. New notes are not placed in any notebooks, so the <em>Unfiled Notes</em> category easily identifies them.</p>
-
-<p>If I make these temporary ad-hoc notes as new <em>unfiled</em> notes, then they can accumulate in the <em>Unfiled Notes</em> category and if I don’t touch them in 30 days or so, they must not be that important, so I can automatically delete them.</p>
-
-<p>Ah, but how to automate that…</p>
-
-<h2 id="auto-delete-old-unfiled-notes">Auto-Delete Old Unfiled Notes</h2>
-
-<p>Using python, it wasn’t too hard to script a utility that will loop through all notes and delete any that are both older than 30 days old and not in any notebooks. I moved this into my <em>cronscripts</em> folder and set cron to run it at 12:55 AM every day.</p>
-
-<p>Here’s the code for <em>delOldTomboyNotes.py</em>:</p>
+        <p>This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting <em>escape</em> or something. Creating a hot-key for this program is faster than clicking on the tray icon and selecting the note again.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">dbus</span><span class="p">,</span> <span class="n">datetime</span>
-
-<span class="n">thirtyDaysAgo</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">dbus</span> 
 
 <span class="c">#Get the D-Bus session bus</span>
 <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
@@ -237,17 +207,17 @@
 <span class="c">#Get all notes</span>
 <span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
 
+<span class="n">notes</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="c">#loop through notes</span>
 <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
     <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:notebook'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c">#weed out templates</span>
-            <span class="n">changeDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">)))</span>
-            <span class="k">if</span> <span class="n">changeDate</span> <span class="o">&lt;</span> <span class="n">thirtyDaysAgo</span><span class="p">:</span> <span class="c">#changed more than 30 days ago</span>
-                <span class="c">#print("Delete this note!")</span>
-                <span class="n">tomboy</span><span class="o">.</span><span class="n">DeleteNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-</code></pre></div></div>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c">#weed out templates</span>
+        <span class="n">changeDate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+        <span class="n">notes</span><span class="p">[</span><span class="n">changeDate</span><span class="p">]</span> <span class="o">=</span> <span class="n">note</span>
 
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">tomboy</span><span class="o">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
 
       </article>
 
@@ -256,11 +226,11 @@
           Tags:
           
           
+            <a href="/tag/linux">linux</a>
+          
             <a href="/tag/tomboy">tomboy</a>
           
             <a href="/tag/python">python</a>
-          
-            <a href="/tag/linux">linux</a>
           
           
         </div>
@@ -271,13 +241,9 @@
       <ul class="pager blog-pager">
         
         <li class="previous">
-          <a href="/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html" data-toggle="tooltip" data-placement="top" title="Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 18">&larr; Previous Post</a>
+          <a href="/linux/delete-old-uncategorized-tomboy-notes-from-cron.html" data-toggle="tooltip" data-placement="top" title="Delete Old Uncategorized Tomboy Notes From Cron">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="next">
-          <a href="/linux/display-your-most-recent-tomboy-note.html" data-toggle="tooltip" data-placement="top" title="Display Your Most Recent Tomboy Note">Next Post &rarr;</a>
-        </li>
         
       </ul>
 

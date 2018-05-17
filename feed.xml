@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Display Your Most Recent Tomboy Note</title>
+        <description>
+          
+          This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting escape or something. Creating a hot-key for this...
+        </description>
+        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html</guid>
+      </item>
+    
+      <item>
         <title>Delete Old Uncategorized Tomboy Notes From Cron</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Sun, 12 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/working-on-anki-auto-calibrate.html</guid>
-      </item>
-    
-      <item>
-        <title>Spell Check In Vim</title>
-        <description>
-          
-          Tip: you can use spell checking in vim! set spell spelllang=en_us Actually, leaving off the spelllang will probably work for you too. Your system is probably set to use a default language. I’ve been using vim for years and didn’t know about this… so much to learn about vi/vim. When...
-        </description>
-        <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/spell-check-in-vim.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/spell-check-in-vim.html</guid>
       </item>
     
   </channel>
