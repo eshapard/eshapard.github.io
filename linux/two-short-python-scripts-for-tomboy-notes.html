@@ -223,16 +223,7 @@
 
 <p>Use this next one in the command line. Just pipe the output of some useful command to it and it will create a Tomboy note. (Reads standard input and uses any arguments as the title of the note).</p>
 
-<blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>example:$ fortune</td>
-        <td>tbnote Random Fortune</td>
-      </tr>
-    </tbody>
-  </table>
-</blockquote>
+<p>Example: <code class="highlighter-rouge">$fortune | tbnote Random Fortune</code></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
 <span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">dbus</span><span class="p">,</span> <span class="n">time</span>
