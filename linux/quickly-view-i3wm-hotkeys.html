@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;hack&rdquo;</title>
+  <title>Quickly View I3Wm Hotkeys</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,19 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;hack&rdquo;" />
+  <meta property="og:title" content="Quickly View I3Wm Hotkeys" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;hack&amp;rdquo;: Hacking Nut Posted on March 22, 2017 I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an...">
+  <meta property="og:description" content="Use the code below to quickly view all the active hotkeys in your i3wm config file: i3keys #!/bin/bash grep &quot;^[ ]*bindsym&quot; ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less Background i3wm has a lot of functions that come assigned to hotkeys by default. I’m constantly forgetting...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/hack/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/hack/" />
+  <meta property="og:url" content="http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html" />
   
 
   
@@ -78,11 +78,11 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;hack&rdquo;" />
+  <meta name="twitter:title" content="Quickly View I3Wm Hotkeys" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;hack&amp;rdquo;: Hacking Nut Posted on March 22, 2017 I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an...">
+  <meta name="twitter:description" content="Use the code below to quickly view all the active hotkeys in your i3wm config file: i3keys #!/bin/bash grep &quot;^[ ]*bindsym&quot; ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less Background i3wm has a lot of functions that come assigned to hotkeys by default. I’m constantly forgetting...">
   
 
   
@@ -158,169 +158,87 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;hack&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article class="post-preview">
-    <a href="/health/hacking-nut.html">
-      <h3 class="post-title">Hacking Nut</h3>
 
-      
-    </a>
 
-    <p class="post-meta">
-    Posted on March 22, 2017
-    </p>
 
-    <div class="post-entry">
-      I'm a big fan of Jim Jozwiak's nutrition tracking software [NUT](http://nut.sourceforge.net). But there was something I wanted to change. You can set a pre-determined amount of protein (in grams) for your diet, or you can let the program calculate an amount equal to 10% of your total calories for the...
-      <a href="/health/hacking-nut.html" class="post-read-more">[Read&nbsp;More]</a>
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Quickly View I3Wm Hotkeys</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on May 18, 2018</span>
+		  
+        </div>
+      </div>
     </div>
-
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/hack">hack</a>
-      
-        <a href="/tag/health">health</a>
-      
-        <a href="/tag/nut">nut</a>
-      
-    </div>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </div>
 </div>
+</header>
 
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>Use the code below to quickly view all the active hotkeys in your i3wm config file:</p>
+
+<h2 id="i3keys">i3keys</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">grep</span> <span class="s2">"^[ ]*bindsym"</span> ~/.i3/config | sed <span class="nt">-e</span> <span class="s1">'s/^[ ]*bindsym //'</span> <span class="nt">-e</span> <span class="s1">'s/^[ ]*$mod/win/'</span> | less
+</code></pre></div></div>
+
+<h2 id="background">Background</h2>
+
+<p>i3wm has a <em>lot</em> of functions that come assigned to hotkeys by default. I’m constantly forgetting them.</p>
+
+<p>For example, sometimes I’ll toggle the tabbed layout (which I never use) and then I have to look up how to turn it back.</p>
+
+<p>I whipped out this little script so that I can quickly look up all the active hotkeys right from the terminal.</p>
+
+<blockquote>
+  <p>Tip: If you use i3wm, you might want to disable some of the hotkeys you never use (or only use on accident). I disabled changing to tabbed layout today.</p>
+</blockquote>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/i3wm">i3wm</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/linux/two-short-python-scripts-for-tomboy-notes.html" data-toggle="tooltip" data-placement="top" title="Two Short Python Scripts For Tomboy Notes">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
 </div>
 
     <footer>
