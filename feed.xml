@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Export Taskwarrior Dates To Remind</title>
+        <description>
+          
+          I’ve been playing around with the geeky, efficient, command-line scheduling program remind. It’s very cool once you get used to it. I wanted to automatically export any duedates from taskwarrior, so this is what I came up with. Export Taskwarrior Dates I found a script that did this (written in...
+        </description>
+        <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</guid>
+      </item>
+    
+      <item>
         <title>Quickly View I3Wm Hotkeys</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</guid>
-      </item>
-    
-      <item>
-        <title>Target An 80-90 Percent Success Rate In Anki</title>
-        <description>
-          
-          In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...
-        </description>
-        <pubDate>Wed, 15 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html</guid>
       </item>
     
   </channel>
