@@ -252,17 +252,11 @@
 <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$pid</span><span class="s2">"</span> <span class="o">]</span>
 <span class="k">then</span>
 	<span class="c">#Remind is running so restart it</span>
-	<span class="c">#echo running</span>
 	<span class="nb">kill</span> <span class="nv">$pid</span>
-	rem <span class="nt">-az</span> <span class="s1">'-kgmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
-	sleep 1
-        <span class="nv">pid</span><span class="o">=</span><span class="k">$(</span>ps <span class="nt">-C</span> rem <span class="nt">-o</span> <span class="nv">pid</span><span class="o">=</span><span class="k">)</span>
+	rem <span class="nt">-az</span> <span class="nt">-k</span><span class="s1">'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
 <span class="k">else</span>
 	<span class="c">#Remind is NOT running so start it</span>
-	<span class="c">#echo not running</span>
-	rem <span class="nt">-az</span> <span class="s1">'-kgmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
-	sleep 1
-        <span class="nv">pid</span><span class="o">=</span><span class="k">$(</span>ps <span class="nt">-C</span> rem <span class="nt">-o</span> <span class="nv">pid</span><span class="o">=</span><span class="k">)</span>
+	rem <span class="nt">-az</span> <span class="nt">-k</span><span class="s1">'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
 <span class="k">fi
 </span><span class="nb">exit</span>
 </code></pre></div></div>
