@@ -7,6 +7,28 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Self-Destructing Emails With Not-Much Mail</title>
+        <description>
+          
+          I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py ``python #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from...
+        </description>
+        <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/python/self-destructing-emails-with-not-much-mail.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/python/self-destructing-emails-with-not-much-mail.html</guid>
+      </item>
+    
+      <item>
+        <title>Put Not-Much Emails To Sleep</title>
+        <description>
+          
+          I’ve been using not-much mail in combination with offlineimap and astroid (as the front-end) to handle my email. I wanted to implement a very useful function that I use with outlook for my work email: putting emails to sleep for a time and having them wake up automatically. Basically, if...
+        </description>
+        <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/python/put-not-much-emails-to-sleep.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/python/put-not-much-emails-to-sleep.html</guid>
+      </item>
+    
+      <item>
         <title>Export Taskwarrior Dates To Remind</title>
         <description>
           
@@ -207,28 +229,6 @@ This is super cool/useful.
         <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</guid>
-      </item>
-    
-      <item>
-        <title>Anki New Interval After A Lapse</title>
-        <description>
-          
-          In a nutshell In deck settings, set the New Interval under the Lapses tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards. Anki’s default behavior I’m pretty sure that...
-        </description>
-        <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html</guid>
-      </item>
-    
-      <item>
-        <title>What Anki Learning Steps To Use</title>
-        <description>
-          
-          Anki, and spaced-repetition in general, are geared towards retaining information you’ve already learned rather than learning new information. That’s because in general, flashcards are good at reminding you of some learning experience, but not so good at creating a memorable experience to begin with. Still, Ank provides some support for...
-        </description>
-        <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/what-anki-learning-steps-to-use.html</guid>
       </item>
     
   </channel>
