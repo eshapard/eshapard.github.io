@@ -198,8 +198,9 @@
 
 <h2 id="nmexpirepy">nmExpire.py</h2>
 
-<p>``python
-#!/usr/bin/python
+<p>``python</p>
+
+<p>#!/usr/bin/python
 import notmuch
 import re, datetime
 from dateutil.relativedelta import relativedelta
@@ -232,8 +233,9 @@ for msg in query.search_messages():
                     endDate = today + datetime.timedelta(days=delay)
                 endTag = “x” + endDate.strftime(‘%Y%m%d’)
                 msg.remove_tag(t)
-                msg.add_tag(endTag)
-```</p>
+                msg.add_tag(endTag)</p>
+
+<p>```</p>
 
 <h2 id="usage">Usage</h2>
 
