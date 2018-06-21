@@ -56,7 +56,7 @@
   
 
    
-  <meta property="og:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py ``python #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from...">
+  <meta property="og:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from pprint...">
   
 
 
@@ -82,7 +82,7 @@
   
 
   
-  <meta name="twitter:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py ``python #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from...">
+  <meta name="twitter:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from pprint...">
   
 
   
@@ -198,44 +198,43 @@
 
 <h2 id="nmexpirepy">nmExpire.py</h2>
 
-<p>``python</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">notmuch</span>
+<span class="kn">import</span> <span class="nn">re</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="c">#from pprint import pprint</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="o">.</span><span class="n">MODE</span><span class="o">.</span><span class="n">READ_WRITE</span><span class="p">)</span>
 
-<p>#!/usr/bin/python
-import notmuch
-import re, datetime
-from dateutil.relativedelta import relativedelta
-#from pprint import pprint
-today = datetime.datetime.now().date()
-db = notmuch.Database(mode=notmuch.Database.MODE.READ_WRITE)</p>
+<span class="c"># Find Emails with Ending Tags</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_query</span><span class="p">(</span><span class="s">'tag:/^x[0-9]+[mwd]*$/'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">search_messages</span><span class="p">():</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_tags</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^x[0-9]+[mwd]*$'</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^[0-9]{8}$'</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+                <span class="n">endDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">'</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">m</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+                <span class="c">#print(t, endDate)</span>
+                <span class="k">if</span> <span class="n">endDate</span> <span class="o">&lt;</span> <span class="n">today</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"msg will now self-destruct"</span><span class="p">)</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">remove_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">add_tag</span><span class="p">(</span><span class="s">'trash'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^[0-9]+[mwd]+$'</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span> <span class="c">#days</span>
+                <span class="c"># Change Relative Delays to Dates</span>
+                <span class="c">#print("Changing delay to date")</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'w'</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="n">delay</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'m'</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=+</span><span class="n">delay</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delay</span><span class="p">)</span>
+                <span class="n">endTag</span> <span class="o">=</span> <span class="s">"x"</span> <span class="o">+</span> <span class="n">endDate</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">m</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">remove_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">add_tag</span><span class="p">(</span><span class="n">endTag</span><span class="p">)</span>
 
-<h1 id="find-emails-with-ending-tags">Find Emails with Ending Tags</h1>
-<p>query = db.create_query(‘tag:/^x[0-9]+[mwd]<em>$/’)
-for msg in query.search_messages():
-    tags = msg.get_tags()
-    for t in tags:
-        if re.match(r’^x[0-9]+[mwd]</em>$’, t):
-            if re.match(r’^[0-9]{8}$’,t[1:]):
-                endDate = datetime.datetime.strptime(t[1:], ‘%Y%m%d’).date()
-                #print(t, endDate)
-                if endDate &lt; today:
-                    print(“msg will now self-destruct”)
-                    msg.remove_tag(t)
-                    msg.add_tag(‘trash’)
-            elif re.match(r’^[0-9]+[mwd]+$’, t[1:]): #days
-                # Change Relative Delays to Dates
-                #print(“Changing delay to date”)
-                delay = int(t[1:-1])
-                if t[-1] == ‘w’:
-                    endDate = today + datetime.timedelta(weeks=delay)
-                elif t[-1] == ‘m’:
-                    endDate = today + relativedelta(months=+delay)
-                else:
-                    endDate = today + datetime.timedelta(days=delay)
-                endTag = “x” + endDate.strftime(‘%Y%m%d’)
-                msg.remove_tag(t)
-                msg.add_tag(endTag)</p>
-
-<p>```</p>
+</code></pre></div></div>
 
 <h2 id="usage">Usage</h2>
 

@@ -10,7 +10,7 @@
         <title>Self-Destructing Emails With Not-Much Mail</title>
         <description>
           
-          I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py ``python #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from...
+          I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from pprint...
         </description>
         <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/python/self-destructing-emails-with-not-much-mail.html</link>
