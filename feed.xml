@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Applying Spaced Repetition To Online Course Design</title>
+        <description>
+          
+          I got a private message from someone who’s developing an online learning platform for an after-school program. The idea is to incorporate spacing techniques in the lessons themselves, but incorporating feedback from the student to try to hit an 80-90% success rate (as I advocate elsewhere in this blog). I...
+        </description>
+        <pubDate>Tue, 16 Oct 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/teaching/applying-spaced-repetition-to-online-course-design.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/teaching/applying-spaced-repetition-to-online-course-design.html</guid>
+      </item>
+    
+      <item>
         <title>Self-Destructing Emails With Not-Much Mail</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/open-the-anki-database-from-python.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/open-the-anki-database-from-python.html</guid>
-      </item>
-    
-      <item>
-        <title>Thoughts On A New Algorithm For Anki</title>
-        <description>
-          
-          I’ve had some thoughts about a change to the way Anki handles ease factors. UPDATE: 2018-01-08 I’ve shared out the experimental addon that does exactly what I describe in this article. See experimentalCardEaseFactor on Github. In a nutshell Instead of simply increasing the ease factor a little when the user...
-        </description>
-        <pubDate>Sat, 18 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html</guid>
       </item>
     
   </channel>
