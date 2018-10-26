@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>A Separate Taskwarrior Configuration For Ideas</title>
+        <description>
+          
+          Task warrior has a lot of filtering options, but it’s faster to keep your ideas (or someday/maybes as they call them in Getting Things Done) completely separate. That way, you can see only the tasks you’re actually working on without cluttering up your task list wit the ideas you have...
+        </description>
+        <pubDate>Thu, 25 Oct 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/code/a-separate-taskwarrior-configuration-for-ideas.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/code/a-separate-taskwarrior-configuration-for-ideas.html</guid>
+      </item>
+    
+      <item>
         <title>Applying Spaced Repetition To Online Course Design</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</guid>
-      </item>
-    
-      <item>
-        <title>Open The Anki Database From Python</title>
-        <description>
-          
-          At some point, you might want to script something to open up the Anki database and collect some information without having to run as an add-on. For example, I have a script that runs from cron. It copies the anki collection to the /tmp directory and then opens it up,...
-        </description>
-        <pubDate>Sun, 19 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/open-the-anki-database-from-python.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/open-the-anki-database-from-python.html</guid>
       </item>
     
   </channel>

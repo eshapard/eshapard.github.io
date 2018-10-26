@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>A Separate Taskwarrior Configuration For Ideas</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="A Separate Taskwarrior Configuration For Ideas" />
+  
+
+   
+  <meta property="og:description" content="Task warrior has a lot of filtering options, but it’s faster to keep your ideas (or someday/maybes as they call them in Getting Things Done) completely separate. That way, you can see only the tasks you’re actually working on without cluttering up your task list wit the ideas you have...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/code/a-separate-taskwarrior-configuration-for-ideas.html" />
+  <link rel="canonical" href="http://eshapard.github.io/code/a-separate-taskwarrior-configuration-for-ideas.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="A Separate Taskwarrior Configuration For Ideas" />
+  
+
+  
+  <meta name="twitter:description" content="Task warrior has a lot of filtering options, but it’s faster to keep your ideas (or someday/maybes as they call them in Getting Things Done) completely separate. That way, you can see only the tasks you’re actually working on without cluttering up your task list wit the ideas you have...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/aboutme.html">About Me</a>
+
+          </li>
+        
+        
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>A Separate Taskwarrior Configuration For Ideas</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on October 25, 2018</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>Task warrior has a lot of filtering options, but it’s faster to keep your ideas (or <em>someday/maybes</em> as they call them in <em>Getting Things Done</em>) completely separate. That way, you can see only the tasks you’re <em>actually working on</em> without cluttering up your task list wit the ideas you have for later projects. This is actually pretty easy to do by creating a separate configuration for taskwarrior and a few scripts to make things easy.</p>
+
+<h2 id="in-a-nutshell">In a Nutshell</h2>
+
+<ol>
+  <li>Create a new config file and data directory for taskwarrior.</li>
+  <li>Write a script to launch taskwarrior with the new config file and name the script <em>idea</em></li>
+  <li>Use <em>idea</em> for ideas and <em>task</em> for tasks.</li>
+  <li>Write some scripts to convert ideas to tasks and tasks to ideas.</li>
+</ol>
+
+<h2 id="the-new-config-file">The New Config File</h2>
+
+<p>Just copy the original config file to a new location (~/.idearc, perhaps) and create a hidden directory for this new configuration (or <em>profile</em>) of taskwarrior. Update the new config file with the directory you want it to use. <em>I use ~./ideas</em></p>
+
+<p>Now all you have to do is use a simple bash script to launch taskwarrior with the new config file and whatever other arguments you pass it.</p>
+
+<h3 id="idea">idea</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+task rc:/home/username/.idearc <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>Congrats! Now you can use <em>idea</em> just like <em>task</em>, but everything gets stored in a separate profile, so none of these ideas will clutter up your normal task view.</p>
+
+<h2 id="converting-ideas-to-tasks">Converting Ideas to Tasks</h2>
+
+<p>At some point, you’ll probably want to make at least one of these ideas a task that you can work on. Taskwarrior makes it easy to export and import tasks, but it’s quite a bit of typing. A little bash script can make this much easier.</p>
+
+<h3 id="idea2task">idea2task</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">"Copying Idea </span><span class="nv">$@</span><span class="s2"> to Task..."</span>
+idea <span class="nv">$@</span> <span class="nb">export</span> | task import -
+<span class="nb">echo</span> <span class="s2">"Deleting Idea </span><span class="nv">$@</span><span class="s2">..."</span>
+idea <span class="nv">$@</span> delete
+task stats
+</code></pre></div></div>
+
+<p>NB: I used “$@” instead of “$1” because I’m pretty sure you can export several tasks at once using multiple filters. But that’s not something I’ve done yet. I’ve only exported and imported single tasks.</p>
+
+<p>The last line, <code class="highlighter-rouge">task stats</code>, just runs taskwarrior and asks it to display the stats. The only reason for this is that taskwarrior doesn’t seem to generate an id number for the new task until after you’ve run <em>task</em> again.</p>
+
+<h3 id="task2idea">task2idea</h3>
+
+<p>And of course, you might have some tasks that you decide to put on the back-burner and convert to ideas.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">"Copying Task </span><span class="nv">$@</span><span class="s2"> to Idea..."</span>
+task <span class="nv">$@</span> <span class="nb">export</span> | idea import -
+<span class="nb">echo</span> <span class="s2">"Deleting Task </span><span class="nv">$@</span><span class="s2">..."</span>
+task <span class="nv">$@</span> delete
+idea stats
+</code></pre></div></div>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>I don’t know if the export/import process will keep task dependencies in tact or not; I haven’t tried testing that yet, but I’d say there’s a good chance it’ll work.</p>
+
+<h2 id="background">Background</h2>
+
+<p>I came across someone’s program for keeping track of ideas on github. It used a simple database, but lacked tagging, projects, etc. It was a nice idea, but adding other features seemed like a good idea.</p>
+
+<p>Rather than re-invent the wheel, it seemed like getting taskwarrior to handle ideas for me would be a better idea. And thus, the idea behind this post was born.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/taskwarrior">taskwarrior</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/teaching/applying-spaced-repetition-to-online-course-design.html" data-toggle="tooltip" data-placement="top" title="Applying Spaced Repetition To Online Course Design">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2018
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
