@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Poorly Named, But Good Anki Addon</title>
+        <description>
+          
+          Just ran across a reference to this cryptically named addon today: Another Retreat It sets the new interval after a lapse to whatever the interval was before the one that led to a lapse. This is a nice way of solving the problem of finding a decent post-lapse interval. Be...
+        </description>
+        <pubDate>Fri, 09 Nov 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/poorly-named,-but-good-anki-addon.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/poorly-named,-but-good-anki-addon.html</guid>
+      </item>
+    
+      <item>
         <title>A Separate Taskwarrior Configuration For Ideas</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/health/hacking-nut.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/health/hacking-nut.html</guid>
-      </item>
-    
-      <item>
-        <title>Format PDFs for Kindle</title>
-        <description>
-          
-          Here’s a quick tip: Use Calibre to convert pdfs to mobi and use k2pdfopt to re-format particularly tough pdf files for the kindle screen… then try using Calibre to convert those pdfs to mobi. When to use I prefer to get ebooks and documents in epub or mobi format (kindle...
-        </description>
-        <pubDate>Tue, 28 Feb 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/kindle/format-pdfs-for-kindle.html</guid>
       </item>
     
   </channel>
