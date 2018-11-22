@@ -302,7 +302,9 @@
 
 <p>An equation for Ebbinghaus’s forgetting curve (see <a href="https://en.wikipedia.org/wiki/Forgetting_curve">Forgetting Curve</a> at Wikipedia) can be used to calculate the following equation found in the Anki manual:</p>
 
-<p><code class="highlighter-rouge">New Modifier = Current Modifier * log(desired success%) / log(current success%)</code></p>
+<p><code class="highlighter-rouge">New Modifier = Current Modifier * log(desired success ratio) / log(current success ratio)</code></p>
+
+<p>e.g. If you desire an 85% success rate and you currently have a 95% success rate, set new modifier to <code class="highlighter-rouge">Current Modifier * log(0.85)/log(0.95)</code>.</p>
 
 <p>Warning: This equation will give you very large values if your current success rate is close to 100%. A 100% success rate is very possible with a young deck full of very familiar material. For this reason, I tend to not change the interval modifier by more than 20%; otherwise I go with what the equation suggests.</p>
 
