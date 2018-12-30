@@ -232,6 +232,8 @@
 
 <p>Save this code as <code class="highlighter-rouge">autoLapseNewInterval.py</code> or something like that in your Anki addons directory.</p>
 
+<p>UPDATE 2018-12-29: I’ve had a report of this working in Anki 2.1. You’ll need to save the file as <code class="highlighter-rouge">__init__.py</code> in a directory called autoLapseNewInterval in your Anki 2.1 addons directory and possibly comment out one of the lines in the code (see comments within code below).</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Auto-Lapse-New-Interval</span>
 <span class="c"># Anki 2 plugin</span>
 <span class="c"># Author: EJS</span>
@@ -243,7 +245,6 @@
 <span class="kn">from</span> <span class="nn">aqt</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">aqt.main</span> <span class="kn">import</span> <span class="n">AnkiQt</span>
 <span class="kn">from</span> <span class="nn">anki.utils</span> <span class="kn">import</span> <span class="n">intTime</span>
-<span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 
 <span class="c"># card_sample_size</span>
 <span class="c"># Number of cards needed for adequate sample size</span>
@@ -261,6 +262,8 @@
 <span class="c"># CONFIG file to store last time options settings were adjusted</span>
 <span class="n">previous</span> <span class="o">=</span> <span class="p">{}</span> <span class="c"># Record of previous adjustment dates</span>
 <span class="n">LapseConffile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">)),</span> <span class="s">"autoLapseNewInterval.data"</span><span class="p">)</span>
+<span class="c"># NB The line below may not work with Anki 2.1</span>
+<span class="c"># Try commenting it out if you get errors.</span>
 <span class="n">LapseConffile</span> <span class="o">=</span> <span class="n">LapseConffile</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getfilesystemencoding</span><span class="p">())</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">):</span>
     <span class="n">previous</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">LapseConffile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">))</span>
