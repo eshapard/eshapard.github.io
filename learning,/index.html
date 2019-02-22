@@ -6,12 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>My Crappy Code Blog - Watch me code stuff... poorly</title>
+  <title>learning,</title>
 
   <meta name="author" content="eshapard" />
 
-  
-  <meta name="description" content="Watch me code stuff... poorly">
   
 
   <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
@@ -54,19 +52,44 @@
   
 
   
-  <meta property="og:title" content="My Crappy Code Blog" />
+  <meta property="og:title" content="learning," />
   
 
    
-  <meta property="og:description" content="Watch me code stuff... poorly">
+  <meta property="og:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/page6/" />
-  <link rel="canonical" href="http://eshapard.github.io/page6/" />
+  <meta property="og:url" content="http://eshapard.github.io/learning,/" />
+  <link rel="canonical" href="http://eshapard.github.io/learning,/" />
   
 
   
@@ -80,11 +103,36 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="My Crappy Code Blog" />
+  <meta name="twitter:title" content="learning," />
   
 
   
-  <meta name="twitter:description" content="Watch me code stuff... poorly">
+  <meta name="twitter:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
   
@@ -173,12 +221,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-heading">
-          <h1>My Crappy Code Blog</h1>
-		  
-		    
-            <hr class="small">
-            <span class="page-subheading">Watch me code stuff... poorly</span>
-			
+          <h1>learning,</h1>
 		  
 		  
 		  
@@ -198,187 +241,24 @@
       <div class="posts-list">
   
   <article class="post-preview">
-    <a href="/anki/what-anki-learning-steps-to-use.html">
-	  <h2 class="post-title">What Anki Learning Steps To Use</h2>
+    <a href="/teaching,/learning,/anki/best-order-to-learn-spanish-conjugations-according-to-word-frequency-data.html">
+      <h3 class="post-title">Best Order To Learn Spanish Conjugations According To Word Frequency Data</h3>
 
-	  
+      
     </a>
 
     <p class="post-meta">
-      Posted on February 16, 2017
+    Posted on February 21, 2019
     </p>
 
-    <div class="post-entry-container">
-      
-      <div class="post-entry">
-        Anki, and spaced-repetition in general, are geared towards retaining information you’ve already learned rather than learning new information. That’s because in general, flashcards are good at reminding you of some learning experience, but not so good at creating a memorable experience to begin with. Still, Ank provides some support for...
-        
-        
-          <a href="/anki/what-anki-learning-steps-to-use.html" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
+    <div class="post-entry">
+      In a nutshell If you want to tackle Spanish verb conjugation in an order that goes from most common uses to least common uses, and in an order that gradually builds your knowledge using the smallest increments possible, I think the curriculum below may be what you’re looking for: Indicative...
+      <a href="/teaching,/learning,/anki/best-order-to-learn-spanish-conjugations-according-to-word-frequency-data.html" class="post-read-more">[Read&nbsp;More]</a>
     </div>
 
-    
-    <div class="blog-tags">
-      Tags:
-      
-      
-      <a href="/tag/anki">anki</a>
-      
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/anki/target-an-80-90-percent-success-rate-in-anki.html">
-	  <h2 class="post-title">Target An 80-90 Percent Success Rate In Anki</h2>
-
-	  
-    </a>
-
-    <p class="post-meta">
-      Posted on February 15, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-entry">
-        In a Nutshell Adjust the interval modifier in Anki’s deck options until you’re getting 80 to 90% of your reviews correct. Anki isn’t going to do this for you. Anki isn’t magic If Reddit’s Anki forum is any indication, new Anki users seem to think that Anki has some magic...
-        
-        
-          <a href="/anki/target-an-80-90-percent-success-rate-in-anki.html" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:
-      
-      
-      <a href="/tag/anki">anki</a>
-      
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/anki/ankis-initial-ease-factor-setting.html">
-	  <h2 class="post-title">Anki's Starting Ease Factor Setting</h2>
-
-	  
-    </a>
-
-    <p class="post-meta">
-      Posted on February 14, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-entry">
-        In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically for all decks. To install from within Anki, use Tools » Addons »...
-        
-        
-          <a href="/anki/ankis-initial-ease-factor-setting.html" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:
-      
-      
-      <a href="/tag/anki">anki</a>
-      
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/anki/working-on-anki-auto-calibrate.html">
-	  <h2 class="post-title">Working On Anki Auto-Calibrate</h2>
-
-	  
-    </a>
-
-    <p class="post-meta">
-      Posted on February 12, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-entry">
-        I’m working on an addon for Anki that will do the following things for deck options that you select: Set starting ease factor of cards to the average ease factor of cards with intervals &amp;gt; 90 days Adjust the interval modifier to try to hit your selected success rate (80%,...
-        
-        
-          <a href="/anki/working-on-anki-auto-calibrate.html" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-    </div>
-
-    
-    <div class="blog-tags">
-      Tags:
-      
-      
-      <a href="/tag/anki">anki</a>
-      
-      
-    </div>
-    
-
-   </article>
-  
-  <article class="post-preview">
-    <a href="/linux/spell-check-in-vim.html">
-	  <h2 class="post-title">Spell Check In Vim</h2>
-
-	  
-    </a>
-
-    <p class="post-meta">
-      Posted on February 11, 2017
-    </p>
-
-    <div class="post-entry-container">
-      
-      <div class="post-entry">
-        Tip: you can use spell checking in vim! set spell spelllang=en_us Actually, leaving off the spelllang will probably work for you too. Your system is probably set to use a default language. I’ve been using vim for years and didn’t know about this… so much to learn about vi/vim. When...
-        
-        
-          <a href="/linux/spell-check-in-vim.html" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-    </div>
-
-    
-
-   </article>
+  </article>
   
 </div>
-
-
-<ul class="pager main-pager">
-  
-  <li class="previous">
-    <a href="/page5">&larr; Newer Posts</a>
-  </li>
-  
-  
-  <li class="next">
-    <a href="/page7">Older Posts &rarr;</a>
-  </li>
-  
-</ul>
-
 
 	    
     </div>
