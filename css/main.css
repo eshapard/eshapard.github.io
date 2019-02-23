@@ -681,3 +681,9 @@ td.gutter {
 #social-share-section {
   margin-bottom: 30px;
 }
+
+/* --- Table of Contents --- */
+#markdown-toc::before {
+  content: "Contents";
+  font-weight: bold;
+}
