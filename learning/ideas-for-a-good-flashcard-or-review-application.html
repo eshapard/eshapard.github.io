@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Ideas For A Good Flashcard Or Review Application</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Ideas For A Good Flashcard Or Review Application" />
+  
+
+   
+  <meta property="og:description" content="These are some ideas I have for creating a usable flashcard program. They are somewhat organized by topic, but not placed in any particular order. This is sort of a brain-dump for me. I wanted to get these idea out of my head and written down. Some of these ideas...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/learning/ideas-for-a-good-flashcard-or-review-application.html" />
+  <link rel="canonical" href="http://eshapard.github.io/learning/ideas-for-a-good-flashcard-or-review-application.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Ideas For A Good Flashcard Or Review Application" />
+  
+
+  
+  <meta name="twitter:description" content="These are some ideas I have for creating a usable flashcard program. They are somewhat organized by topic, but not placed in any particular order. This is sort of a brain-dump for me. I wanted to get these idea out of my head and written down. Some of these ideas...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Ideas For A Good Flashcard Or Review Application</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on March 25, 2019</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>These are some ideas I have for creating a usable flashcard program. They are somewhat organized by topic, but not placed in any particular order. This is sort of a brain-dump for me. I wanted to get these idea out of my head and written down. Some of these ideas may be great, some may be not-so-great.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#algorithms" id="markdown-toc-algorithms">Algorithms</a>    <ul>
+      <li><a href="#parameters-to-record-and-pass-to-all-algorithms" id="markdown-toc-parameters-to-record-and-pass-to-all-algorithms">Parameters to record and pass to all algorithms</a></li>
+      <li><a href="#variable-algorithms" id="markdown-toc-variable-algorithms">Variable Algorithms</a>        <ul>
+          <li><a href="#fluency-algorithm" id="markdown-toc-fluency-algorithm">Fluency Algorithm</a></li>
+          <li><a href="#speed-drill-algorithm" id="markdown-toc-speed-drill-algorithm">Speed Drill Algorithm</a></li>
+          <li><a href="#retrieval-probability-algorithm" id="markdown-toc-retrieval-probability-algorithm">Retrieval Probability Algorithm</a>            <ul>
+              <li><a href="#tuning-the-retrieval-probability-algo" id="markdown-toc-tuning-the-retrieval-probability-algo">Tuning the Retrieval Probability Algo</a></li>
+            </ul>
+          </li>
+          <li><a href="#max-efficiency-algorithm" id="markdown-toc-max-efficiency-algorithm">Max-Efficiency Algorithm</a></li>
+          <li><a href="#data-mining-algorithm" id="markdown-toc-data-mining-algorithm">Data-Mining Algorithm</a></li>
+        </ul>
+      </li>
+      <li><a href="#switching-algorithms" id="markdown-toc-switching-algorithms">Switching Algorithms</a></li>
+    </ul>
+  </li>
+  <li><a href="#syncing" id="markdown-toc-syncing">Syncing</a></li>
+  <li><a href="#cron-job" id="markdown-toc-cron-job">Cron Job</a></li>
+  <li><a href="#collecting-anonymized-data" id="markdown-toc-collecting-anonymized-data">Collecting anonymized data</a></li>
+  <li><a href="#cards--items-to-be-scheduled" id="markdown-toc-cards--items-to-be-scheduled">Cards / Items to be scheduled</a>    <ul>
+      <li><a href="#traditional-flashcards" id="markdown-toc-traditional-flashcards">Traditional Flashcards</a>        <ul>
+          <li><a href="#randomization" id="markdown-toc-randomization">Randomization</a></li>
+          <li><a href="#make-cloze-deletion-a-priority" id="markdown-toc-make-cloze-deletion-a-priority">Make Cloze Deletion a priority</a></li>
+        </ul>
+      </li>
+      <li><a href="#card-as-external-processmodules" id="markdown-toc-card-as-external-processmodules">‘Card’ as external process/modules</a>        <ul>
+          <li><a href="#example-use-scenario-1" id="markdown-toc-example-use-scenario-1">Example Use Scenario 1</a></li>
+          <li><a href="#example-use-scenario-2" id="markdown-toc-example-use-scenario-2">Example Use Scenario 2</a></li>
+        </ul>
+      </li>
+      <li><a href="#scheduling-elements-of-cards-instead-of-cards" id="markdown-toc-scheduling-elements-of-cards-instead-of-cards">Scheduling Elements of Cards instead of Cards</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="algorithms">Algorithms</h1>
+
+<h2 id="parameters-to-record-and-pass-to-all-algorithms">Parameters to record and pass to all algorithms</h2>
+
+<ul>
+  <li>cardID</li>
+  <li>passCount = number of times card has been marked ‘correct’
+    <ul>
+      <li>possibly make this a float where <em>early</em> reviews are a fraction of mature reviews</li>
+    </ul>
+  </li>
+  <li>failCount = number of times card has been marked ‘wrong’
+    <ul>
+      <li>possibly also make this a float similar to above</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="variable-algorithms">Variable Algorithms</h2>
+
+<p>Allow user to write his own algorithms in a python include file or something.
+Settings for each card would allow you to select the algorithm / progression through algorithms.</p>
+
+<p>All algorithms would have to provide maybe two functions: Return interval for desired retention rate, and Return retention rate for given interval.</p>
+
+<p>Database would hold identity of algorithm along with a certain number of columns for parameters. All non-null parameters would be passed along in order (0-5)</p>
+
+<h3 id="fluency-algorithm">Fluency Algorithm</h3>
+
+<ul>
+  <li>passCount = number of times card has been marked ‘correct’</li>
+  <li>param1 = initial interval</li>
+  <li>param2 = frame size</li>
+  <li>param3 = increase per frame</li>
+  <li>next interval = param1 + (param3 * int(streak/param2))</li>
+  <li>retention rate = return False</li>
+</ul>
+
+<p>On failing a card, card would simply be presented again after a few minutes delay. (perhaps implement a <em>failed cards</em> queue such that any due cards in this queue take highest priority).</p>
+
+<h3 id="speed-drill-algorithm">Speed Drill Algorithm</h3>
+
+<p>This algorithm would schedule speed drill exercises. See the <em>‘Card’ as external process</em> section below.</p>
+
+<p>This is a very simple algorithm. Whether the user passes the speed drill (achieves a specified competency/speed rate), or not, this algorithm would simply schedule the next task for n days later. The value of n would be set as one of the card/item properties.</p>
+
+<p>Essentially, we would be scheduling daily reviews for speed-building exercises. Failing to meet a certain speed criteria would not mean that the user has to try again that day; he would just have another chance the following day. The user may not be able to achieve the speed required yet, so asking him to redo the card until he achieves this speed would be unrealistic.</p>
+
+<h3 id="retrieval-probability-algorithm">Retrieval Probability Algorithm</h3>
+
+<p>This algorithm would attempt to schedule items to hit a certain retrieval probability on the next review. This is what super-memo claims to attempt. It’s a very difficult task because retrieval probability cannot be measured by an individual item’s review; all that tells us is whether we retrieved the item, not what our chances were.</p>
+
+<p>And while we can plot retrieval rates after given intervals and fit a forgetting curve model to the data, I don’t think there’s much known about how memory is strengthened following review at any given retrieval rate. It might be something like an inverted <em>U</em> shape; as retrieval probability falls, the benefit of review increases until it hits a peak and then begins to fall… but who knows?</p>
+
+<p>One we choose a model of the forgetting curve, we can make some assumptions about how reviews will affect the parameters. We can then attempt to estimate the interval before retrieval probability hits any given value for an item (target retrieval rate could be stored for each item). Our naive assumptions may give us wildly inaccurate estimates, but they might still be useful for determining which items are most in need of review (i.e. most over-due).</p>
+
+<h4 id="tuning-the-retrieval-probability-algo">Tuning the Retrieval Probability Algo</h4>
+
+<p>As individual items don’t yield much data, it’s probably best to look at groups of similar items when trying to fit equation parameters to the data that we’ve collected. For this, of course, we’d need to somehow group items by similarity.</p>
+
+<p>One simple option might be to group items based on their passCount and failCount. Forgetting curves for items with the same pass and fail Counts could be grouped together to create the data for fitting a forgetting curve. Subsequent items could then adopt those parameters rather than the default ones created using naive assumptions.</p>
+
+<p>For example, we might look at the review history for all items that had previously had 2 fails, and 5 passes. We could round all intervals to the nearest hour, then calculate the average retrieval rate for each nearest-hour group. Then, using a curve-fitting algorithm (I believe scipy has one, or maybe numpy), we would fit our forgetting curve model to the data points. We could figure out some reasonable trigger after which we decide to use our empirical curve instead of the theoretical one we started out with. (perhaps when a goodness-of-fit measure of our curve reaches a certain level)</p>
+
+<h3 id="max-efficiency-algorithm">Max-Efficiency Algorithm</h3>
+
+<p>This algorithm would attempt to schedule reviews so that memory stability increase is maximized, while overall workload is minimized. Essentially the ratio of (memory boost over time) / (work load over time) is maximized.</p>
+
+<h3 id="data-mining-algorithm">Data-Mining Algorithm</h3>
+
+<p>In order to gather data for curve-fitting purposes, we might create an algorithm designed to create experimental data.</p>
+
+<p>For example, this algorithm could at first randomly assign cards new intervals of one of [15min, 30min, 1hr, 2hr, 6hr, 12hr, 24hr, 48hr] or some sequence like that. After the first review, the cards would be repeated until passed and then randomly assigned to the same list of intervals, but 2.5 times longer i.e. [2.5 x 15min, 2.5 x 30min, etc. ]. The general formula for the list would essentially be [ 15min x passCount, 30min x passCount, etc. ]</p>
+
+<p>Users could assign their own cards to this algorithm, or we could use use some sort of systematic association pairs for this. e.g. nonsense syllables and meanings, random face images and names, obsure words and meanings, obscure trivia questions and answers.</p>
+
+<h2 id="switching-algorithms">Switching Algorithms</h2>
+
+<p>Implement ways for a user to manually switch algorithms, and ways for him to automate the switch (through a cron script perhaps after streak hits a certain number).</p>
+
+<p>Figure out how to handle streak and fail settings when changing algorithms… possibly reset both back to zero… or make that a default and give user control over how to handle this.</p>
+
+<p>For automated switches, will need user to provide initial parameters for each algorithm, or accept defaults.</p>
+
+<h1 id="syncing">Syncing</h1>
+
+<p>Forget about custom syncing. Leave it to the user to use existing technologies (rsync, syncthing, dropbox, etc.)</p>
+
+<h1 id="cron-job">Cron Job</h1>
+
+<p>Set a cron job to perform database functions such as:</p>
+<ul>
+  <li>fitting forgetting curves to existing data</li>
+  <li>switching cards to another algorithm when conditions are triggered</li>
+  <li>exporting anonymized data</li>
+</ul>
+
+<h1 id="collecting-anonymized-data">Collecting anonymized data</h1>
+
+<ul>
+  <li>Create a github project for data collection.</li>
+  <li>Optional Cron job exports anonymized data</li>
+  <li>Export file is named with users UUID (generated when he starts the program)</li>
+  <li>Setting to auto-create pull request, or leave this as a manual task for user
+    <ul>
+      <li>perhaps program prompts user to make pull request when started</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="cards--items-to-be-scheduled">Cards / Items to be scheduled</h1>
+
+<h2 id="traditional-flashcards">Traditional Flashcards</h2>
+
+<h3 id="randomization">Randomization</h3>
+
+<p>Include feature to randomize elements of the card. This is useful for learning underlying patters that show up in many particular situations. e.g. Verb conjugations follow patterns, but the verbs, and direct objects can vary.</p>
+
+<p>Include some sort of tag that is replaced by the output of a custom-written user function. This allows user to set values from a list, or from a database query (perhaps all nouns with streak &gt; 3). string might be something like: <code class="highlighter-rouge">{ % randfunc:username.knownWords('Noun', field1, field2) % }</code></p>
+
+<p>Such randomized <em>cards</em> also create the possibility of scheduling card <em>elements</em> instead of <em>cards themselves</em> (See <em>Scheduling Elements</em> below).</p>
+
+<h3 id="make-cloze-deletion-a-priority">Make Cloze Deletion a priority</h3>
+
+<p>Cloze-deletion cards are much faster to make and just as good as traditional question/answer cards. Although you have to <strong>not be an idiot</strong> who makes huge cards with tons of contextual clues (a common ‘criticism’ of cloze cards by idiots on /r/anki).</p>
+
+<ul>
+  <li>cloze-deletion with hint feature similar to Anki</li>
+  <li>allow for nested clozes</li>
+  <li>allow for overlapping clozes</li>
+</ul>
+
+<h2 id="card-as-external-processmodules">‘Card’ as external process/modules</h2>
+
+<p>Instead of restricting use to scheduling cards, allow scheduling of virtually any activity. This means we schedule <em>items</em> instead of <em>cards</em>. These items can be traditional flashcards, or they can be some sort of exercise done through another module of an external program.</p>
+
+<h3 id="example-use-scenario-1">Example Use Scenario 1</h3>
+
+<p>Imagine you don’t already touch-type, but you want to learn how. Using an efficient spaced algorithm for this is not going to work well because you want to build speed for this; not just be able to remember where a key is after a few seconds of thinking about it.</p>
+
+<p>So you create a module that runs <em>gtypist</em>, a terminal typing tutor, in an x-terminal and automatically loads one of its exercises (I <em>think</em> this is possible through the command-line, but let’s just assume it is for now).</p>
+
+<p>You create an item that uses this gtypist module. The item is set to use a home-row exercise, and to use an algorithm that simply schedules review for the next day whether the user passes or fails the exercise. You also set the pass criteria to “Accuracy &gt;= 50% and Speed &gt;= 10wpm”.</p>
+
+<p>So this item is scheduled for daily review. You start your reviews, and after a few card reviews, this item is selected. Gtypist pops up with the home-row exercise, you practice typing and then quit after the exercise is over. Now the flashcard program asks if you scored &gt;= 50% accuracy and &gt;= 1wpm. Your answer is recorded in the passCount and failCount for the item, but the scheduling algorithm ignores this and just schedules this item for the following day regardless of success.</p>
+
+<p>Through a separate cron-script, you check on the progress of this item each night at midnight. Once the passCount hits 10, the item is modified to be scheduled every 3 days and a similar gtypist item involving a top-row exercise is set to <em>active</em> so that you will begin reviewing it daily beginning with your next review session.</p>
+
+<h3 id="example-use-scenario-2">Example Use Scenario 2</h3>
+
+<p>You’re an airforce pilot training yourself to quickly recognize common aircraft of your enemies and your allies. (This was actually done with pilots during WWII, after pilots had mistakenly fired upon unrecognized allied aircraft.)</p>
+
+<p>You create a program that flashes random images of aircraft on the screen for 200 milliseconds. After the flashed image, the user tries to identify the aircraft he’s just seen, then hits a button to see the name of the aircraft. Then the user marks the slide as correct or incorrect. When a specified number of images have been displayed, the program/module returns ‘pass’ if the user identified at least 75% correct, and ‘fail’ otherwise.</p>
+
+<p>A cron job checks the database each night at midnight. Once the passCount for this item reaches 10, the settings are changed so that images are flashed for only 150 milliseconds and the number of images shown by the module is increased. (These would be parameter setting stored in the database record for the item that the program passes to the image-flash program).</p>
+
+<p>Training like this was done with actual pilots during WWII and was very successful. I think the device they created to flash images for fractions of a second was called a tachistoscope.</p>
+
+<h2 id="scheduling-elements-of-cards-instead-of-cards">Scheduling Elements of Cards instead of Cards</h2>
+
+<p>Using modules to dynamically generate cards lets us do some interesting things that might increase efficiency.</p>
+
+<p>For example, let’s say we’re learning Spanish, and we create a function to generate random (but grammatically correct) sentences using words from a vocabulary database. Let’s say that the sentences always have a noun as a subject, a verb, a noun as a direct object, and a noun as an indirect object (e.g. <em>The bear gave the rose to the tiger</em>). These elements are selected from the database, so cards generated by this function contain different possible sentences.</p>
+
+<p>We use this module to practice reading comprehension. The nouns vary, the verb varies, and the tense of the verb varies, so these cards give us some practice with vocabulary (nouns and verbs) and tense conjugation.</p>
+
+<blockquote>
+  <p>The standard SM2/Anki way of handling cards is to make them static and separate, and to have them meet the <em>minimum information principle</em>. This has advantages. For example, if we fail a card, we know what the problem is because he card (in theory) tests only one thing. This allows for efficient scheduling.</p>
+
+  <p>But maximizing efficiency isn’t the only approach you might want to take. I believe that approaching everything from this granular, efficiency-seeking perspective causes problems for some tasks. A good example is verb conjugation. This is a skill that needs to become fluent for understanding Spanish. The approach of waiting to review conjugations until you can still remember them after a brief moment probably isn’t going to build the kind of fluency you need.</p>
+
+  <p>I think the lack of fluency leads to users feeling like they don’t, “get the big picture”, and other such discomforting feelings.</p>
+
+  <p>The implications of this are that users should add more <em>big picture</em> cards for conceptual material, and use techniques outside of SM2/Anki to build fluency. Either that, or create a flashcard program that allows for fluency-building exercises in addition to efficient ones.</p>
+
+  <p>An unfortunate implication of the SM2/Anki tactic of adding large numbers of cards to meet the <em>minimum information principle</em>, and provide the <em>big picture</em> feeling is that it can quickly lead to large work-loads and backlogs when users inevitably fall behind. This is only worsened by SM2’s attempt to maintain high retention rates for all cards.</p>
+</blockquote>
+
+<p>If we also have a module that presents simple vocabulary cards that require recall of a single word, then those are going to be reinforcing the same words that our random sentence cards are reinforcing. For some words, I think targeting efficiency is a very appropriate goal. There are so many common nouns, verbs, and adjectives that are used very infrequently, that efficiency is probably the best option. So let’s say that for common nouns and verbs, we want to study their meaning efficiently.</p>
+
+<p>Well, in that case, we can have our random-sentence module keep track of each element used in the sentence and then reschedule each element according to whatever algorithm we’ve chosen. Our simple vocabulary card then, could search for the <em>ripest</em> vocabulary terms to present. Any word recently seen in a random sentence that we understood would then be very un-ripe and would not be chosen.</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/teaching/learning/anki/best-order-to-learn-spanish-conjugations-according-to-word-frequency-data.html" data-toggle="tooltip" data-placement="top" title="Best Order To Learn Spanish Conjugations According To Word Frequency Data">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2019
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
