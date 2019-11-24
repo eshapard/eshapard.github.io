@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>The Case For Multiple Goals</title>
+        <description>
+          
+          A useful flashcard application would allow users to set different goals for different cards, control the way cards are prioritized during review sessions, and code custom scheduling and prioritizing algorithms. Furthermore, it would be very useful to purposely design the application to allow for experimental data generation and collection if...
+        </description>
+        <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/anki/learning/the-case-for-multiple-goals.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/anki/learning/the-case-for-multiple-goals.html</guid>
+      </item>
+    
+      <item>
         <title>Overlapping and Nested Clozes</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/my-current-anki-deck-settings.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/my-current-anki-deck-settings.html</guid>
-      </item>
-    
-      <item>
-        <title>Anki And The Hidden Dangers Of Filtered Decks</title>
-        <description>
-          
-          In a Nutshell If you move a card in the learning queue into or out of a filtered deck (including by rebuilding or deleting the deck), then Anki will set all learning cards to new status and re-learning cards back to review status. While not quite a fix, you can...
-        </description>
-        <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html</guid>
       </item>
     
   </channel>

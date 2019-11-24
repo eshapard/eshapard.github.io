@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>The Case For Multiple Goals</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="The Case For Multiple Goals" />
+  
+
+   
+  <meta property="og:description" content="A useful flashcard application would allow users to set different goals for different cards, control the way cards are prioritized during review sessions, and code custom scheduling and prioritizing algorithms. Furthermore, it would be very useful to purposely design the application to allow for experimental data generation and collection if...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/learning/the-case-for-multiple-goals.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/learning/the-case-for-multiple-goals.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="The Case For Multiple Goals" />
+  
+
+  
+  <meta name="twitter:description" content="A useful flashcard application would allow users to set different goals for different cards, control the way cards are prioritized during review sessions, and code custom scheduling and prioritizing algorithms. Furthermore, it would be very useful to purposely design the application to allow for experimental data generation and collection if...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>The Case For Multiple Goals</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on November 23, 2019</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>A useful flashcard application would allow users to set different goals for different cards, control the way cards are prioritized during review sessions, and code custom scheduling and prioritizing algorithms. Furthermore, it would be very useful to purposely design the application to allow for experimental data generation and collection if the user agrees to it.</p>
+
+<h2 id="in-a-nutshell">In a nutshell</h2>
+<ul>
+  <li>Allow defining multiple forgetting curve models
+    <ul>
+      <li>In theory, this allows for greater accuracy</li>
+    </ul>
+  </li>
+  <li>Allow user to select preferred forgetting curve model</li>
+  <li>Allow defining multiple scheduling algorithms</li>
+  <li>Allow cards to be assigned to different scheduling algorithms
+    <ul>
+      <li>Allows user to have different goals for different cards</li>
+    </ul>
+  </li>
+  <li>Allow user to sort reviews by multiple sorting algorithms
+    <ul>
+      <li>Allow for both ascending and descending sorting for each algorithm</li>
+    </ul>
+  </li>
+  <li>Allow user to define custom sorting algorithms
+    <ul>
+      <li>Allows user to have great control over how cards are prioritized</li>
+    </ul>
+  </li>
+  <li>Implement methods for generating experimental data that the user can use to calibrate forgetting curve models
+    <ul>
+      <li>Allow user to optionally export/import shared experimental data</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="discussion">Discussion</h2>
+<h3 id="choosing-a-memory-model">Choosing a Memory Model</h3>
+<p>The often-copied SM2 algorithm, makes no predictions of the retention rate for any card at any time, stores no parameters for any forgetting curve equations, and does not seem to be derived from any memory model in particular (at least not from what I can see). It also makes some questionable (in my option) assumptions and requires the user to expend mental energy attempting to rate the ease of his own recall process.</p>
+
+<p>But it <em>is</em> easy to implement and works well-enough as long as your goal is high-retention levels at all times for all cards.</p>
+
+<p>The model of the forgetting curve most associated with supermemo (and perhaps by extension, SM2) is R = e^(-t/s), but this sort of simple model has not been found to fit the existing data well.</p>
+
+<p>Under SM2-based applications, one of the few practical applications of this equation is creating an interval modifier with the goal of hitting a specific point on the forgetting curve during review.</p>
+
+<p>The equation for this interval modifier is M = ln(desired R)/ln(current R), which is derived from the above equation.</p>
+
+<blockquote>
+  <p>R = recall probability
+   m = modifier
+   t = current review interval
+   s = storage strength (time until R = 1/e)
+   —-
+   Let new interval = t<em>m
+   Given current R (Rc)  = e^(-t/s) ; let desired R (Rd) = e^((-t</em>m)/s) = e^(m(-t/s))
+   ln(Rc) = (-t/s) ; ln(Rd) = m*(-t/s)
+   ln(Rc) = (-t/s) ; ln(Rd)/m = (-t/sR)
+   ln(Rc) = ln(Rd)/m
+   m = ln(Rd)/ln(Rc), which also equals log(Rd)/log(Rc)</p>
+</blockquote>
+
+<p>Unfortunately, as Rd and Rc grow farther apart, <em>m</em> quickly becomes unreasonably large. This simple exponential model may work well enough, but only in a narrow range of R values.</p>
+
+<p>There are several other mathematical models of the forgetting curve that <em>have</em> been shown to provide a good fit the the available data in peer-reviewed literature.</p>
+
+<p>It seems to me that estimating the shape of a card’s current forgetting curve can be a useful part of scheduling that card for future review. And to do that, I think we should experiment with models that actually fit the available data.</p>
+
+<h3 id="multiple-cards-multiple-goals">Multiple Cards, Multiple Goals</h3>
+
+<p>In a useful srs flashcard application, the user should be able to assign each card to one of several goals. Here’s a list of possible goal suggestions.</p>
+
+<blockquote>
+  <p>As a short-hand, I’ll use <em>retention</em>, and <em>retention rate</em> to describe <em>probability of retention</em></p>
+</blockquote>
+
+<ol>
+  <li>Speed: Attempt to present cards in a way that helps the user build speed of recall. This would probably be similar to the goal of <em>fluency</em>, but with <em>speed</em> cards presented multiple times and most likely in the context of a separate <em>speed drill</em> exercise rather than in the context of regular flashcard review.</li>
+  <li>Fluency (Drilling): The card is scheduled for daily or near daily review with the goal of making recall of the information <em>easy</em>; bordering on <em>automatic</em>; i.e. Recall becomes fast and efficient enough that eventually, it has little impact on working memory.</li>
+  <li>High Retention (Juggling): Similarly to SM2, the card is scheduled in an attempt to maintain retention probability above a set level, while using the maximum possible intervals between repetions.</li>
+  <li>High Efficiency (Getting the best <em>bang for your buck</em>): Card is scheduled in an attempt to maximize the ratio of <em>(decrease in decay rate) / (workload of review)</em>. This might be effectively the same as <em>(average recall) / (workload of review)</em>.</li>
+  <li>No Scheduling: Instead of scheduling a review, simply estimate the parameters of the selected forgetting curve so that the the retention rate may be estimated at any time. We would then rely on a prioritizing function to select these cards for review.</li>
+</ol>
+
+<p>Allowing users to define their own scheduling functions</p>
+
+<h3 id="prioritizingsorting-functions">Prioritizing/Sorting Functions</h3>
+<p>Falling behind and creating a pile of over-due cards is a well-known fact of user behavior. Any good flashcard application should plan for this with some reasonable prioritizing functions. Here are some ideas for how to prioritize cards.</p>
+
+<ol>
+  <li>Prioritize Need: Estimate the retention rates of all cards and present the cards with the lowest estimated retention rates.</li>
+  <li>Prioritize Ripeness: Similar to prioritizing by need, prioritize by <em>descending</em> ratio of <em>(time since last review) / (length of scheduled interval)</em>. I’ll refer to tis as the card’s <em>ripeness</em> because I think it’s an intuitive analogy.
+    <ul>
+      <li>To handle cards without a schedule, their scheduled interval could be set to 1. This way, they would always have a ripeness of 1 and would always be selected after cards that are past their scheduled due date.</li>
+      <li>A secondary sorting of cards by <em>algorithm</em> priority would allow perfectly ripe cards (with a ripeness of 1) to be presented before unscheduled cards, but if scheduling is to the nearest second or minute instead of to the nearest day, this is unlikely to be an issue.</li>
+    </ul>
+  </li>
+  <li>Prioritize by Time Since Last Review: OK, by itself, this might seem to be a strange option. Here, you’d just review the cards you hadn’t reviewed in the longest time. You might think no one would choose this option, but you’ll see why I include it in a moment.</li>
+  <li>Prioritize by Algorithm: Would allow you to prioritize by which algorithm was used to schedule the card’s due date. This would be useful for ensuring that speed drills happen before fluency drills and that high retention cards come before high efficiency cards. On its own, this may not be a highly useful sorting function, but when combined with other options, it could be very helpful.
+    <ul>
+      <li>Anki has something like this built in: <em>Learning</em> cards are always presented before review cards, and <em>New</em> cards can be placed before or after review cards.
+        <ul>
+          <li>I’ll ignore new cards and focus only on review cards in this article.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="combining-prioritizing-functions">Combining Prioritizing Functions</h4>
+<p>A user’s priorities might best be served by combining prioritizing functions in “Sort by this, then this, then that” fashion.</p>
+
+<p>E.g.: Prioritize by <em>Algorithm</em>, then <em>Ripeness</em>, then <em>Time Since Last Review</em>, then by <em>Need</em>.</p>
+
+<p>This would cause all speed drills to come first, then fluency cards, then high-retention cards, then high-efficiency, and finally un-scheduled cards. This order would probably fit the priority that most people would desire.</p>
+
+<p>Within each algorithm, you would first see the ripest cards. Where cards are of equal ripeness, you would first see that have gone longest without a review. You might decide that it’s more efficient to go for cards with long intervals first. Or you might decide that the shorter interval cards are a higher priority and go with a <em>descending</em> sort here.</p>
+
+<p>Finally, any cards that use the same algorithm, have the same ripeness, and the same time since last review, would be sorted based on their estimated retention rate.</p>
+
+<h3 id="goals-change-over-time">Goals Change Over Time</h3>
+<p>In addition to allowing the user to set (and change) the goal for each card, it could also be highly useful to allow the user to automate the transition from one goal to the next. For example, after 7 consecutive days of successful <em>fluency</em> review, a card’s goal could automatically switch to <em>high retention</em> until it has been remembered for 7 consecutive sessions, then its goal might automatically switch to <em>prioritize need</em> and remain so until manually changed by the user.</p>
+
+<h3 id="collecting-experimental-data">Collecting Experimental Data</h3>
+<p>It’s possible to grab data from usage statistics and perform a sort of <em>natural experiment</em> to try to fit a forgetting curve equation to the user’s data. While this is <em>possible</em>, there are many potential problems such as cards of wildly varying initial difficulty, and spotty coverage of points outside the narrow 90-80% range of the forgetting curve.</p>
+
+<p>For experimental purposes, it’s best to design the experiment in a way that minimizes such variations. A very useful feature of a flashcard application would be some way of implementing a somewhat <em>controlled</em> experiment with the user (with his consent). The data from this <em>experiment</em> could be used by the user himself and optionally shared (again with permission) with other users. The shared data pool could be made available to anyone who wants to experiment with it and could be used for generating reasonable default settings.</p>
+
+<h4 id="a-design-starting-point">A Design Starting Point</h4>
+
+<p>As a simple starting point for designing such an experiment, let’s assume that all <em>experimental</em> cards are vocabulary words from an obscure language (such as Navajo). Hopefully, this would give them all about the same initial difficulty. Then cards are randomly scheduled for 1 hour, 8 hours, 1 day, 3 days, 7 days, or 14 days later. This series of delays would give us several points on the forgetting curve and these data points could be used to fit an equation.</p>
+
+<p>When next reviewed, the cards are re-presented after a few minutes if failed and then once remembered, randomly scheduled to one of the same series of intervals times 2.5 (so 2.5 hours, 20 hours, 2.5 days, etc.). This would go on indefinitely, with experimental cards being rescheduled for <code class="highlighter-rouge">random.choice([1,8,24,72,168,336]) * 2.5^(number of study sessions)</code>.</p>
+
+<p>This would allow us to not only fit an equation to subsequent forgetting curves, but also to get an idea of how review at 95% recall differs from review at 50% recall and how that possibly changes over time.</p>
+
+<h2 id="background">Background</h2>
+
+<p>I’ve been an Anki user for a very long time, and in that time, I’ve come to know the details of its algorithm fairly well. Anki uses a version of the supermemo-2 algorithm (SM2), but with some tweaks such as learning steps, interval modifiers, fewer grading options, and the ability to set a post-lapse interval to a percentage of the last interval.</p>
+
+<p>These tweaks improve upon SM2, but the basic strategy of the algorithm remains: target a subjectively ‘good’ range of the forgetting curve (80-95% ???) and try to schedule reviews for when cards are in that range.</p>
+
+<p>This isn’t necessarily a bad strategy, but it certainly isn’t the only possible approach, and it may not be the best approach for everything.</p>
+
+<p>I went looking for novel approaches; projects where designers had started over unencumbered by the design decisions of SM2, and taken a <em>first principles</em> approach to the problem. I didn’t find much. I <em>did</em>, however, find a <em>lot</em> of people who don’t understand that SM2 makes certain assumptions and design decisions that <em>do not necessarily follow</em> from the existence of a forgetting curve.</p>
+
+<blockquote>
+  <p>A common misconception seems to be that the forgetting curve somehow implies the change due to review of subsequent forgetting curves… it most most certainly does not. There a several equations that can fit the shape of a single forgetting curve, but I don’t know of any serious models of how review at any point on one curve affects the decay rate of the subsequent forgetting curve.</p>
+</blockquote>
+
+<p>Anyway, thinking about some of the basic assumptions of SM2, its design decisions, and my years of experience using Anki, I came up with the ideas above.</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/learning/code/python/overlapping-clozes.html" data-toggle="tooltip" data-placement="top" title="Overlapping and Nested Clozes">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2019
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
