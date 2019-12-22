@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>What You Need To Know About 'Remind' But The Documentation Doesn't Tell You</title>
+        <description>
+          
+          This is the paragraph that’s missing from the introduction of remind’s man page, and every article I’ve ever read about it. If there are timed reminders for later in the day, then remind will continue running in the background, sending timed reminders to the terminal at their appointed times. So...
+        </description>
+        <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/what-you-need-to-know-about-remind-but-the-documentation-doesnt-tell-you.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/what-you-need-to-know-about-remind-but-the-documentation-doesnt-tell-you.html</guid>
+      </item>
+    
+      <item>
         <title>The Case For Multiple Goals</title>
         <description>
           
@@ -218,17 +229,6 @@ This is super cool/useful.
         <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/blog/send-firefox-tabs-to-another-computer.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/blog/send-firefox-tabs-to-another-computer.html</guid>
-      </item>
-    
-      <item>
-        <title>My Current Anki Deck Settings</title>
-        <description>
-          
-          In a nutshell Here are the settings I currently use for most of my decks: New Cards Steps: 15 2160 10080 40320 Order: Show new cards in order added New cards/day: varies Graduating Interval: 45 days Easy Interval: 4 days (not used; I don’t use the easy button anymore) Starting...
-        </description>
-        <pubDate>Thu, 26 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/my-current-anki-deck-settings.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/my-current-anki-deck-settings.html</guid>
       </item>
     
   </channel>
