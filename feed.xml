@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Haircut Recurrence With Task Warrior</title>
+        <description>
+          
+          To recur a task X days after the last time it was completed, use the task-relative-recur extension by JensErat. I call this ‘haircut’ recurrence because you need to get your hair cut when it’s had enough time to grow long; not on the first of each month. Here’s the problem...
+        </description>
+        <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/commandline/haircut-recurrence-with-task-warrior.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/commandline/haircut-recurrence-with-task-warrior.html</guid>
+      </item>
+    
+      <item>
         <title>What You Need To Know About 'Remind' But The Documentation Doesn't Tell You</title>
         <description>
           
@@ -213,22 +224,6 @@
         <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/anki-auto-adjust-new-cards-per-day-to-meet-a-deadline.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/anki-auto-adjust-new-cards-per-day-to-meet-a-deadline.html</guid>
-      </item>
-    
-      <item>
-        <title>Send Firefox Tabs To Another Computer</title>
-        <description>
-          
-          I right-clicked on one of my tabs in firefox to close all the tabs to the right and noticed an new option.
-
-There was an option to send the tab to the firefox running on my other computer.
-
-This is super cool/useful.
-
-        </description>
-        <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/blog/send-firefox-tabs-to-another-computer.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/blog/send-firefox-tabs-to-another-computer.html</guid>
       </item>
     
   </channel>
