@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Set Your Background To Flat Black At Sunset</title>
+        <description>
+          
+          Use sunwait in your crontab to wait until sunset and then run hsetroot to change your desktop. 0 16 * * * sunwait wait set; hsetroot -solid &quot;#000000&quot; Configure and Make Sunwait git clone https://github.com/risacher/sunwait Now edit sunwait.h and replace the default latitude and longitude with whatever your location is....
+        </description>
+        <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/set-your-background-to-flat-black-at-sunset.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/set-your-background-to-flat-black-at-sunset.html</guid>
+      </item>
+    
+      <item>
         <title>Haircut Recurrence With Task Warrior</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</guid>
-      </item>
-    
-      <item>
-        <title>Anki - Auto Adjust New Cards per Day to Meet a Deadline</title>
-        <description>
-          
-          A lot of students use Anki to study for an up-coming exam. And in that case, you want to make sure that you see all the new cards by some arbitrary deadline (leaving ample review time before the exam). Conceptually, it’s easy to adjust the new cards per day setting...
-        </description>
-        <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/anki-auto-adjust-new-cards-per-day-to-meet-a-deadline.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-auto-adjust-new-cards-per-day-to-meet-a-deadline.html</guid>
       </item>
     
   </channel>
