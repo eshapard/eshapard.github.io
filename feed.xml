@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Score Nested Cloze Deletions When You Remember The Parent</title>
+        <description>
+          
+          First read my article about Overlapping and Nested Clozes. If you have nested clozes such as: Cloze 1: In 14[...], Columbus Sailed the Ocean Blue (answer: 92) and Cloze 2: In [...], Columbus Sailed the Ocean Blue (answer: 1492) Then remembering cloze 2 means that you remembered cloze 1 as...
+        </description>
+        <pubDate>Sat, 14 Mar 2020 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/learning/score-nested-cloze-deletions-when-you-remember-the-parent.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/learning/score-nested-cloze-deletions-when-you-remember-the-parent.html</guid>
+      </item>
+    
+      <item>
         <title>Set Your Background To Flat Black At Sunset</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</guid>
-      </item>
-    
-      <item>
-        <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 17.10</title>
-        <description>
-          
-          The fix See code below The story I recently upgraded to 17.10 after I started to get 404 errors when trying to install packages. Yeah, I should upgrade more often, but something always breaks when you upgrade. This time, it was my webserver. All the packages were installed, but turns...
-        </description>
-        <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-17.10.html</guid>
       </item>
     
   </channel>

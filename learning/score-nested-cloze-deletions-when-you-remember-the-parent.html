@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Score Nested Cloze Deletions When You Remember The Parent</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Score Nested Cloze Deletions When You Remember The Parent" />
+  
+
+   
+  <meta property="og:description" content="First read my article about Overlapping and Nested Clozes. If you have nested clozes such as: Cloze 1: In 14[...], Columbus Sailed the Ocean Blue (answer: 92) and Cloze 2: In [...], Columbus Sailed the Ocean Blue (answer: 1492) Then remembering cloze 2 means that you remembered cloze 1 as...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/learning/score-nested-cloze-deletions-when-you-remember-the-parent.html" />
+  <link rel="canonical" href="http://eshapard.github.io/learning/score-nested-cloze-deletions-when-you-remember-the-parent.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Score Nested Cloze Deletions When You Remember The Parent" />
+  
+
+  
+  <meta name="twitter:description" content="First read my article about Overlapping and Nested Clozes. If you have nested clozes such as: Cloze 1: In 14[...], Columbus Sailed the Ocean Blue (answer: 92) and Cloze 2: In [...], Columbus Sailed the Ocean Blue (answer: 1492) Then remembering cloze 2 means that you remembered cloze 1 as...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Score Nested Cloze Deletions When You Remember The Parent</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on March 14, 2020</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>First read my article about <a href="/anki/learning/code/python/overlapping-clozes.html">Overlapping and Nested Clozes</a>.</p>
+
+<p>If you have nested clozes such as:</p>
+
+<blockquote>
+  <p>Cloze 1: <code class="highlighter-rouge">In 14[...], Columbus Sailed the Ocean Blue</code> (answer: 92)</p>
+</blockquote>
+
+<p>and</p>
+
+<blockquote>
+  <p>Cloze 2: <code class="highlighter-rouge">In [...], Columbus Sailed the Ocean Blue</code> (answer: 1492)</p>
+</blockquote>
+
+<p>Then remembering cloze 2 means that you remembered cloze 1 as well and <em>both cloze deletions should be scored</em>.</p>
+
+<p>In my previous article, I published some code for making overlapping and nested clozes efficiently. Using that code, the nested cloze deletions above could be make like so:</p>
+
+<p><code class="highlighter-rouge">In {2::14{1::92::1}::2}, Columbus Sailed the Ocean Blue</code></p>
+
+<p>Here’s a new version of the cloze-handling functions along with a function I wrote to find the identity of any clozes that are nested within the cloze you’re currently being tested on.</p>
+
+<p>This new <code class="highlighter-rouge">mkClozes()</code> function will call the <code class="highlighter-rouge">findNestedClozes()</code> function on the text of each cloze deletion.</p>
+
+<h3 id="new-hide-me-feature">New Hide-Me Feature</h3>
+<p>Create a cloze deletion with ‘hide-me’ as the hint, and  it’ll be hidden in both the question and answer. This is useful when you have a long passage for the cloze deletion but you just want to focus on part of it for one of the cloze deletions.</p>
+
+<blockquote>
+  <p>e.g. In {1::1492::1}, Columbus Sailed the Ocean Blue. {1::And long passage about some other detail that you don’t really need to {2::see::2} when testing yourself on cloze 1. :hide-me:1}</p>
+</blockquote>
+
+<h2 id="clozepy">cloze.py</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python3</span>
+<span class="c"># Cloze-Deletion Parsing Function</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c"># example cloze text</span>
+<span class="c">#s = "\\{1::(escaped cloze start) {1::\"hello world\":hint1:1} is \\::2}(escaped cloze end) {3::my {6::first:bite me:6} cloze:eat me:3} and {2::\"goodbye {4::world\":cruel:2} is my:dude, my penis is on fire!:4} {5::{6::second:third:6} cloze:c-zizzy:5} {100::yes any arbitrary number works::100}"</span>
+
+<span class="c"># function to remove the cloze codes from other cloze deletions</span>
+<span class="k">def</span> <span class="nf">removeClozeCodes</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\){[0-9]+::'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\):[^:]*?:[0-9]+}'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\:'</span><span class="p">,</span><span class="s">':'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\{'</span><span class="p">,</span><span class="s">'{'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="c"># function to find nested clozes</span>
+<span class="k">def</span> <span class="nf">findNestedClozes</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">startMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\){([0-9]+)::'</span>
+    <span class="n">endMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\):([^:]*?):([0-9]+)}'</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">startMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+            <span class="n">starts</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">endMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">:</span>
+            <span class="n">stops</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">nested</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">:</span>
+            <span class="n">nested</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nested</span>
+
+
+<span class="c"># mkCLozes</span>
+<span class="c">## Returns a numbered dictionary of cards</span>
+<span class="c">## cards[n] = card with cloze number n deleted</span>
+<span class="c">## cards[n][0] = list of tuples (string, type) for question side</span>
+<span class="c">## cards[n][1] = list of tuples (string, type) for answer side</span>
+<span class="c">## cards[n][2] = set of clozes nested within this cloze</span>
+<span class="c">## type codes:</span>
+<span class="c">##    0 = normal text</span>
+<span class="c">##    1 = cloze deletion text</span>
+<span class="c">##    2 = hint text</span>
+<span class="k">def</span> <span class="nf">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">startMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\){([0-9]+)::'</span>
+    <span class="n">endMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\):([^:]*?):([0-9]+)}'</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">startMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ends</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">clozeHint</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+            <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+    
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">endMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clozeHint</span><span class="p">:</span>
+            <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">hint</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ends</span><span class="p">:</span>
+            <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">):</span>
+        <span class="n">rev</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Mismatching starts and ends to clozes: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">s</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+        <span class="c"># the next two lists will be lists of tuples</span>
+        <span class="c"># (string, type) 0=normal  1=cloze 2=hint</span>
+        <span class="n">clozeQuestion</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">clozeAnswer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c"># the 'nested' list contains nested cloze IDs</span>
+        <span class="n">nested</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">])):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
+            <span class="c"># all cloze tags left in new string should be removed</span>
+            <span class="c"># they are from other clozes</span>
+            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+            <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
+            <span class="c"># add strings to list</span>
+            <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">clz</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">:</span><span class="n">c</span><span class="p">]</span>
+            <span class="c"># remove any cloze tags left by other cloze deletions</span>
+            <span class="k">if</span> <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'hide-me'</span><span class="p">:</span>
+                <span class="n">nested</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">findNestedClozes</span><span class="p">(</span><span class="n">clz</span><span class="p">))</span>
+            <span class="n">clz</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clz</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'hide-me'</span><span class="p">:</span>
+                    <span class="c"># secret code to hide passage for this cloze</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clz</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"["</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+                    <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clz</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"[...]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
+        <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
+        <span class="c"># all cloze tags left in new string should be removed</span>
+        <span class="c"># they are from other clozes</span>
+        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+        <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
+        <span class="c"># add strings to list</span>
+        <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="c"># add strings to card dictionary</span>
+        <span class="n">cards</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clozeQuestion</span><span class="p">,</span> <span class="n">clozeAnswer</span><span class="p">,</span> <span class="n">nested</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cards</span>
+</code></pre></div></div>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/python">python</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/linux/set-your-background-to-flat-black-at-sunset.html" data-toggle="tooltip" data-placement="top" title="Set Your Background To Flat Black At Sunset">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2020
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
