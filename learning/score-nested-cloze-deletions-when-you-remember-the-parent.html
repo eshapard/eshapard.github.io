@@ -202,6 +202,8 @@
 
 <p>This new <code class="highlighter-rouge">mkClozes()</code> function will call the <code class="highlighter-rouge">findNestedClozes()</code> function on the text of each cloze deletion.</p>
 
+<p><code class="highlighter-rouge">mkClozes</code> then returns a numbered dictionary of cards where each entry contains the question, the answer, and a list of IDs of any nested clozes. <em>See the code below for a better description</em></p>
+
 <h3 id="new-hide-me-feature">New Hide-Me Feature</h3>
 <p>Create a cloze deletion with ‘hide-me’ as the hint, and  it’ll be hidden in both the question and answer. This is useful when you have a long passage for the cloze deletion but you just want to focus on part of it for one of the cloze deletions.</p>
 
@@ -365,6 +367,27 @@
         
       </ul>
 
+      
+        <div class="disqus-comments">
+          
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'eshapard-github-io';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
       
     </div>
   </div>
