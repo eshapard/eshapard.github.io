@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>The Esperanto &quot;Community&quot; Sucks</title>
+        <description>
+          
+          I studied Esperanto for a couple years and regret it. I don’t consider it a total loss, but I would have gotten more out of studying Spanish, Italian, or French. There are many reasons I regret wasting my time studying Esperanto. Here’s one no one talks about much: Esperanto attracts...
+        </description>
+        <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/language/the-esperanto-community-sucks.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/language/the-esperanto-community-sucks.html</guid>
+      </item>
+    
+      <item>
         <title>Score Nested Cloze Deletions When You Remember The Parent</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</guid>
-      </item>
-    
-      <item>
-        <title>Anki - Dynamic Efficient Learning Steps With Feedback</title>
-        <description>
-          
-          Use the average ease of mature cards as feedback to generate efficient learning steps for new cards. Udate 2018-03-14: Addon coded; see bottom of page. In a Nutshell Create 5 learning steps for each deck with steps 3-5 based on the initial ease factor of the deck (which is set...
-        </description>
-        <pubDate>Tue, 06 Feb 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/anki/anki-learning-steps-with-feedback.html</guid>
       </item>
     
   </channel>
