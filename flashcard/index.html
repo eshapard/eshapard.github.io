@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;remind&rdquo;</title>
+  <title>flashcard</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,44 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;remind&rdquo;" />
+  <meta property="og:title" content="flashcard" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;remind&amp;rdquo;: Export Taskwarrior Dates To Remind Posted on May 31, 2018 I've been playing around with the geeky, efficient, command-line scheduling program [remind](https://www.roaringpenguin.com/products/remind). It's very cool once you get used to it. I wanted to automatically export any duedates from [taskwarrior](https://taskwarrior.org/), so this is what I came up...">
+  <meta property="og:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/remind/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/remind/" />
+  <meta property="og:url" content="http://eshapard.github.io/flashcard/" />
+  <link rel="canonical" href="http://eshapard.github.io/flashcard/" />
   
 
   
@@ -78,11 +103,36 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;remind&rdquo;" />
+  <meta name="twitter:title" content="flashcard" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;remind&amp;rdquo;: Export Taskwarrior Dates To Remind Posted on May 31, 2018 I've been playing around with the geeky, efficient, command-line scheduling program [remind](https://www.roaringpenguin.com/products/remind). It's very cool once you get used to it. I wanted to automatically export any duedates from [taskwarrior](https://taskwarrior.org/), so this is what I came up...">
+  <meta name="twitter:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
   
@@ -144,236 +194,63 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;remind&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-heading">
+          <h1>flashcard</h1>
+		  
+		  
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="posts-list">
   
   <article class="post-preview">
-    <a href="/export-taskwarrior-dates-to-remind.html">
-      <h3 class="post-title">Export Taskwarrior Dates To Remind</h3>
+    <a href="/flashcard/the-4-memory-tests-and-their-implications-for-flashcard-applications.html">
+      <h3 class="post-title">The 4 Memory Tests And Their Implications For Flashcard Applications</h3>
 
       
     </a>
 
     <p class="post-meta">
-    Posted on May 31, 2018
+    Posted on July 31, 2020
     </p>
 
     <div class="post-entry">
-      I've been playing around with the geeky, efficient, command-line scheduling program [remind](https://www.roaringpenguin.com/products/remind). It's very cool once you get used to it. I wanted to automatically export any duedates from [taskwarrior](https://taskwarrior.org/), so this is what I came up with. ## Export Taskwarrior Dates I found a script that did this (written...
-      <a href="/export-taskwarrior-dates-to-remind.html" class="post-read-more">[Read&nbsp;More]</a>
+      In a nutshell Rationale Desirable difficulty The four memory tests New material Managing new-material workload ‘Learned’ material Maintaining a lower recall ability Python wordfreq and the zipf score Upon failure Got it wrong (Interference) The confusion card No Clue Ways to test memory in detail Recall Aided Recall Recognition Relearning...
+      <a href="/flashcard/the-4-memory-tests-and-their-implications-for-flashcard-applications.html" class="post-read-more">[Read&nbsp;More]</a>
     </div>
 
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/remind">remind</a>
-      
-        <a href="/tag/taskwarrior">taskwarrior</a>
-      
-        <a href="/tag/linux">linux</a>
-      
-        <a href="/tag/commandline">commandline</a>
-      
-    </div>
   </article>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 </div>
 
+	    
+    </div>
+  </div>
 </div>
+
 
     <footer>
   <div class="container beautiful-jekyll-footer">

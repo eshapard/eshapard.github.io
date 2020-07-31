@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>The 4 Memory Tests And Their Implications For Flashcard Applications</title>
+        <description>
+          
+          In a nutshell Rationale Desirable difficulty The four memory tests New material Managing new-material workload ‘Learned’ material Maintaining a lower recall ability Python wordfreq and the zipf score Upon failure Got it wrong (Interference) The confusion card No Clue Ways to test memory in detail Recall Aided Recall Recognition Relearning...
+        </description>
+        <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/flashcard/the-4-memory-tests-and-their-implications-for-flashcard-applications.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/flashcard/the-4-memory-tests-and-their-implications-for-flashcard-applications.html</guid>
+      </item>
+    
+      <item>
         <title>The Esperanto &quot;Community&quot; Sucks</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html</guid>
-      </item>
-    
-      <item>
-        <title>Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 18</title>
-        <description>
-          
-          The fix See code below The story Upgraded to Ubuntu 18 and the webserver broke. Something always breaks when you upgrade. This time, it was my webserver… just like last time All the packages were installed, but turns out, the Apache php7.2 module needed to be enabled. sudo a2enmod php7.2...
-        </description>
-        <pubDate>Mon, 07 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html</guid>
       </item>
     
   </channel>
