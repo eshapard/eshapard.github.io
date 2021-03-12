@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Create a Jekyll Post Inbox for Multiple Blogs</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Create a Jekyll Post Inbox for Multiple Blogs" />
+  
+
+   
+  <meta property="og:description" content="I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: Write a markdown-format post on another computer. Save it to a google-drive folder synced with my main...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html" />
+  <link rel="canonical" href="http://eshapard.github.io/jekyll/auto-sort-jekyll-posts-to-different-blogs.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Create a Jekyll Post Inbox for Multiple Blogs" />
+  
+
+  
+  <meta name="twitter:description" content="I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this: Write a markdown-format post on another computer. Save it to a google-drive folder synced with my main...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Create a Jekyll Post Inbox for Multiple Blogs</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 11, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I have a couple blogs that run off of Jekyll and I wanted to be able to quickly fire off a post from another workstation. The work-flow I wanted was something like this:</p>
+
+<ol>
+  <li>Write a markdown-format post on another computer.</li>
+  <li>Save it to a google-drive folder synced with my main machine.</li>
+  <li>Cron on my main computer runs a sorting script every 15 minutes</li>
+  <li>The sorting script looks at the <code class="highlighter-rouge">blog: </code> YAML frontmatter and moves the post to the correct directory</li>
+</ol>
+
+<p>As it turns out, there’s a nice library for reading YAML frontmatter (called python-frontmatter) that makes this pretty easy.</p>
+
+<blockquote>
+  <p>Before working with Jekyll, I’d never heard of YAML. It stands for <em>YAML Ain’t Markup Language</em>. They call it a “data serialization standard”, but I have no idea what that means.</p>
+</blockquote>
+
+<p>Here’s the program that I have cron run every 15 minutes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">frontmatter</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">os</span>
+<span class="n">inbox</span> <span class="o">=</span> <span class="s">"/{path}/jekyllInbox/"</span>
+<span class="n">blogs</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">blogs</span><span class="p">[</span><span class="s">'blog1'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"/{blog1 path}/_posts"</span>
+<span class="n">blogs</span><span class="p">[</span><span class="s">'blog2'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"/{blog2 path}/_posts"</span>
+<span class="c">#add more blogs as needed</span>
+
+<span class="k">def</span> <span class="nf">findBlog</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">post</span><span class="p">[</span><span class="s">'blog'</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">post</span><span class="p">[</span><span class="s">'blog'</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">movePost</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">blog</span> <span class="o">=</span> <span class="n">findBlog</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">blog</span> <span class="ow">and</span> <span class="n">blog</span> <span class="ow">in</span> <span class="n">blogs</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">blogs</span><span class="p">[</span><span class="n">blog</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p</span><span class="p">):</span> <span class="c">#file was copied; not moved</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">inbox</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".md"</span><span class="p">):</span>
+        <span class="n">fpath</span> <span class="o">=</span> <span class="n">inbox</span> <span class="o">+</span> <span class="n">f</span>
+        <span class="n">movePost</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The frontmatter for your post just needs to indicate which blog it goes to:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">blog</span><span class="pi">:</span> <span class="s">blog1</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Dummy Post</span>
+<span class="na">categories</span><span class="pi">:</span> <span class="s">examples</span>
+<span class="nn">---</span>
+
+Hello World
+</code></pre></div></div>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/code">code</a>
+          
+            <a href="/tag/jekyll">jekyll</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/jekyll/github-jekyll-theme-changes.html" data-toggle="tooltip" data-placement="top" title="Github Jekyll Theme Changes">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/linux/spell-check-in-vim.html" data-toggle="tooltip" data-placement="top" title="Spell Check In Vim">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

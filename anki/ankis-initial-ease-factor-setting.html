@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Anki's Starting Ease Factor Setting</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Anki's Starting Ease Factor Setting" />
+  
+
+   
+  <meta property="og:description" content="In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically for all decks. To install from within Anki, use Tools » Addons »...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Anki's Starting Ease Factor Setting" />
+  
+
+  
+  <meta name="twitter:description" content="In a Nutshell For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group. UPDATE 2017-02-15: I completed an addon to do this automatically for all decks. To install from within Anki, use Tools » Addons »...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Anki's Starting Ease Factor Setting</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 14, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h2 id="in-a-nutshell">In a Nutshell</h2>
+
+<p>For each deck options group in Anki, set the initial ease factor to the average ease factor of the mature cards in that deck options group.</p>
+
+<p><strong>UPDATE 2017-02-15:</strong></p>
+
+<p>I completed an addon to do this automatically for all decks. <strong>To install</strong> from within Anki, use Tools » Addons » Browse&amp;Install and enter <strong>code: 633293039</strong>. Sourcecode can be found on the <a href="https://github.com/eshapard/Anki-avgEase">Anki avgEase</a> github page.</p>
+
+<p><em>Bug reports? Submit them to the github page</em>.</p>
+
+<h2 id="how-ankis-algorithm-works">How Anki’s Algorithm Works</h2>
+
+<p>Briefly, Anki’s scheduling algorithm works like this:</p>
+
+<ol>
+  <li>Cards get an initial ease factor (a percentage)</li>
+  <li>When you get a card right (Good), you multiply the last interval by the ease factor to get the new one.</li>
+  <li>Mark a card <em>Easy</em> or <em>Hard</em> and we make the ease factor a little bigger or smaller.</li>
+  <li>Mark a card <em>Again</em> and we make the ease factor even smaller and send the card to the relearning queue.</li>
+</ol>
+
+<p>There’s much more to it, but this is all we need to know right now.</p>
+
+<h2 id="the-ease-factor">The Ease Factor</h2>
+
+<p>Let’s say a card has an ease factor of 250% (the default). If we waited 10 days to see the card, and we mark it as <em>Good</em>, then we’ll wait 10 days * 250% = 25 days until we see it again.</p>
+
+<p>If we mark it <em>Good</em> the next time we see it, we’ll wait 25 days * 250% = 62.5 days.</p>
+
+<p>And so on and so forth.</p>
+
+<p>Notice the assumption here is that each interval will be 250% of the last one.</p>
+
+<p>This seems like a pretty unlikely assumption to me. The model here is very simplistic. But what happens is that if the intervals grow too fast, we mark the card <em>Hard</em> or <em>Again</em> and slow down its growth. If the interval grows too slowly, we mark the card <em>Easy</em> and speed up how quickly the intervals grow.</p>
+
+<p>It’s a system that relies heavily on feedback. As I see it, we <em>know</em> we’re going to get off track, so we rely on user feedback to slow us down or speed us up as needed.</p>
+
+<p>Now if the intervals do grow in a fairly predictable manner, each being a certain percentage of the last, then after many trials and much feedback, the ease factor should settle around a pretty accurate value. In other words, the older a card is, and the more reviews it’s had, the more accurate it’s ease factor should be.</p>
+
+<h2 id="what-about-young-cards">What About Young Cards?</h2>
+
+<p>So far, we’ve seen that, assuming that a good interval for reviews does grow as a set percentage of the last interval, it’ll be the older cards with lots of reviews that have accurate ease factors. The new and young cards will have inaccurate ease factors.</p>
+
+<p>Every bit of feedback causes a smallish correction (15-20%) in the ease factor, so if cards are starting out with an ease factor that’s really off, it’ll take a long, inefficient time until the ease factor is around where it needs to be. You’ll be seeing the card either too early or too late for quite a while until the ease factor is about where it should be.</p>
+
+<h3 id="how-can-you-give-young-cards-a-head-start-in-life">How can you give young cards a head start in life?</h3>
+
+<p>The closer we get that initial ease factor to the correct value, the less feedback (and time) it will take until that card is humming along smoothly.</p>
+
+<p>But where to find a good initial ease factor?</p>
+
+<p>Chances are, that your decks each contain similar cards. Within a deck, most of the cards probably have similar content, and with some exceptions, they’re probably mostly the same difficulty for you.</p>
+
+<p>Imagine that we can somehow figure out the average optimal ease factor for the cards in a deck. If we set the initial ease factor to that average, then most cards would start out pretty close to their optimal ease factor. Those cards wouldn’t need so much feedback until their ease factor is adjusted to about as good as we can get it.</p>
+
+<p>Well the closest we can get to this average optimal ease factor is to look at the ease factors of the oldest, most mature cards in the deck, and find the average of their ease factors.</p>
+
+<p>That’s the best we can do.</p>
+
+<p>And it turns out, it’s not that hard to do since the ease factor and interval for each card is listed in Anki’s database. We just need to search for mature cards that are in our deck options group and find their average ease factor. That’s the ease factor we should use as the initial ease factor for all cards.</p>
+
+<p>One handy way to spot mature cards it to look for cards with an interval greater than some arbitrary (but large) number of days. This way you know the card has been reviewed enough to give Anki a good amount of feedback.</p>
+
+<h2 id="wheres-the-cut-off-for-mature-cards">Where’s the Cut-off for Mature Cards?</h2>
+
+<p>If you look in the Anki manual, and at what’s been written online, you’ll see 20 days pop up again and again.</p>
+
+<p>I think Damien (Anki’s creator) came up with this number as an arbitrary cut-off point between young and mature. And this 20-day figure seems to have stuck. (Oh yeah, and the 20-day cut-off is what’s used in Anki’s reports.)</p>
+
+<p>However, I’ve found that some of my decks are pretty easy. If I adjust the ease settings until I only get 80 to 90 percent of my reviews right, then 20 days really doesn’t represent a mature card.</p>
+
+<p>For that reason, I’ve switched to using a 90-day cut-off point.</p>
+
+<p>A better approach might be to look at a percentage of your cards. Perhaps sort the cards by interval length and look the top 25%.</p>
+
+<h2 id="can-we-automate-this">Can we Automate this?</h2>
+
+<p>Yes.</p>
+
+<p>I have an addon that I wrote for myself that does this. Unfortunately it’s tied up with a lot of code that does a bunch of other things. I plan on separating itout into a separate addon and posting it on github fairly soon.</p>
+
+<p>In the mean-time, there may already be an addon that does this. Since I have my own, I actually haven’t looked.</p>
+
+<p><strong>UPDATE 2017-02-25:</strong></p>
+
+<p>Hot off the presses! I just released the addon.</p>
+
+<ul>
+  <li>AnkiWeb Code: 633293039</li>
+  <li>GitHub: <a href="https://github.com/eshapard/Anki-avgEase">Anki avgEase</a></li>
+</ul>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/anki">anki</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/working-on-anki-auto-calibrate.html" data-toggle="tooltip" data-placement="top" title="Working On Anki Auto-Calibrate">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/anki/target-an-80-90-percent-success-rate-in-anki.html" data-toggle="tooltip" data-placement="top" title="Target An 80-90 Percent Success Rate In Anki">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'eshapard-github-io';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

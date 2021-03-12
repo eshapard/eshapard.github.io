@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Automate Jekyll Posting With Python In Windows</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Automate Jekyll Posting With Python In Windows" />
+  
+
+   
+  <meta property="og:description" content="Why was this so hard!? I just coded a little python script to help automate the process of posting via Jekyll. In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html" />
+  <link rel="canonical" href="http://eshapard.github.io/code/automate-jekyll-posting-with-python-in-windows.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Automate Jekyll Posting With Python In Windows" />
+  
+
+  
+  <meta name="twitter:description" content="Why was this so hard!? I just coded a little python script to help automate the process of posting via Jekyll. In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Automate Jekyll Posting With Python In Windows</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 9, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h1 id="why-was-this-so-hard">Why was this so hard!?</h1>
+
+<p>I just coded a little python script to help automate the process of posting via Jekyll.</p>
+
+<blockquote>
+  <p>In case you don’t know what Jekyll is, it’s a ruby application that converts a hand-full of markdown documents into a static website ready for hosting… so you can write posts in simple markdown-formatted files, throw them in a directory, and let Jekyll turn them into nice webpages.</p>
+
+  <p>Markdown is a highly-readable way of writing pages that can later be translated into the more cumbersome HTML or other markup language. You see it used a lot on Reddit and Github.</p>
+</blockquote>
+
+<p>I wanted to code a little python script that would:</p>
+
+<ul>
+  <li>Ask me for the title, categories, and tags</li>
+  <li>Create a properly-named markdown file in the right directory</li>
+  <li>Add the required front-material to the top of the file</li>
+  <li>Open up the file in the windows version of VIM for me to edit</li>
+</ul>
+
+<p>I thought this would be easy, and for the most part it was.</p>
+
+<p>The problem was that I wanted this script to run on Windows… which I use for work. And Windows use of the backslash character between directories really screwed things up.</p>
+
+<blockquote>
+  <p><strong>Sidenote:</strong> I switched to linux back in about 1995 after I was horribly disappointed by Windows 95… I’ve sort-of been holding a grudge ever since, but I’ll admit that Windows is actually pretty good these days. (They’ve borrowed a lot from the ‘nix world)</p>
+</blockquote>
+
+<p>These backslashes in the pathways suck big donkey butts because the backslash is a common escape character… and one that’s used in python.</p>
+
+<p>Turns out you can type the path with forward-slashes (like a sane person) and then use <code class="highlighter-rouge">os.path.normpath(string)</code> to turn the path into what Windows likes… so problem solved, right? Not quite.</p>
+
+<blockquote>
+  <p>I don’t remember why MS went with the backslash, but it’s been a thorn in a lot of sides ever since. The worst thing about it is probably that the backslash isn’t always in the same place on the keyboard so if you switch machines a lot, it slows you down.</p>
+</blockquote>
+
+<p>The next problem was that damn space that Microsoft put in the <em>Program Files</em> directory.</p>
+
+<p>That space causes the Windows command line to think you’ve put in two command arguments; C:\Program and Files\whatever_else. So you try to run an .exe in the <em>Program Files</em> directory and you get this message: “Sorry, I couldn’t find C:\Program”.</p>
+
+<p>Now the standard way around this is to put the path of the executable in double quotes… or even to put that space in double quotes. But somehow, adding those quotes to the string and calling os.system(command) just wasn’t working. It was like the double quotes were getting dropped.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">command</span> <span class="o">=</span> <span class="s">'"'</span> <span class="o">+</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">exe</span> <span class="o">+</span> <span class="s">'"'</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">Sorry</span><span class="p">,</span> <span class="n">can</span><span class="s">'t find '</span><span class="n">C</span><span class="p">:</span>\<span class="n">Program</span><span class="s">'</span><span class="err">
+</span></code></pre></div></div>
+<p>What did work was this: <code class="highlighter-rouge">os.system('"' + command + '"')</code>.</p>
+
+<p>I’m not sure why I had to do that, but hey, this thing is working now.</p>
+
+<p>If you’re interested, here’s the code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span><span class="p">,</span> <span class="n">os</span>
+<span class="n">postdir</span> <span class="o">=</span> <span class="s">"Z:/websites/arete/_posts/"</span> <span class="c">#Include trailing slash!</span>
+<span class="n">vim</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="s">"C:/Program Files (x86)/Vim/vim74/vim.exe"</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Post Title: "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Categories]: "</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Tags]: "</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="s">"-"</span> <span class="o">+</span> <span class="n">ts</span> <span class="o">+</span> <span class="s">".md"</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">postdir</span> <span class="o">+</span> <span class="n">fname</span><span class="p">)</span>
+<span class="n">head</span> <span class="o">=</span> <span class="s">"---"</span>
+<span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">type: post"</span>
+<span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">title: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">title</span>
+<span class="k">if</span> <span class="n">cats</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">categories: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">cats</span>
+<span class="k">if</span> <span class="n">tags</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">tags: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tags</span>
+<span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">---</span><span class="se">\n</span><span class="s">"</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">postfile</span><span class="p">:</span>
+    <span class="n">postfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="n">command</span><span class="o">=</span><span class="s">'"</span><span class="si">%</span><span class="s">s" -c "set spell spelllang=en_us" -c "setf markdown" + "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'"'</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="key-to-the-vim-command">Key to the Vim command</h3>
+
+<ul>
+  <li><em>set spell spelllange=en_us</em> - turns on spell checking</li>
+  <li><em>setf markdown</em> - sets syntax highlighting to markdown</li>
+  <li><em>+</em> moves cursor to the last line</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong> As you can probably tell, I’m not an expert in python, or any other programming language. I’m pretty much entirely self-taught and I rarely program for Windows anymore, so don’t expect that this will the best, cleanest, most elegant way to accomplish this.</p>
+</blockquote>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/things-that-suck">things-that-suck</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        
+        <li class="next">
+          <a href="/jekyll/github-jekyll-theme-changes.html" data-toggle="tooltip" data-placement="top" title="Github Jekyll Theme Changes">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

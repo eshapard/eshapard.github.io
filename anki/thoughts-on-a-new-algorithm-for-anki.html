@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Thoughts On A New Algorithm For Anki</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Thoughts On A New Algorithm For Anki" />
+  
+
+   
+  <meta property="og:description" content="I’ve had some thoughts about a change to the way Anki handles ease factors. UPDATE: 2018-01-08 I’ve shared out the experimental addon that does exactly what I describe in this article. See experimentalCardEaseFactor on Github. In a nutshell Instead of simply increasing the ease factor a little when the user...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/thoughts-on-a-new-algorithm-for-anki.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Thoughts On A New Algorithm For Anki" />
+  
+
+  
+  <meta name="twitter:description" content="I’ve had some thoughts about a change to the way Anki handles ease factors. UPDATE: 2018-01-08 I’ve shared out the experimental addon that does exactly what I describe in this article. See experimentalCardEaseFactor on Github. In a nutshell Instead of simply increasing the ease factor a little when the user...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Thoughts On A New Algorithm For Anki</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 18, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I’ve had some thoughts about a change to the way Anki handles ease factors.</p>
+
+<h2 id="update-2018-01-08">UPDATE: 2018-01-08</h2>
+<p>I’ve shared out the experimental addon that does exactly what I describe in this article. See <a href="https://github.com/eshapard/experimentalCardEaseFactor">experimentalCardEaseFactor</a> on Github.</p>
+
+<h2 id="in-a-nutshell">In a nutshell</h2>
+
+<p>Instead of simply increasing the ease factor a little when the user marks a review as <em>Easy</em> and decreasing it when they mark the review as <em>Again</em> or <em>Hard</em>, set target success rate of 85% for all reviews of each card and adjust the ease factor according to the below formula.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New Ease = Avg Historical Ease * log(0.85) / log(historical succes rate)
+</code></pre></div></div>
+
+<p>Where, <em>Ease</em> is the ease factor of the card, 0.85 is the desired 85% success rate, and the historical success rate is the ratio of reviews that were answered <em>Hard</em>, <em>Good</em>, or <em>Easy</em>.</p>
+
+<p>To prevent this equation from becoming too aggressive:</p>
+
+<ul>
+  <li>If historical success rate is 100%, or 0%, set it to 99% or 1% respectively to avoid divide by zero or log(0) errors.</li>
+  <li>Cap the maximum possible adjustment at +/- 20% to prevent the overly aggressive values possible with this equation.</li>
+  <li>The Interval Modifier setting must remain at 100%</li>
+</ul>
+
+<p>Intervals would still be calculated and cards scheduled according to the current procedures.</p>
+
+<h2 id="some-background">Some background.</h2>
+
+<p>The above equation is derived from a model of Ebbinghaus’s forgetting curve. You can find the original equation in the Wikipedia article for <a href="https://en.wikipedia.org/wiki/Forgetting_curve">The Forgetting Curve</a>.</p>
+
+<p><img src="/latex/latex-58e190683620f36702b35f7d75eac4ef.png" /></p>
+
+<p>From this, you can derive that first formula. I actually did this myself once, so I know it’s valid. If I remember correctly, when you work this out, you end up with some natural logs, but because you have a log divided by another log, it actually doesn’t matter which base you use.</p>
+
+<blockquote>
+  <p>Basically, you need to solve for the ratio of t2 to t1 where strength (S) is a constant. This gives you a ratio of how much longer or shorter the interval should have been. Since Anki calculates intervals by simply multiplying the last interval by the ease factor, you can just adjust the ease factor by that ratio and presto!</p>
+</blockquote>
+
+<p>The Anki Manual describes essentially this same formula in the <a href="https://apps.ankiweb.net/docs/manual.html#reviews">Deck Options » Reviews</a> section, but there it is used to calculate a deck-wide interval modifier. Here, I’m suggesting that we apply this modifier directly to the ease factor of a card on a card-by-card basis rather than a deck-wide adjustment. (<em>Actually, the interval modifier applies to all cards within the deck options group; several decks can share the same options group.</em>)</p>
+
+<p>This equation seems to create some nice reasonable adjustments when you’re close to the desired success rate. Unfortunately, if you’re current success rate is close to 0 or close to 100%, the adjustments become exponentially large. So we have to constrain them.</p>
+
+<p>I think limiting the adjustments to no more than 20% up or down is a reasonable way to keep the adjustments from getting too extreme. As the success rate gets closer and closer to the desired 85%, the adjustments become smaller and smaller.</p>
+
+<h2 id="from-decks-to-cards">From decks to cards</h2>
+
+<p>I used to use this formula to adjust the interval modifier of a deck. I’d figure out what the current success rate was deck-wide, and come up with an interval modifier to adjust intervals to hit that 85% target.</p>
+
+<blockquote>
+  <p>The interval modifier of a deck options setting is a percentage. All intervals are multiplied by the interval modifier. It’s a way to basically increase or decrease all the intervals with one setting.</p>
+</blockquote>
+
+<p>But at some point, I realized that instead of looking at the success rate of a deck, I could look at the past reviews for a single card and use that to calculate the card’s success rate. Then I could adjust the card’s individual ease factor to try to hit my target of 85%.</p>
+
+<p>If we’re adjusting each individual card like this, then we should set that interval modifier to 100% (no change). That way, the ease factors for each card won’t be affected by the other cards in the deck.</p>
+
+<p>Looking at a single card instead of a deck-full of cards means that we can use this equation to adjust a card’s ease factor individually. The outliers don’t get caught up in an interval modifier based on a deck-wide average.</p>
+
+<h2 id="differences-from-the-current-method">Differences from the current method</h2>
+
+<p>The current method of adjusting ease factors is to simply add or subtract 150 from the ease factor when you answer a review with <em>Easy</em>, or <em>Hard</em> and to not make any change for reviews answered <em>Good</em>. If you forget a card, Anki subtracts 200 from the ease factor.</p>
+
+<p>There’s no adjustment towards a goal. As long as you keep hitting <em>Good</em>, we just stick with the ease factor the card already has.</p>
+
+<p>The result is that a card’s ease factor adjusts to whatever range of ease (or laziness) causes you to mark the card as <em>Good</em>. Unless you’re a very disciplined and consistent person, this range is likely to be pretty wide, and the boundaries are likely to move drastically with your mood.</p>
+
+<p>Anki effectively tries to keep each card in the subjective <em>Good</em> range forever. Forgetting means something went wrong and we have to lower the ease factor and we only increase the ease factor if the card is so easy that you can be bothered to mark it as <em>Easy</em>.</p>
+
+<p>The formula above would work in a similar way, but focused on your overall success rate, rather than your most recent performance.</p>
+
+<p>Forgetting would result in a decreased ease factor, and remembering would result in an increased ease factor. However, if you keep hitting <em>Good</em>, the ease factor will keep increasing until you forget. Forgetting about 15% of the time would be an expected outcome rather than something we try to avoid.</p>
+
+<p>By using the formula above, we would also make much faster adjustments towards our goal of 85% success. Even with a cap of a 20% change up or down, that’s often going to be larger than Anki’s 150 or 200 points. When we’re close to our target, the adjustments will be much finer, while Anki’s are stuck at +/- 150 or -200.</p>
+
+<h2 id="how-bad-is-forgetting">How bad is forgetting?</h2>
+
+<p>Anki noobs often think that Anki’s algorithm tries to schedule a card for <em>just before you forget</em> it. And that’s to be expected given that the Anki website says essentially the same thing.</p>
+
+<blockquote>
+  <p>Remember Efficiently: Only practice the material that you’re about to forget. (apps.ankiweb.net)</p>
+</blockquote>
+
+<p>As I hope I’ve showed to you, that’s bullshit. Anki tries to schedule a review for a time when you’ll still be willing to mark the card as <em>Good</em>. That’s it. It’s a very imprecise and subjective target.</p>
+
+<p>I think there are two assumptions lurking in the background here.</p>
+
+<ol>
+  <li>It’s better to review right before you forget rather than right after.</li>
+  <li>Remembering is binary; you either remember or forget and there is no in between.</li>
+</ol>
+
+<p>I’m skeptical about assumption #1. Maybe it’s true, and maybe it’s not. There’s definitely a benefit to reviewing something that you’ve just forgotten. And I don’t think the research has found that one is actually much better than the other. What <em>is</em> probably true is that it’s <em>psychologically</em> more rewarding if you’re remembering most of your reviews… exactly why I aim for an 85% success rate.</p>
+
+<p>And I happen to think #2 is complete bullshit. I can’t say this with any authority, but it seems to me that every time you try to remember something, it’s a game of probability. If you know it well, your probability of remembering it is high; if you don’t know it well, the probability is low. At least that’s how it seems to me based on my personal experience.</p>
+
+<p>I don’t think we really know how the mind retrieves a memory, but it seems to me that sometimes you get lucky and you don’t know how you possibly remembered something and other times you can’t recall something even though it’s on the tip of your tongue.</p>
+
+<blockquote>
+  <p>There’s a theory from Dr. Bjork of UCLA called the <em>New Theory of Disuse</em> that might explain some of these memory oddities. According to his model, every memory has two strengths; a storage strength and a retrieval strength.</p>
+
+  <p>If your storage strength is low, but your retrieval strength is high for something, you’ll be able to remember it, but you’ll soon forget it because retrieval strength fades quickly. Retrieval strength is what Ebbinghaus was mostly charting with his forgetting curve.</p>
+
+  <p>But if your storage strength is high, but your retrieval strength low for a memory, it’ll be hard to remember even though you know that you know it. That’s when things feel like they’re on the tip of our tongue.</p>
+
+  <p>The way I interpret it, if retrieval is at 85%, you have an 85% chance of remembering something; but a 15% chance that you’ll fail. But storage strength influences how quickly retrieval strength fades; as things become more and more familiar, your ability to retrieve them fades slower and slower.</p>
+</blockquote>
+
+<h2 id="down-to-two-options">Down to two options</h2>
+
+<p>With this equation, it won’t matter whether you choose <em>Easy</em>, <em>Good</em>, or <em>Hard</em>. The success rate over time will tell us whether the ease factor is too easy (over 85% success), or too hard (under 85% success). We don’t have to think about it anymore. We can just select between <em>Again</em> and <em>Good</em>; a simple binary choice between getting a card right and getting it wrong.</p>
+
+<p>This frees up all that mental energy previously devoted to choosing among the three buttons. You can now use it for what you should be using it for; remembering the cards and getting through review sessions.</p>
+
+<h2 id="the-downside">The downside</h2>
+
+<p>One downside I can see is that for young cards, we’ll have a very small sample size. One good review out of a total of one reviews is a 100% success rate and we’d increase the ease factor by 20% because of this.</p>
+
+<p>This means that we could see a lot of whip-sawing up and down in the ease factor of young cards before they settle in to a good range. The good news is that this won’t affect the small intervals of young review cards nearly as much as it would affect the intervals of more mature cards.</p>
+
+<p>On the other hand, Anki’s current system means that we often spend a very long time slowly creeping towards an appropriate ease factor.</p>
+
+<blockquote>
+  <p>One other potential problem is that if you’ve been using an interval modifier, then the ease factor in the reviews database isn’t really the ease factor that was used. Instead, the effective ease factor was the ease factor listed in the database times the interval modifier in effect at that time (which is <strong>not</strong> listed).</p>
+
+  <p>However, the effective interval modifier can be deduced by taking the interval and dividing it by the previous interval; both of which are listed in the reviews database. You then have to multiply by 1000, because of the way that Anki stores these values (a 250% factor is stored as 2500 in Anki).</p>
+
+  <p>A great resource for understanding Anki’s database structure is the <a href="https://github.com/ankidroid/Anki-Android/wiki/Database-Structure">AnkiDroid Database Schema</a> page on Github. But also, compare that to the section on <a href="https://apps.ankiweb.net/docs/manual.html#manual-analysis">Manual Analysis</a> in the Anki manual.</p>
+</blockquote>
+
+<h2 id="what-about-all-that-forgetting">What about all that forgetting?</h2>
+
+<p>Since the system is geared towards ensuring a 15% failure rate, you might be worried about lapses; and with good reason.</p>
+
+<p>Anki’s default way of dealing with lapses is that after forgetting a card and relearning it, the card starts off with an interval of one day and has to work its way back up all over again.</p>
+
+<p>This is a shitty way to handle it and I’ve gone into detail about that in another post. To sum it up, just because you couldn’t remember something doesn’t mean you need to start all over again as if you never knew it in the first place.</p>
+
+<p>So with this system, we’d have to set the new interval of lapsed cards to a percentage that would, on average, give us an 85% success rate on subsequent reviews.</p>
+
+<p>This can be automated through an addon, but that’s a story for another time and another post…</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/anki">anki</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/anki-new-interval-after-a-lapse.html" data-toggle="tooltip" data-placement="top" title="Anki New Interval After A Lapse">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/anki/open-the-anki-database-from-python.html" data-toggle="tooltip" data-placement="top" title="Open The Anki Database From Python">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'eshapard-github-io';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

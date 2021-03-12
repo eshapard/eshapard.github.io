@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Applying Spaced Repetition To Online Course Design</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Applying Spaced Repetition To Online Course Design" />
+  
+
+   
+  <meta property="og:description" content="I got a private message from someone who’s developing an online learning platform for an after-school program. The idea is to incorporate spacing techniques in the lessons themselves while incorporating feedback from the student to try to hit an 80-90% success rate (as I advocate elsewhere in this blog). I...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/teaching/applying-spaced-repetition-to-online-course-design.html" />
+  <link rel="canonical" href="http://eshapard.github.io/teaching/applying-spaced-repetition-to-online-course-design.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Applying Spaced Repetition To Online Course Design" />
+  
+
+  
+  <meta name="twitter:description" content="I got a private message from someone who’s developing an online learning platform for an after-school program. The idea is to incorporate spacing techniques in the lessons themselves while incorporating feedback from the student to try to hit an 80-90% success rate (as I advocate elsewhere in this blog). I...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Applying Spaced Repetition To Online Course Design</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on October 16, 2018</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I got a private message from someone who’s developing an online learning platform for an after-school program. The idea is to incorporate spacing techniques in the lessons themselves while incorporating feedback from the student to try to hit an 80-90% success rate (as I advocate elsewhere in this blog).</p>
+
+<p>I also teach online, and I’ve done some thinking over the years about how best to design an online platform to incorporate what cognitive science and psychology have taught us about learning.</p>
+
+<p>I thought I’d lay out some of the ideas that have been bouncing around my brain in a blog post. I’m not going to cite sources or anything because that would be a lot of work. Some of the ideas might be great, some might be stinkers; caveat emptor.</p>
+
+<h2 id="in-a-nutshell">In a nutshell</h2>
+
+<p>In general:</p>
+<ul>
+  <li>Space and Interleave new topics.</li>
+  <li>Have a manageable number of tests evenly spread out throughout the course.</li>
+  <li>Make all tests cumulative; covering <em>all</em> topics that were taught before the test.</li>
+  <li>The last test is a cumulative final exam.</li>
+</ul>
+
+<p>For each lesson:</p>
+<ul>
+  <li>Have a pre-quiz before each ‘lesson’ (questions come from spaced repetition algorithm of review topics)</li>
+  <li>Reschedule passed review topics on the pre-quiz.</li>
+  <li>Add review lessons for missed pre-quiz topics to the current lesson.</li>
+  <li>Teach one thing at a time and check for understanding before moving on to the next thing.</li>
+  <li>Test entire lesson content with a post-quiz.</li>
+  <li>Add questions for missed pre-quiz topics to the post-quiz.</li>
+  <li>Pre-quizzes are required to unlock the lesson, but are ungraded.</li>
+  <li>Only one attempt is allowed for each pre-quiz.</li>
+  <li>Scheduling of reviews is based on a students performance on the pre-quizzes only.</li>
+  <li>Post-quizzes are used for <strong>practice</strong>; not to grade students. Students get unlimited attempts, and a small amount of <em>participation</em> points with most of the points being reserved for tests.</li>
+</ul>
+
+<h2 id="background-education-dogma-gets-in-the-way">Background: Education dogma gets in the way</h2>
+
+<p>You might think that the education industry already incorporates the century-old discovery of the spacing effect. After all, it’s one of the oldest and most robust findings in psychology and has some direct and obvious implications for education.</p>
+
+<p>You’d be dead wrong.</p>
+
+<p>At least in the USA, a particular ‘progressive’ dogma has a virtual strangle-hold over the education industry. And a sad key aspect of this dogma is the firm belief that memorization is evil and students should not memorize anything. Instead they should be <em>taught how to think</em> if that’s even possible. And if at all possible, they should figure everything out themselves and teachers should never tell them anything (this is called <em>Discovery Learning</em>, but it’s gone by other names in the past).</p>
+
+<blockquote>
+  <p>An excellent critique of the <em>discovery learning</em> dogma is <a href="http://vega.jeffco.edu/szak/handouts/BookerBloom.pdf">A Roof Without Walls</a>.</p>
+</blockquote>
+
+<p>In short, the advantages of spaced repetition are irrelevant to schools because teachers are indoctrinated in the belief that memorization is useless.</p>
+
+<h2 id="background-traditional-methods-get-in-the-way-too">Background: Traditional methods get in the way too</h2>
+
+<p>OK, so one thing that I’ve noticed about online learning platforms is that the one’s I’ve seen are clearly designed with a traditional school-year/semester/calendar format in mind. Everything gets a start date, an due date, and an <em>end date</em> after which students can no longer submit work. These platforms are designed to fit within the constraints of a traditional school year with it’s start dates, end dates, and general reliance on the calendar.</p>
+
+<p>An online platform doesn’t need to fit this kind of mold. I think there are some missed opportunities related to the rigid calendar of a traditional school year.</p>
+
+<h2 id="spacing-and-interleaving-lessons">Spacing and Interleaving Lessons</h2>
+
+<p>So two techniques that have shown to enhance memory are spacing review sessions, and interleaving content. That’s the condensed version of <em>How We Learn</em>, by Benedict Cary (excellent book).</p>
+
+<p>Anki was designed to handle spaced repetition, but reviews of different subjects can easily be mixed together, creating an interleaving effect.</p>
+
+<p>I have some thoughts on how to apply these techniques to online lessons. Interleaving is simpler, so I’m going to tackle that first.</p>
+
+<h3 id="interleaving-topics">Interleaving topics</h3>
+
+<p>OK, so if you’re teaching multiple topics, then lessons should ideally be short so that different topics can be interleaved. Imagine a traditional school where instead of going to 6 classes for 50 minutes each, you go to those 6 classes, for 12 minutes each, then cycle through all 6 classes again and again and again. You’d spend 12 minutes in each class, but you’d do that 4 times each day. In between those three sessions, you have 12-minute sessions for all your other classes.</p>
+
+<p>In this way, the big topics would be interleaved. Sure, some things would be challenging to fit into 12-minute segments, but it’s possible to find ways to make it work (including possibly a day just for longer sessions).</p>
+
+<blockquote>
+  <p>It’s important to be aware that although interleaving topics is more effective, it <em>feels</em> less effective than sticking with one topic for longer (<em>massed practice</em>). That’s because the short-term memory gains you get from massed practice give you better performance. The problem is that that performance boost is only short-term. It doesn’t stick around.</p>
+
+  <p>Unfortunately, we don’t notice that these gains are only short-term, so we think <em>intuitively</em> that massed practice is superior, when it has been shown time and time again to be <em>inferior</em>.</p>
+</blockquote>
+
+<h4 id="example-concurrent-sciences">Example: Concurrent Sciences</h4>
+
+<p>Let’s take an example of how schools traditionally treat science, and see how we might alter that to incorporate interleaving.</p>
+
+<p>Traditionally, students take a few years of different science classes in high school. Let’s assume we’re working with a really motivated student who likes science and want’s four full years of it. His schedule would be something like this:</p>
+
+<ul>
+  <li>Freshman Year: Earth Science (Geology / Astronomy)</li>
+  <li>Sophomore Year: Biology</li>
+  <li>Junior Year: Chemistry</li>
+  <li>Senior Year: Physics</li>
+</ul>
+
+<p>So now that you’ve read my discussion, what do you think I’m going to suggest? Give it some thought and see if you can predict where I’m headed.</p>
+
+<p>OK. So even though traditionally each of these classes is one-year-long, that doesn’t have to be the case. Why not make each class four times as long and cut the pace down to one fourth the speed?</p>
+
+<p>You’d take all four sciences all at once, but you’d spread them all out equally across the four years of school instead of hopping from one to another.</p>
+
+<p>In our fictional high-school where we do this, a student’s schedule might look something like this:</p>
+
+<ul>
+  <li>Period 1 (12 minutes): Earth Science</li>
+  <li>Periods 2-6: Other Classes</li>
+  <li>Period 7: Biology</li>
+  <li>Periods 8-12: Other Classes</li>
+  <li>Period 13: Chemistry</li>
+  <li>Periods 14-18: Other Classes</li>
+  <li>Period 19: Physics</li>
+  <li>Periods 20-24: Other Classes</li>
+</ul>
+
+<blockquote>
+  <p>We can see that in a traditional brick-and-mortar, twenty-four periods a day would create a <em>lot</em> of traffic in the hallway and a <em>lot</em> of wasted time as students settle down for each period. Possible solutions to that problem would be to have the teachers change classes (which would lock students into the same curriculum as their peers), or to cut the number of periods down to 12 and have Earth Science and Biology on Monday; Chemistry and Physics on Tuesday, etc.</p>
+</blockquote>
+
+<h4 id="interleaving-topics-within-the-same-course">Interleaving topics within the same course</h4>
+
+<p>The possible changes above might be essentially impossible to implement. If you’re reading this, you probably don’t run your own school. Whether you can interleave classes this way or not, you can and <em>should</em> interleave the topics within a course.</p>
+
+<p>So here’s how you might go about doing just that.</p>
+
+<p>First you’ll need an inventory of all the specific things you want kids to know by the time the graduate from the class (whether that has to be after one semester, one year, or according to some other schedule).</p>
+
+<p>Next, some of those things will inevitably follow from other things in the list; you can’t do one without first doing the other. Chain these items together in the correct order.</p>
+
+<p>You’ll end up with some linked chains of items, and possibly a few stand-alone items that really have no prerequisites.</p>
+
+<p>Now you’ll want to arrange these all into categories. For example, in chemistry I’d have a category for stoichiometry that starts with unit conversions, moves to using two conversion factors back-to-back, and eventually ends up in full blown stoichiometry. I’d also have a few chains for solutions, nuclear reactions, gas-volume calculations, etc. Next, try to arrange the course curriculum so that it constantly jumps from category to category.</p>
+
+<p>So if we call our categories A, B, C, and D, and each category contains some number of topics, then our curriculum might look like:</p>
+
+<ol>
+  <li>Topic A1</li>
+  <li>Topic B1</li>
+  <li>Topic C1</li>
+  <li>Topic D1</li>
+  <li>Topic A2</li>
+  <li>Topic B2</li>
+  <li>Topic C2</li>
+  <li>etc.</li>
+</ol>
+
+<blockquote>
+  <p>Note: This sequence represents the order in which we introduce <em>new</em> topics. Reviewing past topics is also important, but I’ll discuss that later.</p>
+</blockquote>
+
+<h5 id="testingquizzing-in-the-interleaved-course">Testing/Quizzing in the interleaved course</h5>
+
+<p>Studies have found that always taking a cumulative quiz is more <em>effective</em> at getting students to learn; even more so than just being quizzed on items you got wrong. The problem is that it’s less <em>efficient</em>, because after a while, a cumulative quiz becomes very long.</p>
+
+<blockquote>
+  <p>Unfortunately, a lot of people don’t seem to appreciate the difference between <em>effectiveness</em> and <em>efficiency</em>.</p>
+</blockquote>
+
+<p>The compromise that makes sense to me is to break the course up into sections. After each section, students take a cumulative test of everything they’ve learned so far. Having only a few occasional fully comprehensive tests should be tolerable. This gives us the effectiveness of the cumulative quiz, while preventing the course from becoming a never-ending series of long tests.</p>
+
+<p>But as for daily quizzing, we’d cover the current topic and only certain review topics that we think the student is likely to have started to forget. This gives us the <em>efficiency</em> of spaced repetition. I’ll discuss how we might handle review content later.</p>
+
+<blockquote>
+  <p>These tests and quizzes would be somewhat unusual in that they would cover a variety of (interleaved) topics from the course. Traditionally, tests come after the end of a chapter or unit that focuses on one category. Students spend all of their study time focusing on the most recent chapter or unit because they won’t be tested on anything else. This ensures that students will be doing massed practice rather than interleaving different topics from the course.</p>
+</blockquote>
+
+<h2 id="the-lessons-themselves">The Lessons themselves</h2>
+
+<p>Sigfried Englemann is a real master at presenting information in a way that helps kids learn it. I think there are two big take-aways in his work that can and should be applied:</p>
+
+<ol>
+  <li>Teach only one thing at a time.</li>
+  <li>Make sure that students understand before you move to then next thing.</li>
+</ol>
+
+<p>Seems simple right? Well, it is; it’s very simple. The problem is, few teachers do this and absolutely no text books do.</p>
+
+<h3 id="teaching-only-one-thing-at-a-time">Teaching only one thing at a time</h3>
+
+<p>Typically, we don’t teach one thing; we teach a bunch of things. We lecture on and on, we jump through the steps in a math problem, we write a sub chapter, we have students do some multi-step activity; all before asking any questions.</p>
+
+<p>This is a problem.</p>
+
+<p>Remember how often learning one thing depends on learning something else first? Well, that’s part of the problem with teaching more than one thing at a time (and not checking for understanding before moving on). Another problem is that if you wait until the end of a chapter, lecture, or activity, there’s a good chance you’ll have forgotten what you were supposed to be <em>teaching</em>.</p>
+
+<p>Ideally, you want to break up all the topics you want into things; the smallest things possible!</p>
+
+<p>If I’m teaching the topic of the half-life equation, some <em>things</em> that make up that topic would be:</p>
+
+<ul>
+  <li>parts of the nucleus of an atom</li>
+  <li>radioactive decay means the nucleus changes</li>
+  <li>isotopes are versions of an element</li>
+  <li>isotopes of the same element differ by the number of neutrons in their nuclei</li>
+  <li>elements are defined by the number of protons in the nucleus</li>
+  <li>isotopes are defined by the number of protons <strong>and</strong> the number of neutrons in their nucleus</li>
+  <li>isotopes that undergo radioactive decay are called <em>radioactive isotopes</em></li>
+  <li>after radioactive decay, the original isotope is no longer there because it’s nucleus has changed</li>
+  <li>a <em>half-life</em> is how long it takes for half of all the radioactive isotopes in a sample to decay</li>
+  <li>etc.</li>
+</ul>
+
+<p>You’ll notice that a lot of this <em>things</em> are (hopefully) review. By the time I teach nuclear decay, students should already know many of these things and therefore don’t need to be taught, so much as reminded about them.</p>
+
+<p>You’ll also notice that it’s a lot easier to just say, “half-life equation”, than it is to list out all the <em>things</em> involved in that topic. This partially explains <em>why</em> we tend not to teach one thing at a time.</p>
+
+<p>Planning any lesson should begin with an inventory of all the <em>things</em> that students need to know. Then the lesson should teach (or review) them one-by-one. This applies to all lessons whether they are lectures, activities, or written lessons.</p>
+
+<h3 id="checking-for-understanding">Checking for understanding</h3>
+
+<p>Teaching only one thing at a time allows you to check for understanding of that one thing before moving on. The process is powerful, but very simple.</p>
+
+<ul>
+  <li>1 Teach one thing.</li>
+  <li>2 Check for understanding.</li>
+  <li>2a If they understood, move on to the next thing and begin again at step 1.</li>
+  <li>2b If they did <strong>not</strong> understand, do <strong>not</strong> move on to the next thing. Go back to step 1 and <strong>re-teach</strong> this one thing.</li>
+</ul>
+
+<p>Trust me; most teachers do <strong>not</strong> do this!</p>
+
+<h4 id="checking-for-understanding-in-an-online-lesson">Checking for understanding in an online lesson</h4>
+
+<p>A printed textbook has no control over what the reader does, but it could at least provide questions to check for understanding before moving on to the next <em>thing</em> (none of them do this; they’re already bloated enough as is).</p>
+
+<p>A classroom teacher can poll the class or call on individual students, but will necessarily have to pace the lesson based on the classroom average.</p>
+
+<p>An interactive computer-based lesson, however, offers us some exciting possibilities (which I haven’t seen exploited in any online classes).</p>
+
+<p>Here’s how an online lesson that incorporates checking for understanding might go.</p>
+
+<ol>
+  <li>Lesson begins with thing A.1.1 (category A, topic 1, thing 1) and tries to teach that one thing.</li>
+  <li>Student clicks <em>next</em> and goes to a quiz question asking about that one thing that the student was just taught. There is no back button and the lesson is no longer visible. The student must choose an answer from memory.</li>
+  <li>Student answers correctly and proceeds to a lesson explaining thing A.1.2.</li>
+  <li>After hitting <em>next</em> the student given a question about thing A.1.2.</li>
+  <li>Student answers incorrectly.</li>
+  <li>Student is informed that he got the question wrong and told that the platform will attempt to re-teach the current concept. (Possibly with feedback based on the particular answer choice that the student made).</li>
+  <li>Student hits <em>next</em> and goes back to the lesson about thing A.1.2</li>
+  <li>Student is again presented with the check-for-understanding question for thing A.1.2.</li>
+  <li>etc.</li>
+</ol>
+
+<p>Only after answering all questions correctly, would the student be able to exit the lesson.</p>
+
+<blockquote>
+  <p>This sequence is susceptible to what I like to call the <em>click, click, boom</em> problem. It’s where a student takes an online quiz and just keeps clicking on answers and buttons until <em>boom</em>; he hits the right one. There are ways to discourage this.</p>
+</blockquote>
+
+<h2 id="still-working-on-this-article">Still working on this article</h2>
+
+<p>Yeah, so sorry to do this, but I’m tired and I’m going to call it quits for now and finish this post some other time. Maybe I’ll split it up into multiple posts… who knows. Till next time…</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/python/self-destructing-emails-with-not-much-mail.html" data-toggle="tooltip" data-placement="top" title="Self-Destructing Emails With Not-Much Mail">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/code/a-separate-taskwarrior-configuration-for-ideas.html" data-toggle="tooltip" data-placement="top" title="A Separate Taskwarrior Configuration For Ideas">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

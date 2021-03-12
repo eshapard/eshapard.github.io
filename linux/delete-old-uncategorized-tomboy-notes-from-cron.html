@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Delete Old Uncategorized Tomboy Notes From Cron</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Delete Old Uncategorized Tomboy Notes From Cron" />
+  
+
+   
+  <meta property="og:description" content="I read an article about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own. In a Nutshell Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/delete-old-uncategorized-tomboy-notes-from-cron.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Delete Old Uncategorized Tomboy Notes From Cron" />
+  
+
+  
+  <meta name="twitter:description" content="I read an article about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own. In a Nutshell Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Delete Old Uncategorized Tomboy Notes From Cron</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on May 16, 2018</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I read an <a href="https://arstechnica.com/information-technology/2007/09/using-the-tomboy-d-bus-interface/">article</a> about using python and dbus to automate some stuff with Tomboy Notes and was inspired to do some coding of my own.</p>
+
+<h2 id="in-a-nutshell">In a Nutshell</h2>
+
+<p>Use the code below (and a cron job) to automatically delete Tomboy notes that were last modified more than 30 days ago and never placed in a notebook. This will prevent unimportant notes from cluttering up your collection.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Tomboy notes is something I’ve gone back and forth with. Sometimes I use it, sometimes I use Evernote. I’ve had a tough time deciding which I like more, but I’m leaning towards Tomboy these days since it’s fast, free, and runs on linux.</p>
+
+<h2 id="i3wm-and-the-scratchpad">i3wm and the Scratchpad</h2>
+
+<p>I started using Tomboy a lot when I found <a href="http://i3wm.org">i3wm</a> and discovered the <em>scratchpad</em> function. Basically, you can hide a floating window and hit a hot-key combo to toggle it’s visibility.</p>
+
+<p>I had a Tomboy note called <em>Scratchpad</em> that I would load and keep in i3’s scratchpad so I could put random bits of code and stuff in it. The problem was, though, that I rarely deleted anything. Instead, it grew to a monster disorganized mess.</p>
+
+<h2 id="a-new-tactic">A new tactic</h2>
+
+<p>What I decided to do was to make new notes on the fly. I created a hot-key in i3 to launch a new Tomboy note <code class="highlighter-rouge">tomboy --new-note</code>. New notes are not placed in any notebooks, so the <em>Unfiled Notes</em> category easily identifies them.</p>
+
+<p>If I make these temporary ad-hoc notes as new <em>unfiled</em> notes, then they can accumulate in the <em>Unfiled Notes</em> category and if I don’t touch them in 30 days or so, they must not be that important, so I can automatically delete them.</p>
+
+<p>Ah, but how to automate that…</p>
+
+<h2 id="auto-delete-old-unfiled-notes">Auto-Delete Old Unfiled Notes</h2>
+
+<p>Using python, it wasn’t too hard to script a utility that will loop through all notes and delete any that are both older than 30 days old and not in any notebooks. I moved this into my <em>cronscripts</em> folder and set cron to run it at 12:55 AM every day.</p>
+
+<p>Here’s the code for <em>delOldTomboyNotes.py</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">dbus</span><span class="p">,</span> <span class="n">datetime</span>
+
+<span class="n">thirtyDaysAgo</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c">#Get the D-Bus session bus</span>
+<span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
+<span class="c">#Access the Tombox D-Bus object</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
+<span class="c"># Access the Tomboy remote control interface</span>
+<span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
+
+<span class="c">#Get all notes</span>
+<span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
+
+<span class="c">#loop through notes</span>
+<span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:notebook'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c">#weed out templates</span>
+            <span class="n">changeDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">changeDate</span> <span class="o">&lt;</span> <span class="n">thirtyDaysAgo</span><span class="p">:</span> <span class="c">#changed more than 30 days ago</span>
+                <span class="c">#print("Delete this note!")</span>
+                <span class="n">tomboy</span><span class="o">.</span><span class="n">DeleteNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+</code></pre></div></div>
+
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/tomboy">tomboy</a>
+          
+            <a href="/tag/python">python</a>
+          
+            <a href="/tag/linux">linux</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/linux/apache-webserver-no-longer-runs-php-after-upgrade-to-ubuntu-18.html" data-toggle="tooltip" data-placement="top" title="Apache Webserver No Longer Runs Php After Upgrade To Ubuntu 18">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/linux/display-your-most-recent-tomboy-note.html" data-toggle="tooltip" data-placement="top" title="Display Your Most Recent Tomboy Note">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

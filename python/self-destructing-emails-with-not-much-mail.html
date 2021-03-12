@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Self-Destructing Emails With Not-Much Mail</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Self-Destructing Emails With Not-Much Mail" />
+  
+
+   
+  <meta property="og:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from pprint...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/python/self-destructing-emails-with-not-much-mail.html" />
+  <link rel="canonical" href="http://eshapard.github.io/python/self-destructing-emails-with-not-much-mail.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Self-Destructing Emails With Not-Much Mail" />
+  
+
+  
+  <meta name="twitter:description" content="I use offlineimap + not-much mail + astroid to handle my email and I wanted a way to make emails self-destruct after a certain amount of time. Here’s the script I came up with to do that: nmExpire.py #!/usr/bin/python import notmuch import re, datetime from dateutil.relativedelta import relativedelta #from pprint...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Self-Destructing Emails With Not-Much Mail</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on June 19, 2018</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I use <em>offlineimap</em> + <em>not-much mail</em> + <em>astroid</em> to handle my email and I wanted a way to make emails self-destruct after a certain amount of time.</p>
+
+<p>Here’s the script I came up with to do that:</p>
+
+<h2 id="nmexpirepy">nmExpire.py</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">notmuch</span>
+<span class="kn">import</span> <span class="nn">re</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="c">#from pprint import pprint</span>
+<span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">notmuch</span><span class="o">.</span><span class="n">Database</span><span class="o">.</span><span class="n">MODE</span><span class="o">.</span><span class="n">READ_WRITE</span><span class="p">)</span>
+
+<span class="c"># Find Emails with Ending Tags</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_query</span><span class="p">(</span><span class="s">'tag:/^x[0-9]+[mwd]*$/'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">search_messages</span><span class="p">():</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">get_tags</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^x[0-9]+[mwd]*$'</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^[0-9]{8}$'</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+                <span class="n">endDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">'</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">m</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+                <span class="c">#print(t, endDate)</span>
+                <span class="k">if</span> <span class="n">endDate</span> <span class="o">&lt;</span> <span class="n">today</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"msg will now self-destruct"</span><span class="p">)</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">remove_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">add_tag</span><span class="p">(</span><span class="s">'trash'</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r'^[0-9]+[mwd]+$'</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span> <span class="c">#days</span>
+                <span class="c"># Change Relative Delays to Dates</span>
+                <span class="c">#print("Changing delay to date")</span>
+                <span class="n">delay</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'w'</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="n">delay</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'m'</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=+</span><span class="n">delay</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">endDate</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">delay</span><span class="p">)</span>
+                <span class="n">endTag</span> <span class="o">=</span> <span class="s">"x"</span> <span class="o">+</span> <span class="n">endDate</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">m</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">remove_tag</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">add_tag</span><span class="p">(</span><span class="n">endTag</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="usage">Usage</h2>
+
+<p>For any email with an expiration date you would either tag the email with <code class="highlighter-rouge">xYYYYMMDD</code> (if you know the exact expiration date), or <code class="highlighter-rouge">xN[d,w,m]</code> (example: <code class="highlighter-rouge">x14d</code>) to have the email expire in N days, weeks, or months.</p>
+
+<p>Put the nmExpire.py script in a hook script or cron or something so that it gets run periodically through the day. When it finds a tag labeled something like <em>xN[dwm]</em>, it changes it to an exact date (e.g. <em>x20180704</em>). When the script finds an email with an expiration date before the current date, it removes the expiration tag and adds the tag <em>trash</em>.</p>
+
+<p>I have all my default searches set up to ignore email with the <em>trash</em> tag, and trashed emails are automatically deleted after a certain number of days.</p>
+
+<h2 id="example-use">Example Use</h2>
+
+<p>So let’s say some company emails me a coupon and I think it looks pretty good. I might tag it with <em>L</em> because it’s a low priority. Now it shows up in one of my default searches (the one for low-priority items).</p>
+
+<p>But the coupon expires on July 5th, so I tag it as <em>x20180705</em>.</p>
+
+<p>On July 6th, if I still haven’t used the (now expired) coupon, the email is automatically trashed and I no longer see it.</p>
+
+<h2 id="inspiration">Inspiration</h2>
+
+<p>I got the idea for this from <em>Taskwarrior</em>, a command-line task management app. You can set an <em>until</em> date for a task so that it expires after a certain date and the program stops bugging you about it.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/email">email</a>
+          
+            <a href="/tag/not-much">not-much</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/python/put-not-much-emails-to-sleep.html" data-toggle="tooltip" data-placement="top" title="Put Not-Much Emails To Sleep">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/teaching/applying-spaced-repetition-to-online-course-design.html" data-toggle="tooltip" data-placement="top" title="Applying Spaced Repetition To Online Course Design">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Anki New Interval After A Lapse</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Anki New Interval After A Lapse" />
+  
+
+   
+  <meta property="og:description" content="In a nutshell In deck settings, set the New Interval under the Lapses tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards. Anki’s default behavior I’m pretty sure that...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/anki-new-interval-after-a-lapse.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Anki New Interval After A Lapse" />
+  
+
+  
+  <meta name="twitter:description" content="In a nutshell In deck settings, set the New Interval under the Lapses tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards. Anki’s default behavior I’m pretty sure that...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Anki New Interval After A Lapse</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on February 17, 2017</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <h2 id="in-a-nutshell">In a nutshell</h2>
+
+<p>In deck settings, set the <em>New Interval</em> under the <em>Lapses</em> tab to make the new interval of forgotten cards a percentage of their previous interval. Ideally, play with this percentage until you have an 80-90% success rate on re-learned cards.</p>
+
+<h2 id="ankis-default-behavior">Anki’s default behavior</h2>
+
+<p>I’m pretty sure that by default, what happens with Anki is that when you forget a review card, it goes into the <em>relearning</em> cue, and after it exits, it enters the review queue again with an interval of 1 days.</p>
+
+<p>In my opinion, this isn’t very efficient.</p>
+
+<p>Imagine that you’ve been studying a card for 10 years. You’ve gotten that card right every time and its last interval was large; maybe 3 years. You haven’t seen this card in 3 years, and you get it again today.</p>
+
+<p>This time, you can’t quite remember it.</p>
+
+<p>By default, the card would then start over again with an interval of only 1 day. Sure, it’s ease factor <em>might be</em> really high, so those intervals would grow faster than they originally did, but chances are, after being reminded of the answer, you probably could have remembered it for another 3 years or so.</p>
+
+<blockquote>
+  <p>Then again, there’s also a chance that you’ve mostly hit <em>good</em> or something and the ease factor may not have changed much at all. Either way…</p>
+</blockquote>
+
+<p>Starting over from stage 1 is a waste of time.</p>
+
+<p>Luckily, there’s an easy way to make those initial intervals after a lapse longer.</p>
+
+<h2 id="advanced-options">Advanced options</h2>
+
+<p>Open up the deck options for a deck and go to the <em>Lapses</em> tab.</p>
+
+<p>Here you’ll see an option to set the <em>New Interval</em> after a lapse to a percentage of interval it had before the lapse.</p>
+
+<blockquote>
+  <p>Anki uses the term <em>lapse</em> for review cards that you forgot.</p>
+</blockquote>
+
+<p>By default, this is set to 0%. After a lapse, instead of getting an interval of 0 days, cards get the minimum interval set here. By default, that’s a 1-day minimum interval.</p>
+
+<h2 id="whats-an-ideal-setting">What’s an ideal setting?</h2>
+
+<p>I think the ideal setting for a <em>new interval</em> percentage is whatever gives you an 80 to 90% success rate on that next review. And my hunch is that that’s actually a pretty high percentage; maybe 75%.</p>
+
+<p>My reasoning behind the 80 to 90% success rate is that I think that’s where the most rewarding experience is; the range where reviews are not too hard, but not so easy that you don’t feel a sense of accomplishment.</p>
+
+<p>Anki doesn’t provide access to this statistic out-of-the-box. There’s no simple view that tells you the success rate you have on that first review after relearning a card. But it is possible to use an SQLite browser to search the reviews table in the database for this.</p>
+
+<p>What you have to do is come up with a search that finds all <em>review</em> reviews where the previous review was a <em>relearning</em> review. I actually have an addon code that does this and then adjusts the <em>new interval</em> percentage up or down for me. Alas, it’s tied up with a bunch of other code in a big addon I cobbled together a little at a time. I’m working on separating that beast into smaller components, and I’ll try to post some code that does just this soon.</p>
+
+<blockquote>
+  <p>Although the manual refers to only three queues (new, learning, and review), there are actually four queues in Anki: new, learning, review, and re-learning.</p>
+
+  <p>The re-learning queue is for cards that you forgot (<em>lapsed</em> cards) and are learning again. This is very similar to the learning queue (cards that were previously new), but the learning and re-learning queues each have their own steps.</p>
+</blockquote>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/anki">anki</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/anki/what-anki-learning-steps-to-use.html" data-toggle="tooltip" data-placement="top" title="What Anki Learning Steps To Use">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/anki/thoughts-on-a-new-algorithm-for-anki.html" data-toggle="tooltip" data-placement="top" title="Thoughts On A New Algorithm For Anki">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

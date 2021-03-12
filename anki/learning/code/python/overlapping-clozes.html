@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Overlapping and Nested Clozes</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Overlapping and Nested Clozes" />
+  
+
+   
+  <meta property="og:description" content="Being able to use overlapping and nested cloze deletions is super useful in a flashcard application. It’s something that I felt was sorely missing from the flashcard applications that I’ve used. [These are overlapping] cloze deletions These are [overlapping cloze deletions] And these are [nested] cloze deletions And these [are...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/anki/learning/code/python/overlapping-clozes.html" />
+  <link rel="canonical" href="http://eshapard.github.io/anki/learning/code/python/overlapping-clozes.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Overlapping and Nested Clozes" />
+  
+
+  
+  <meta name="twitter:description" content="Being able to use overlapping and nested cloze deletions is super useful in a flashcard application. It’s something that I felt was sorely missing from the flashcard applications that I’ve used. [These are overlapping] cloze deletions These are [overlapping cloze deletions] And these are [nested] cloze deletions And these [are...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Overlapping and Nested Clozes</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on November 21, 2019</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>Being able to use overlapping and nested cloze deletions is super useful in a flashcard application. It’s something that I felt was sorely missing from the flashcard applications that I’ve used.</p>
+
+<ul>
+  <li>[<em>These are overlapping</em>] cloze deletions</li>
+  <li>These are [<em>overlapping cloze deletions</em>]</li>
+  <li>And these are [<em>nested</em>] cloze deletions</li>
+  <li>And these [<em>are nested cloze</em>] deletions</li>
+</ul>
+
+<p>So for my own personal project, I thought I’d take a crack at coding this feature myself.</p>
+
+<h2 id="clozepy">cloze.py</h2>
+
+<p>UPDATE: This code has been updated. See my newer post: <a href="/learning/score-nested-cloze-deletions-when-you-remember-the-parent.html">Score Nested Cloze Deletions When You Remember The Parent</a>.</p>
+
+<p>Here’s the most important function; the one that takes a string and spits out question and answer sides for each cloze deletion.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># python3</span>
+<span class="c"># Cloze-Deletion Parsing Function</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c"># function to remove the cloze codes from other cloze deletions</span>
+<span class="k">def</span> <span class="nf">removeClozeCodes</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\){[0-9]+::'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\):[^:]*?:[0-9]+}'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\:'</span><span class="p">,</span><span class="s">':'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\{'</span><span class="p">,</span><span class="s">'{'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+
+<span class="c"># mkCLozes</span>
+<span class="c">## Returns a numbered dictionary of cards. </span>
+<span class="c">## cards[n] = card with cloze number n deleted</span>
+<span class="c">## cards[n][0] = list of tuples (string, type) for question side</span>
+<span class="c">## cards[n][1] = list of tuples (string, type) for answer side</span>
+<span class="c">## type codes:</span>
+<span class="c">##    0 = normal text</span>
+<span class="c">##    1 = cloze deletion text</span>
+<span class="c">##    2 = hint text</span>
+<span class="k">def</span> <span class="nf">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">startMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\){([0-9]+)::'</span>
+    <span class="n">endMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\):([^:]*?):([0-9]+)}'</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">startMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ends</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">clozeHint</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+            <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+    
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">endMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clozeHint</span><span class="p">:</span>
+            <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">hint</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ends</span><span class="p">:</span>
+            <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Mismatching starts and ends to clozes: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">s</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+        <span class="c"># the next two lists will be lists of tuples</span>
+        <span class="c"># (string, type) 0=normal  1=cloze 2=hint</span>
+        <span class="n">clozeQuestion</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">clozeAnswer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">])):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
+            <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
+            <span class="c"># all cloze tags left in new string should be removed</span>
+            <span class="c"># they are from other clozes</span>
+            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+            <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
+            <span class="c"># add strings to list</span>
+            <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">clz</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">:</span><span class="n">c</span><span class="p">]</span>
+            <span class="c"># remove any cloze tags left by other cloze deletions</span>
+            <span class="n">clz</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clz</span><span class="p">)</span>
+            <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clz</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"["</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"[...]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
+        <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
+        <span class="c"># all cloze tags left in new string should be removed</span>
+        <span class="c"># they are from other clozes</span>
+        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+        <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
+        <span class="c"># add strings to list</span>
+        <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="c"># add strings to card dictionary</span>
+        <span class="n">cards</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clozeQuestion</span><span class="p">,</span> <span class="n">clozeAnswer</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cards</span>
+</code></pre></div></div>
+<h3 id="usage">Usage</h3>
+<h4 id="cloze-start-and-end-codes">Cloze Start and End Codes</h4>
+<p>The codes used for starting and ending the cloze deletions are similar to Anki’s.</p>
+
+<p>Cloze deletions are prefixed by <code class="highlighter-rouge">{1::</code> where 1 can be any arbitrary number. End a cloze deletion with <code class="highlighter-rouge">::1}</code> (where 1 is the same number as in the start code.</p>
+
+<p>I figured that these codes would be easy enough to type, but also rare enough that you’d never need to use this sort of sequence for the content of your card. If for some reason you <strong>do</strong> want to use a code like this in your card (e.g. making flashcards about how to use this function), you can escape any of these codes by prefixing them with a backslash. (see example code below)</p>
+
+<h4 id="hints">Hints</h4>
+<p>Add any hint text you want between the two colons of the end code. e.g. <code class="highlighter-rouge">{1::This is the cloze text:and this is the hint:1}</code></p>
+
+<p>The limitation is that you can’t use a colon in your hint.</p>
+
+<h4 id="calling-the-function">Calling the Function</h4>
+<p>So you feed the mkClozes a string where the start and end of each cloze is marked with a certain sequence of characters. Then the function returns a numbered dictionary (cards[1] is cloze deletion 1, etc.).</p>
+
+<p>Each entry in the dictionary consists of two lists; a list for the question side, and a list for the answer side. And each item in the list is a tuple containing two items: first a string of text, and then a numeric code describing the text. (0=normal text, 1=cloze text, 2=hint text)</p>
+
+<p>So you would grab the list from the cloze deletion you want and then concatenate the strings one-by-one using whatever formatting you want.</p>
+
+<p>Here’s how I do that for the curses interface I’m using:</p>
+<h5 id="testpy">test.py</h5>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">curses</span>
+<span class="kn">import</span> <span class="nn">cloze</span>
+
+<span class="c"># set up ncurses</span>
+<span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">initscr</span><span class="p">()</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">noecho</span><span class="p">()</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">cbreak</span><span class="p">()</span>
+<span class="c"># colorFunctions</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">start_color</span><span class="p">()</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">use_default_colors</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">COLORS</span><span class="p">):</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">init_pair</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c"># curses color pairs for demonstration</span>
+<span class="n">clozeColor</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">hintColor</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c"># demonstate the mkClozes function</span>
+<span class="c"># test string</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">"Start a cloze deletion with {8::'</span><span class="se">\\</span><span class="s">{1::'::8} (that was an escaped cloze start) and say {1::</span><span class="se">\"</span><span class="s">hello world</span><span class="se">\"</span><span class="s">:what programmers always say first:1} as your first cloze. End a cloze deletion with {9::'</span><span class="se">\\</span><span class="s">::1}'::9} (or whatever number you're using). {4::You can {3::nest:birds do it:3} one cloze in another:what was that about nesting?:4} and {5::clozes can {6::even overlap:... over-:5}, which can be very useful:... over- ...:6}. And several {7::cloze deletions::7} can share {7::the same number::7}. {100::And yes, any arbitrary number will work:Does any arbitrary number work?:100} in a cloze deletion. {7::I'm part of cloze deletion #7 too!::7}"</span>
+<span class="n">cards</span> <span class="o">=</span> <span class="n">cloze</span><span class="o">.</span><span class="n">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cards</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">"Card </span><span class="si">%</span><span class="s">s:</span><span class="se">\n\n</span><span class="s">"</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">cards</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">clozeColor</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">hintColor</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">getkey</span><span class="p">()</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="n">curses</span><span class="o">.</span><span class="n">nocbreak</span><span class="p">()</span>
+<span class="n">stdscr</span><span class="o">.</span><span class="n">keypad</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">echo</span><span class="p">()</span>
+<span class="n">curses</span><span class="o">.</span><span class="n">endwin</span><span class="p">()</span>
+</code></pre></div></div>
+<h2 id="background">Background</h2>
+
+<p>I used Anki for many years. In early versions, handling cloze deletions was pretty rudimentary; each cloze deletion had to be a separate card. In later versions, it became much more sophisticated; one cloze deletion note could generate several cards. But simple overlapping cloze deletions were still missing.</p>
+
+<h3 id="overlapping-clozes-are-great-for-taking-baby-steps">Overlapping Clozes are Great for Taking Baby Steps</h3>
+
+<p>Overlapping clozes are very useful for when you want to work your way up to recalling more and more information. For example, let’s say you’re having trouble remembering when Columbus sailed across the Atlantic. You find a nice phrase that should be pretty easy to memorize (<em>In 1492, Columbus sailed the ocean blue</em>), but for some reason you still have trouble remembering the date.</p>
+
+<p>So you decide to break it up into smaller steps and then tackle the whole thing once you’ve learned the parts. You create the following series of cloze deletions:</p>
+
+<ol>
+  <li>In […]92, Columbus Sailed the Ocean Blue.</li>
+  <li>In 14[…], Columbus Sailed the Ocean Blue.</li>
+  <li>In […], Columbus Sailed the Ocean Blue.</li>
+</ol>
+
+<p>This way, you concentrate on the first part of the year, then the second, and finally the whole thing.</p>
+
+<p>Using the function above, you could create all three cards with the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {3::{1::14::1}{2::92::2}::3}, Columbus Sailed the Ocean Blue.
+</code></pre></div></div>
+<blockquote>
+  <p>You <em>can</em> create a single note that will generate these cards in Anki, but the process is much more convoluted. I’ve describe how to create overlapping clozes in Anki in <a href="/anki/the-power-of-making-new-cards-on-the-fly-in-anki.html">this post</a>.</p>
+</blockquote>
+
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/python">python</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/learning/anki/ideas-for-a-good-flashcard-or-review-application.html" data-toggle="tooltip" data-placement="top" title="Ideas For A Good Flashcard Or Review Application">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="next">
+          <a href="/anki/learning/the-case-for-multiple-goals.html" data-toggle="tooltip" data-placement="top" title="The Case For Multiple Goals">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'eshapard-github-io';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
