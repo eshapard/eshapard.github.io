@@ -225,11 +225,19 @@
 </ul>
 
 <h2 id="code">Code</h2>
+<ul>
+  <li>Customize location of <em>babel</em></li>
+  <li>Customize <em>–filename</em> location on line 8</li>
+</ul>
+
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span>
 <span class="k">then</span>
 	<span class="c">#select file</span>
-	<span class="nv">gamefile</span><span class="o">=</span><span class="k">$(</span>zenity <span class="nt">--file-selection</span> <span class="nt">--title</span><span class="o">=</span><span class="s2">"Select Game"</span> <span class="nt">--filename</span><span class="o">=</span><span class="s2">"/home/edward/Sync/Games/interactive_fiction/"</span><span class="k">)</span>
+	<span class="c"># NB: Customize filename location below</span>
+	<span class="c">#     it's the directory the file-select</span>
+	<span class="c">#     dialogue opens to</span>
+	<span class="nv">gamefile</span><span class="o">=</span><span class="k">$(</span>zenity <span class="nt">--file-selection</span> <span class="nt">--title</span><span class="o">=</span><span class="s2">"Select Game"</span> <span class="nt">--filename</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Games/interactive_fiction/"</span><span class="k">)</span>
 	<span class="nb">echo</span> <span class="s2">"Gamefile: </span><span class="nv">$gamefile</span><span class="s2">"</span>
 	<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> <span class="o">]</span>
 	<span class="k">then
