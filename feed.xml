@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Using Evapotraspiration Rates To Calculate How Much To Water</title>
+        <description>
+          
+          Evapotraspiration (ETo) rates are handy figures you can use to estimate how long to turn on your sprinklers or drip irrigation. Unfortunately, most guides I’ve see either assume you have a degree in agriculture (and don’t really need instruction), or are completely clueless (so they dumb things down too much)....
+        </description>
+        <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/code/using-evapotraspiration-rates-to-calculate-how-much-to-water.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/code/using-evapotraspiration-rates-to-calculate-how-much-to-water.html</guid>
+      </item>
+    
+      <item>
         <title>Missing Intro Screen For Gargoyle Interactive Fiction</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</guid>
-      </item>
-    
-      <item>
-        <title>Display Your Most Recent Tomboy Note</title>
-        <description>
-          
-          This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting escape or something. Creating a hot-key for this...
-        </description>
-        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/display-your-most-recent-tomboy-note.html</guid>
       </item>
     
   </channel>

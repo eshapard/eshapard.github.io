@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Using Evapotraspiration Rates To Calculate How Much To Water</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Using Evapotraspiration Rates To Calculate How Much To Water" />
+  
+
+   
+  <meta property="og:description" content="Evapotraspiration (ETo) rates are handy figures you can use to estimate how long to turn on your sprinklers or drip irrigation. Unfortunately, most guides I’ve see either assume you have a degree in agriculture (and don’t really need instruction), or are completely clueless (so they dumb things down too much)....">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/code/using-evapotraspiration-rates-to-calculate-how-much-to-water.html" />
+  <link rel="canonical" href="http://eshapard.github.io/code/using-evapotraspiration-rates-to-calculate-how-much-to-water.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Using Evapotraspiration Rates To Calculate How Much To Water" />
+  
+
+  
+  <meta name="twitter:description" content="Evapotraspiration (ETo) rates are handy figures you can use to estimate how long to turn on your sprinklers or drip irrigation. Unfortunately, most guides I’ve see either assume you have a degree in agriculture (and don’t really need instruction), or are completely clueless (so they dumb things down too much)....">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Using Evapotraspiration Rates To Calculate How Much To Water</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on April 5, 2021</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>Evapotraspiration (ETo) rates are handy figures you can use to estimate how long to turn on your sprinklers or drip irrigation. Unfortunately, most guides I’ve see either assume you have a degree in agriculture (and don’t really need instruction), or are completely clueless (so they dumb things down too much).</p>
+
+<p>I’m going to try to hit the target in the middle.</p>
+
+<h2 id="in-a-nutshell">In a nutshell</h2>
+<ul>
+  <li>go to <a href="http://www.rainmaster.com/historicET.aspx">http://www.rainmaster.com/historicET.aspx</a> and look up your average evapo-traspiration by month.
+    <ul>
+      <li>The rates given by the site above seem to be in inches per <strong>day</strong>
+        <ul>
+          <li>Despite how crucial the units are, the website doesn’t appear to give them!</li>
+        </ul>
+      </li>
+      <li>This is the average inches of water that leaves the soil due to the combined effects of:
+        <ul>
+          <li>direct evaporation from the ground</li>
+          <li>transpiration (evaporation from plants)</li>
+        </ul>
+      </li>
+      <li>scale the ETo value up or down depending on how water-wise your plants are
+        <ul>
+          <li>ETo is measured with grass as a reference value</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>find the average inches of rainfall per month for your area</li>
+  <li>Evapotranspiration (ET) - Rainfall (R) = Supplemental water needed in inches</li>
+  <li>calculate the surface area of your garden</li>
+  <li>calculate the supplemental water needed in gallons</li>
+  <li>calculate the flow rate in gallons per minute of your irrigation system</li>
+  <li>For each month:
+    <ul>
+      <li>Monthly Watering Minutes = (Supplemental Water Needed in gallons) / (Flow Rate in gallons/minute)</li>
+      <li>Divide total watering time into daily, weekly, etc. watering times</li>
+      <li>Set a calendar to remind yourself to change the watering times on the first of each month.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#in-a-nutshell" id="markdown-toc-in-a-nutshell">In a nutshell</a></li>
+  <li><a href="#contents" id="markdown-toc-contents">Contents</a></li>
+  <li><a href="#why-combine-evaporation-and-transpiration" id="markdown-toc-why-combine-evaporation-and-transpiration">Why combine Evaporation and Transpiration</a></li>
+  <li><a href="#calculating-supplemental-water-needs" id="markdown-toc-calculating-supplemental-water-needs">Calculating supplemental water needs.</a></li>
+  <li><a href="#calculate-irrigation-times" id="markdown-toc-calculate-irrigation-times">Calculate irrigation times</a>    <ul>
+      <li><a href="#calculating-flow-rate-of-your-irrigation-channels" id="markdown-toc-calculating-flow-rate-of-your-irrigation-channels">Calculating flow-rate of your irrigation channels</a></li>
+      <li><a href="#designing-a-schedule" id="markdown-toc-designing-a-schedule">Designing a schedule</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why-combine-evaporation-and-transpiration">Why combine Evaporation and Transpiration</h2>
+<p>OK, so if you grow plants on soil, that’ll affect how much water ultimately evaporates from the soil.</p>
+
+<p>Without any plants to shade the soil, it’ll get the full blast of the sun, so you might expect a higher evaporation rate.</p>
+
+<p>However, the plant roots draw moisture out of the lower layers of the soil and bring them up into the plant leaves where they can evaporate (aka transpiration), so you might expect plants to increase the overall evaporation rate.</p>
+
+<p>The exact interplay between plant, soil, shade, sun, and plant roots is too complicated to estimate. Instead, we can grow a reference plant (grass) and directly measure how much water is lost. Since we don’t know (or care much) whether water is lost through direct evaporation or through transpiration, we just call this evapo-transpiration.</p>
+
+<h2 id="calculating-supplemental-water-needs">Calculating supplemental water needs.</h2>
+
+<p>If you know how much evapotranspiration to expect during any month, you can subtract the water you expect to get from rain (just look up average rainfall per month for your area). The difference is the water you’ll have to supply in order to keep your plants healthy.</p>
+
+<p>Of course, you have to realize that the evapotranspiration rates are all based on grass. If you’re growing something really drought-tolerant like cactus, you’ll probably only need about a quarter of the water that the grass would need. Less drought-tolerant plants might need half as much. And if you’re trying to grow some kind of water-hungry plant from the rainforest, it’ll need more water than grass does.</p>
+
+<blockquote>
+  <p>The ratio of the water needs of any given crop compared to grass is called the crop coefficient (Kc). You can look this up for the plants you have.</p>
+</blockquote>
+
+<h2 id="calculate-irrigation-times">Calculate irrigation times</h2>
+
+<p>Rainfall and evapotranspiration are measure in “inches”, and that can be a little confusing if you aren’t used to it. Inches per what? Right?</p>
+
+<p>Well, for any square surface, that would be an inch above it.</p>
+
+<p>So if your yard is 100 square feet, calculate the volume of a column of water one inch high with a 100 square-foot base. That’s how much water.</p>
+
+<p>Convert that volume to gallons, and now you have a more conventional volume measurement.</p>
+
+<h3 id="calculating-flow-rate-of-your-irrigation-channels">Calculating flow-rate of your irrigation channels</h3>
+
+<p>If you have drip irrigation, the drippers are calibrated to drip at a certain rate, so in theory, you could add them up and find the total flow rate of a channel.</p>
+
+<p>The problem is, the flow rates rely on a certain water pressure, which you may not have. Compounding this, the pressure can drop across the drip line.</p>
+
+<p>It’s best to just run the irrigation channel for 10 minutes and measure how much water flows out using your home’s water meter. These meters aren’t always super intuitive, so you may have to google how to read yours.</p>
+
+<p>Calculate an gallon/minute flow rate for each channel, and a square footage for the area it waters, and you’re in business.</p>
+
+<h3 id="designing-a-schedule">Designing a schedule</h3>
+
+<p>For each month, you can calculate how many gallons of water you expect to supply for the entire month, and how many minutes it’ll take to supply that water.</p>
+
+<p>I’ve read that most plants have roots that are only about three feet deep at the most, with young plants having the shallowest roots.</p>
+
+<p>So it seems wise to me to start out with frequent waterings and then maybe make them less frequent over time. So watering briefly four evenly-spaced times a day might make sense at first.</p>
+
+<p>Of course, you have to work with the limitations of your sprinkler system. Mine can only handle one-minute increments, so four times a day really only makes sense if the total watering time is a multiple of four minutes.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          Tags:
+          
+          
+            <a href="/tag/garden">garden</a>
+          
+          
+        </div>
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/linux/missing-intro-screen-for-gargoyle-interactive-fiction.html" data-toggle="tooltip" data-placement="top" title="Missing Intro Screen For Gargoyle Interactive Fiction">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+        <div class="disqus-comments">
+          
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'eshapard-github-io';
+	    /* ensure that pages with query string get the same discussion */
+            var url_parts = window.location.href.split("?");
+            var disqus_url = url_parts[0];	    
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>
