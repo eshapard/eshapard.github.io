@@ -194,7 +194,7 @@
 
 <p>Let’s say that card is:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c1::1492}}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c1::1492}}
 </code></pre></div></div>
 
 <p>Now most kids in North America remember this easily with the rhyme “In 1492, Columbus sailed the ocean blue.”, but this is just an example.</p>
@@ -213,7 +213,7 @@
 
 <p>We’ll create some new cards.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c2::14}}{{c3::9}}{{c4::2}}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Columbus first sailed across the Atlantic in {{c2::14}}{{c3::9}}{{c4::2}}
 </code></pre></div></div>
 
 <p>If you’re having trouble parsing that, it’ll create the following cards:</p>
@@ -242,7 +242,7 @@
 
 <p>Let’s use the familiar rhyme, but make a couple of cards.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {{c1::1492}}, Columbus sailed the ocean {{c2::blue}}.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {{c1::1492}}, Columbus sailed the ocean {{c2::blue}}.
 
 </code></pre></div></div>
 
@@ -316,13 +316,13 @@
 
 <p>Cloze-deletion notes can contain multiple cloze-deletion fields. That means Field1 can contain cloze-deletions and Field2 can contain cloze-deletions too.</p>
 
-<p>Cloze-deletion fields are added to the card template as <code class="highlighter-rouge">{{cloze:Field1}}</code>; not as <code class="highlighter-rouge">{{Field1}}</code>, as in regular cards.</p>
+<p>Cloze-deletion fields are added to the card template as <code class="language-plaintext highlighter-rouge">{{cloze:Field1}}</code>; not as <code class="language-plaintext highlighter-rouge">{{Field1}}</code>, as in regular cards.</p>
 
 <p>In the template for a cloze-deletion card, you can have <strong>multiple cloze-deletion fields</strong>.</p>
 
 <p>Example Front-Side Template:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
 
 {{cloze:Field1}}
 {{cloze:Field2}}
@@ -340,7 +340,7 @@
 
 <p>Imagine that we have a cloze-type note with the following front-side card template:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{Header}}
 
 {{cloze:Field1}}
 {{cloze:Field2}}
@@ -350,7 +350,7 @@
 
 <ul>
   <li>Header: History</li>
-  <li>Field1: <code class="highlighter-rouge">Columbus first crossed the Atlantic in {{c1::1492}}</code></li>
+  <li>Field1: <code class="language-plaintext highlighter-rouge">Columbus first crossed the Atlantic in {{c1::1492}}</code></li>
   <li>Field2: Blank</li>
 </ul>
 
@@ -360,29 +360,29 @@
 
 <ul>
   <li>Header: History</li>
-  <li>Field1: <code class="highlighter-rouge">Columbus first crossed the Atlantic in {{c1::1492}}</code></li>
-  <li>Field2: <code class="highlighter-rouge">In {{c2::1492}}, Columbus sailed the ocean {{c3::blue}}.</code></li>
+  <li>Field1: <code class="language-plaintext highlighter-rouge">Columbus first crossed the Atlantic in {{c1::1492}}</code></li>
+  <li>Field2: <code class="language-plaintext highlighter-rouge">In {{c2::1492}}, Columbus sailed the ocean {{c3::blue}}.</code></li>
 </ul>
 
 <p>And presto! This note now has three cards; the original card, and two more testing us on a mnemonic device to help us remember the original.</p>
 
 <p>Card 1:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 Columbus furst crossed the Atlantic in [...]
 </code></pre></div></div>
 
 <p>Card 2:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 In [...], Columbus sailed the ocean blue.
 </code></pre></div></div>
 
 <p>And finally, Card 3:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>History
 
 In 1492, Columbus sailed the ocean [...].
 </code></pre></div></div>

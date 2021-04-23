@@ -180,29 +180,29 @@
       <article role="main" class="blog-post">
         <p>This is a handy little script I came up with. It displays the most recently modified Tomboy note. This is helpful if, like me, you make pull up a new Tomboy note for something quick and then accidentally close it by hitting <em>escape</em> or something. Creating a hot-key for this program is faster than clicking on the tray icon and selecting the note again.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">dbus</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">dbus</span> 
 
-<span class="c">#Get the D-Bus session bus</span>
-<span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
-<span class="c">#Access the Tombox D-Bus object</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
-<span class="c"># Access the Tomboy remote control interface</span>
-<span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
+<span class="c1">#Get the D-Bus session bus
+</span><span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">SessionBus</span><span class="p">()</span>
+<span class="c1">#Access the Tombox D-Bus object
+</span><span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="p">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
+<span class="c1"># Access the Tomboy remote control interface
+</span><span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
 
-<span class="c">#Get all notes</span>
-<span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
+<span class="c1">#Get all notes
+</span><span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
 
 <span class="n">notes</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="c">#loop through notes</span>
-<span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
-    <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c">#weed out templates</span>
-        <span class="n">changeDate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
+<span class="c1">#loop through notes
+</span><span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="sa">u</span><span class="s">'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c1">#weed out templates
+</span>        <span class="n">changeDate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="p">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">))</span>
         <span class="n">notes</span><span class="p">[</span><span class="n">changeDate</span><span class="p">]</span> <span class="o">=</span> <span class="n">note</span>
 
-<span class="n">keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">notes</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">tomboy</span><span class="o">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">notes</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">tomboy</span><span class="p">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
       </article>

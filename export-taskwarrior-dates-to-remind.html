@@ -190,34 +190,34 @@
 
 <h3 id="remindwarrior">remindWarrior</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">json</span><span class="p">,</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">json</span><span class="p">,</span> <span class="n">subprocess</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
 <span class="n">outfile</span> <span class="o">=</span> <span class="s">'/home/USERNAME/.config/reminders/taskwarrior.rem'</span>
 
 <span class="n">reminders</span> <span class="o">=</span> <span class="s">'# Taskwarrior Tasks with Due Dates</span><span class="se">\n</span><span class="s">'</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">'task'</span><span class="p">,</span> <span class="s">'+DUE'</span><span class="p">,</span> <span class="s">'+UNBLOCKED'</span><span class="p">,</span> <span class="s">'export'</span><span class="p">])):</span>
-    <span class="n">reminders</span> <span class="o">+=</span> <span class="p">(</span><span class="s">"REM </span><span class="si">%</span><span class="s">s-</span><span class="si">%</span><span class="s">s-</span><span class="si">%</span><span class="s">s MSG </span><span class="si">%%</span><span class="se">\"</span><span class="si">%</span><span class="s">s</span><span class="si">%%</span><span class="se">\"</span><span class="s"> (taskwarrior)</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][:</span><span class="mi">4</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'description'</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">'task'</span><span class="p">,</span> <span class="s">'+DUE'</span><span class="p">,</span> <span class="s">'+UNBLOCKED'</span><span class="p">,</span> <span class="s">'export'</span><span class="p">])):</span>
+    <span class="n">reminders</span> <span class="o">+=</span> <span class="p">(</span><span class="s">"REM %s-%s-%s MSG %%</span><span class="se">\"</span><span class="s">%s%%</span><span class="se">\"</span><span class="s"> (taskwarrior)</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][:</span><span class="mi">4</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'due'</span><span class="p">][</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="s">'description'</span><span class="p">]))</span>
 
-<span class="c">#print(reminders)</span>
-
+<span class="c1">#print(reminders)
+</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="c">#compare file with reminders string</span>
-    <span class="k">if</span> <span class="n">reminders</span> <span class="o">!=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">():</span>
-        <span class="c">#write new file only if it differs from existing file</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
-            <span class="n">o</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">reminders</span><span class="p">)</span>
+    <span class="c1">#compare file with reminders string
+</span>    <span class="k">if</span> <span class="n">reminders</span> <span class="o">!=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">():</span>
+        <span class="c1">#write new file only if it differs from existing file
+</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+            <span class="n">o</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">reminders</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Run <code class="highlighter-rouge">crontab -e</code> and add a line in there to run this sucker every 5 minutes or so:</p>
+<p>Run <code class="language-plaintext highlighter-rouge">crontab -e</code> and add a line in there to run this sucker every 5 minutes or so:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*/5 * * * * remindWarrior
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*/5 * * * * remindWarrior
 </code></pre></div></div>
 
 <p>As you can see, I’ve set up my reminders in a hidden directory. My ~/.reminders file includes a single line.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INCLUDE /home/USER/.config/reminders
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INCLUDE /home/USER/.config/reminders
 </code></pre></div></div>
 
 <p>Note also, that the script checks to see if the new file would be any different from the old file and only writes to the file if it has changed. This becomes significant later.</p>
@@ -230,21 +230,21 @@
 
 <h3 id="reminderdaemon">reminderdaemon</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nv">XAUTHORITY</span><span class="o">=</span>/home/USERNAME/.Xauthority
-<span class="nb">export </span>XAUTHORITY
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+XAUTHORITY=/home/USERNAME/.Xauthority
+export XAUTHORITY
 
-<span class="nv">pid</span><span class="o">=</span><span class="k">$(</span>ps <span class="nt">-C</span> rem <span class="nt">-o</span> <span class="nv">pid</span><span class="o">=</span><span class="k">)</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$pid</span><span class="s2">"</span> <span class="o">]</span>
-<span class="k">then</span>
-	<span class="c">#Remind is running so restart it</span>
-	<span class="nb">kill</span> <span class="nv">$pid</span>
-	rem <span class="nt">-az</span> <span class="nt">-k</span><span class="s1">'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
-<span class="k">else</span>
-	<span class="c">#Remind is NOT running so start it</span>
-	rem <span class="nt">-az</span> <span class="nt">-k</span><span class="s1">'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0'</span> &amp;
-<span class="k">fi
-</span><span class="nb">exit</span>
+pid=$(ps -C rem -o pid=)
+if [ -n "$pid" ]
+then
+	#Remind is running so restart it
+	kill $pid
+	rem -az -k'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0' &amp;
+else
+	#Remind is NOT running so start it
+	rem -az -k'gmessage %s -default okay -timeout 30 -center -title Remind -display :0.0' &amp;
+fi
+exit
 </code></pre></div></div>
 
 <h2 id="incron-or-how-to-automate-the-restart-script-when-files-change">Incron, or how to automate the restart script when files change</h2>
@@ -253,9 +253,9 @@
 
 <p>You probably know about cron; the service that runs things for you based on time. But there’s also a service called <a href="https://linux.die.net/man/8/incrond">incron</a> that monitors files or folders and triggers actions when those files change. Very cool.</p>
 
-<p>I ran <code class="highlighter-rouge">incrontab -e</code> to edit my incron config file and put the following line in there:</p>
+<p>I ran <code class="language-plaintext highlighter-rouge">incrontab -e</code> to edit my incron config file and put the following line in there:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/USER/.config/reminders IN_MODIFY /home/USER/bin/reminderdaemon
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/USER/.config/reminders IN_MODIFY /home/USER/bin/reminderdaemon
 </code></pre></div></div>
 
 <p>Now whenever one of the files in my <em>.config/reminders</em> directory is updated (including the <em>taskwarrior.rem</em> file), the reminder daemon restarts with the new configuration.</p>

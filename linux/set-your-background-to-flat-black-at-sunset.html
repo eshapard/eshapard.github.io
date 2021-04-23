@@ -181,21 +181,21 @@
         <p>Use <a href="http://www.risacher.org/sunwait/">sunwait</a> in your crontab to wait until sunset and then run <a href="https://github.com/himdel/hsetroot">hsetroot</a> to change your desktop.</p>
 
 <p>Crontab example:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 16 * * * sunwait wait set; hsetroot -solid "#000000"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 16 * * * sunwait wait set; hsetroot -solid "#000000"
 </code></pre></div></div>
 
 <h2 id="configure-and-make-sunwait">Configure and Make Sunwait</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/risacher/sunwait
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/risacher/sunwait
 </code></pre></div></div>
 
-<p>Now edit <code class="highlighter-rouge">sunwait.h</code> and replace the default latitude and longitude with whatever your location is.</p>
+<p>Now edit <code class="language-plaintext highlighter-rouge">sunwait.h</code> and replace the default latitude and longitude with whatever your location is.</p>
 
 <blockquote>
   <p>North is positive; South, negative. West is negative; East, positive. For some reason sites always assume you know this and most sites will just tell you ‘N’ or ‘W’, while the program needs positive and/or negative numbers.</p>
 </blockquote>
 
-<p>All you have to do to make the program is run <code class="highlighter-rouge">make</code>. If you change the config file, run <code class="highlighter-rouge">make clean</code> and then <code class="highlighter-rouge">make</code> again.</p>
+<p>All you have to do to make the program is run <code class="language-plaintext highlighter-rouge">make</code>. If you change the config file, run <code class="language-plaintext highlighter-rouge">make clean</code> and then <code class="language-plaintext highlighter-rouge">make</code> again.</p>
 
 <h2 id="why-do-this">Why do this?</h2>
 
@@ -209,7 +209,7 @@
 
 <p>You can also make a nice vertical gradient with <em>hsetroot</em>. The manpage isn’t particularly helpful, but try the code below and you can start to figure out how it works.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hsetroot -add "#FF0000" -add "#000000" -gradient 0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hsetroot -add "#FF0000" -add "#000000" -gradient 0
 </code></pre></div></div>
 
 

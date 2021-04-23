@@ -207,7 +207,7 @@
 
 <p>These backslashes in the pathways suck big donkey butts because the backslash is a common escape character… and one that’s used in python.</p>
 
-<p>Turns out you can type the path with forward-slashes (like a sane person) and then use <code class="highlighter-rouge">os.path.normpath(string)</code> to turn the path into what Windows likes… so problem solved, right? Not quite.</p>
+<p>Turns out you can type the path with forward-slashes (like a sane person) and then use <code class="language-plaintext highlighter-rouge">os.path.normpath(string)</code> to turn the path into what Windows likes… so problem solved, right? Not quite.</p>
 
 <blockquote>
   <p>I don’t remember why MS went with the backslash, but it’s been a thorn in a lot of sides ever since. The worst thing about it is probably that the backslash isn’t always in the same place on the keyboard so if you switch machines a lot, it slows you down.</p>
@@ -220,42 +220,42 @@
 <p>Now the standard way around this is to put the path of the executable in double quotes… or even to put that space in double quotes. But somehow, adding those quotes to the string and calling os.system(command) just wasn’t working. It was like the double quotes were getting dropped.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">command</span> <span class="o">=</span> <span class="s">'"'</span> <span class="o">+</span> <span class="n">directory</span> <span class="o">+</span> <span class="n">exe</span> <span class="o">+</span> <span class="s">'"'</span>
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-<span class="o">...</span>
-<span class="n">Sorry</span><span class="p">,</span> <span class="n">can</span><span class="s">'t find '</span><span class="n">C</span><span class="p">:</span>\<span class="n">Program</span><span class="s">'</span><span class="err">
+<span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="n">Sorry</span><span class="p">,</span> <span class="n">can</span><span class="s">'t find '</span><span class="n">C</span><span class="p">:</span>\<span class="n">Program</span><span class="s">'
 </span></code></pre></div></div>
-<p>What did work was this: <code class="highlighter-rouge">os.system('"' + command + '"')</code>.</p>
+<p>What did work was this: <code class="language-plaintext highlighter-rouge">os.system('"' + command + '"')</code>.</p>
 
 <p>I’m not sure why I had to do that, but hey, this thing is working now.</p>
 
 <p>If you’re interested, here’s the code:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span><span class="p">,</span> <span class="n">os</span>
-<span class="n">postdir</span> <span class="o">=</span> <span class="s">"Z:/websites/arete/_posts/"</span> <span class="c">#Include trailing slash!</span>
-<span class="n">vim</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="s">"C:/Program Files (x86)/Vim/vim74/vim.exe"</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d'</span><span class="p">)</span>
+<span class="n">postdir</span> <span class="o">=</span> <span class="s">"Z:/websites/arete/_posts/"</span> <span class="c1">#Include trailing slash!
+</span><span class="n">vim</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">normpath</span><span class="p">(</span><span class="s">"C:/Program Files (x86)/Vim/vim74/vim.exe"</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Post Title: "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
-<span class="n">cats</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Categories]: "</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="n">tags</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Tags]: "</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Post Title: "</span><span class="p">).</span><span class="n">title</span><span class="p">()</span>
+<span class="n">cats</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Categories]: "</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"[Tags]: "</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">title</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"-"</span><span class="p">).</span><span class="n">lower</span><span class="p">()</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="s">"-"</span> <span class="o">+</span> <span class="n">ts</span> <span class="o">+</span> <span class="s">".md"</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">postdir</span> <span class="o">+</span> <span class="n">fname</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">postdir</span> <span class="o">+</span> <span class="n">fname</span><span class="p">)</span>
 <span class="n">head</span> <span class="o">=</span> <span class="s">"---"</span>
 <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">type: post"</span>
-<span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">title: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">title</span>
-<span class="k">if</span> <span class="n">cats</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">categories: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">cats</span>
-<span class="k">if</span> <span class="n">tags</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">tags: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">tags</span>
+<span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">title: %s"</span> <span class="o">%</span> <span class="n">title</span>
+<span class="k">if</span> <span class="n">cats</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">categories: %s"</span> <span class="o">%</span> <span class="n">cats</span>
+<span class="k">if</span> <span class="n">tags</span><span class="p">:</span> <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">tags: %s"</span> <span class="o">%</span> <span class="n">tags</span>
 <span class="n">head</span> <span class="o">+=</span> <span class="s">"</span><span class="se">\n</span><span class="s">---</span><span class="se">\n</span><span class="s">"</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">postfile</span><span class="p">:</span>
-    <span class="n">postfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
-<span class="n">command</span><span class="o">=</span><span class="s">'"</span><span class="si">%</span><span class="s">s" -c "set spell spelllang=en_us" -c "setf markdown" + "</span><span class="si">%</span><span class="s">s"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">postfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="n">command</span><span class="o">=</span><span class="s">'"%s" -c "set spell spelllang=en_us" -c "setf markdown" + "%s"'</span> <span class="o">%</span> <span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'"'</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">'"'</span> <span class="o">+</span> <span class="n">command</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="key-to-the-vim-command">Key to the Vim command</h3>

@@ -184,7 +184,7 @@
   <li>Write a markdown-format post on another computer.</li>
   <li>Save it to a google-drive folder synced with my main machine.</li>
   <li>Cron on my main computer runs a sorting script every 15 minutes</li>
-  <li>The sorting script looks at the <code class="highlighter-rouge">blog: </code> YAML frontmatter and moves the post to the correct directory</li>
+  <li>The sorting script looks at the <code class="language-plaintext highlighter-rouge">blog: </code> YAML frontmatter and moves the post to the correct directory</li>
 </ol>
 
 <p>As it turns out, there’s a nice library for reading YAML frontmatter (called python-frontmatter) that makes this pretty easy.</p>
@@ -195,16 +195,16 @@
 
 <p>Here’s the program that I have cron run every 15 minutes:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">frontmatter</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">frontmatter</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">os</span>
 <span class="n">inbox</span> <span class="o">=</span> <span class="s">"/{path}/jekyllInbox/"</span>
 <span class="n">blogs</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">blogs</span><span class="p">[</span><span class="s">'blog1'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"/{blog1 path}/_posts"</span>
 <span class="n">blogs</span><span class="p">[</span><span class="s">'blog2'</span><span class="p">]</span> <span class="o">=</span> <span class="s">"/{blog2 path}/_posts"</span>
-<span class="c">#add more blogs as needed</span>
-
+<span class="c1">#add more blogs as needed
+</span>
 <span class="k">def</span> <span class="nf">findBlog</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="n">post</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">frontmatter</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">post</span><span class="p">[</span><span class="s">'blog'</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">post</span><span class="p">[</span><span class="s">'blog'</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -213,12 +213,12 @@
 <span class="k">def</span> <span class="nf">movePost</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
     <span class="n">blog</span> <span class="o">=</span> <span class="n">findBlog</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">blog</span> <span class="ow">and</span> <span class="n">blog</span> <span class="ow">in</span> <span class="n">blogs</span><span class="p">:</span>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">blogs</span><span class="p">[</span><span class="n">blog</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p</span><span class="p">):</span> <span class="c">#file was copied; not moved</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">shutil</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">blogs</span><span class="p">[</span><span class="n">blog</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p</span><span class="p">):</span> <span class="c1">#file was copied; not moved
+</span>            <span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">inbox</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".md"</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">inbox</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">f</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".md"</span><span class="p">):</span>
         <span class="n">fpath</span> <span class="o">=</span> <span class="n">inbox</span> <span class="o">+</span> <span class="n">f</span>
         <span class="n">movePost</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
 </code></pre></div></div>

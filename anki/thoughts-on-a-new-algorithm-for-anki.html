@@ -187,7 +187,7 @@
 
 <p>Instead of simply increasing the ease factor a little when the user marks a review as <em>Easy</em> and decreasing it when they mark the review as <em>Again</em> or <em>Hard</em>, set target success rate of 85% for all reviews of each card and adjust the ease factor according to the below formula.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New Ease = Avg Historical Ease * log(0.85) / log(historical succes rate)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New Ease = Avg Historical Ease * log(0.85) / log(historical succes rate)
 </code></pre></div></div>
 
 <p>Where, <em>Ease</em> is the ease factor of the card, 0.85 is the desired 85% success rate, and the historical success rate is the ratio of reviews that were answered <em>Hard</em>, <em>Good</em>, or <em>Easy</em>.</p>

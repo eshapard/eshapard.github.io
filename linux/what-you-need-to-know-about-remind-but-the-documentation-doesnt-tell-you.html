@@ -190,7 +190,7 @@
 
 <h2 id="so-whats-different-about-daemon-mode">So what’s different about “daemon” mode?</h2>
 
-<p><em>Daemon</em> mode (<code class="highlighter-rouge">-z[n]</code>)is described in the man page. This is where <em>remind</em> runs in the foreground (not what you’d expect, right?) but now it checks the reminder file(s) every n minutes (default, 1).</p>
+<p><em>Daemon</em> mode (<code class="language-plaintext highlighter-rouge">-z[n]</code>)is described in the man page. This is where <em>remind</em> runs in the foreground (not what you’d expect, right?) but now it checks the reminder file(s) every n minutes (default, 1).</p>
 
 <p>This file-checking feature is nice, because it means you can edit your reminder files anytime you want and you don’t have to worry about stopping and re-starting a remind process. (I originally thought I’d have to do this with incron)</p>
 
@@ -200,14 +200,14 @@
 
 <p>Surprise, surprise, no <em>normal</em> reminders are issued when in <em>daemon</em> mode; only timed reminders.</p>
 
-<p>So that <code class="highlighter-rouge">RUN</code> command that was supposed to run today is going to be ignored if remind is running in <em>daemon</em> mode.</p>
+<p>So that <code class="language-plaintext highlighter-rouge">RUN</code> command that was supposed to run today is going to be ignored if remind is running in <em>daemon</em> mode.</p>
 
 <p>Who would have guessed?</p>
 
 <p><em>Daemon mode</em> is only good for timed reminders. It’s probably best used when you’re running a graphical desktop and you want those timed reminders to pop up using xmessage or something.</p>
 
 <blockquote>
-  <p>This is done with the <code class="highlighter-rouge">-k</code> option as in: <code class="highlighter-rouge">remind -z '-kxmessage %s &amp;'</code></p>
+  <p>This is done with the <code class="language-plaintext highlighter-rouge">-k</code> option as in: <code class="language-plaintext highlighter-rouge">remind -z '-kxmessage %s &amp;'</code></p>
 </blockquote>
 
 <h2 id="youll-probably-want-a-cron-job-to-handle-any-run-once-commands">You’ll probably want a cron job to handle any RUN ONCE commands</h2>
@@ -218,24 +218,24 @@
   <p>In my case, I use <em>remind</em> to add tasks to <em>Task Warrior</em> to take out the trash cans. The trash gets picked up on different days if there was a holiday that week; exactly the sort of scheduling that <em>remind</em> excels at.</p>
 </blockquote>
 
-<p>And, of course, you use i3wm or something similar as your usual desktop, so you want to use the <code class="highlighter-rouge">-z</code> and <code class="highlighter-rouge">-k</code> options to have reminders pop up in <em>xmessage</em> or <em>gmessage</em>.</p>
+<p>And, of course, you use i3wm or something similar as your usual desktop, so you want to use the <code class="language-plaintext highlighter-rouge">-z</code> and <code class="language-plaintext highlighter-rouge">-k</code> options to have reminders pop up in <em>xmessage</em> or <em>gmessage</em>.</p>
 
 <p>This means that your regular reminders are going to be ignored unless you run <em>remind</em> in a non-daemon mode as well.</p>
 
-<p>The <code class="highlighter-rouge">-q</code> option, causes <em>remind</em> do do just about the opposite of <em>daemon mode</em>; it causes it to <strong>not</strong> hang around in the background for timed reminders. Or, in the words of the man page, “not queue timed reminders for later execution”. Essentially, <code class="highlighter-rouge">-q</code> causes <em>remind</em> to run, and then <strong>quit</strong> without sticking around in the background waiting to post timed reminders on the screen.</p>
+<p>The <code class="language-plaintext highlighter-rouge">-q</code> option, causes <em>remind</em> do do just about the opposite of <em>daemon mode</em>; it causes it to <strong>not</strong> hang around in the background for timed reminders. Or, in the words of the man page, “not queue timed reminders for later execution”. Essentially, <code class="language-plaintext highlighter-rouge">-q</code> causes <em>remind</em> to run, and then <strong>quit</strong> without sticking around in the background waiting to post timed reminders on the screen.</p>
 
-<p>The <code class="highlighter-rouge">-a</code> option does something similar. It causes <em>remind</em> to “not immediately trigger timed reminders that trigger on the current day. Not knowing that this is <em>remind’s</em> default behavior could lead to problems.</p>
+<p>The <code class="language-plaintext highlighter-rouge">-a</code> option does something similar. It causes <em>remind</em> to “not immediately trigger timed reminders that trigger on the current day. Not knowing that this is <em>remind’s</em> default behavior could lead to problems.</p>
 
-<p>By combining <code class="highlighter-rouge">-a</code> and <code class="highlighter-rouge">-q</code>, we eliminate all timed reminders, only process ‘normal’ reminders for the current day, and then quit; perfect for those <code class="highlighter-rouge">RUN ONCE</code> commands. Here’s an example crontab line that will run rem at 4 AM, sending standard output to /dev/null:</p>
+<p>By combining <code class="language-plaintext highlighter-rouge">-a</code> and <code class="language-plaintext highlighter-rouge">-q</code>, we eliminate all timed reminders, only process ‘normal’ reminders for the current day, and then quit; perfect for those <code class="language-plaintext highlighter-rouge">RUN ONCE</code> commands. Here’s an example crontab line that will run rem at 4 AM, sending standard output to /dev/null:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q &gt;/dev/null
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q &gt;/dev/null
 </code></pre></div></div>
 
-<p>As far as I know, there’s no option to just run the <code class="highlighter-rouge">RUN ONCE</code> commands, but piping the text output to /dev/null accomplishes about the same thing.</p>
+<p>As far as I know, there’s no option to just run the <code class="language-plaintext highlighter-rouge">RUN ONCE</code> commands, but piping the text output to /dev/null accomplishes about the same thing.</p>
 
-<p>However, if this cron job is the only way the RUN commands are getting processed, and you’re running this only once a day, you might throw in the <code class="highlighter-rouge">-o</code> option to ignore the ONCE directive just for good measure.</p>
+<p>However, if this cron job is the only way the RUN commands are getting processed, and you’re running this only once a day, you might throw in the <code class="language-plaintext highlighter-rouge">-o</code> option to ignore the ONCE directive just for good measure.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q -o &gt;/dev/null
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q -o &gt;/dev/null
 </code></pre></div></div>
 
 <h2 id="but-what-about-getting-a-days-overview">But what about getting a day’s overview</h2>
@@ -244,7 +244,7 @@
 
 <p>Getting that overview of things due today is very useful, and remind can do this, if you use the right flags.</p>
 
-<p>For a nice compact view, I use: <code class="highlighter-rouge">rem -n -q -b1|grep (date +%Y/%m/%d)|sort|cut -f 2- -d' '</code></p>
+<p>For a nice compact view, I use: <code class="language-plaintext highlighter-rouge">rem -n -q -b1|grep (date +%Y/%m/%d)|sort|cut -f 2- -d' '</code></p>
 
 <p>This spits out a list things scheduled for today, with the timed items sorted by time at the top of the list. I use the fish shell, so I just save this command as a function called, ‘today’, but saving this function as a shell script is another option.</p>
 
@@ -252,7 +252,7 @@
 
 <p>You can <em>cron</em> the above command and pipe it to gmessage for a nice morning popup (xmessage works too, but I like gmessage better).</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 8 * * * rem -n -q -b1|grep $(date +\%Y/\%m\%d)|sort|cut -f 2- -d' '|gmessage -file - -title "Events" -timeout 43200
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 8 * * * rem -n -q -b1|grep $(date +\%Y/\%m\%d)|sort|cut -f 2- -d' '|gmessage -file - -title "Events" -timeout 43200
 </code></pre></div></div>
 
 <p>The above is a crontab entrance to send a popup at 8 AM every morning. The message will stay there for 12 hours (43200 seconds) if I don’t close it manually.</p>

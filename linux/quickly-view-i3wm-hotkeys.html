@@ -182,8 +182,8 @@
 
 <h2 id="i3keys">i3keys</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nb">grep</span> <span class="s2">"^[ ]*bindsym"</span> ~/.i3/config | sed <span class="nt">-e</span> <span class="s1">'s/^[ ]*bindsym //'</span> <span class="nt">-e</span> <span class="s1">'s/^[ ]*$mod/win/'</span> | less
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+grep "^[ ]*bindsym" ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less
 </code></pre></div></div>
 
 <h2 id="background">Background</h2>

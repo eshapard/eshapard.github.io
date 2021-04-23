@@ -188,11 +188,11 @@
 
 <p>Here’s some example code:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="c"># Check learning cards in Anki collection</span>
-<span class="c"># If any are due in the next 20 minutes, give an alert</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'/usr/share/anki'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+# Check learning cards in Anki collection
+# If any are due in the next 20 minutes, give an alert
+</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'/usr/share/anki'</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">anki</span> <span class="kn">import</span> <span class="n">Collection</span>
 <span class="kn">from</span> <span class="nn">anki.utils</span> <span class="kn">import</span> <span class="n">intTime</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -200,24 +200,24 @@
 <span class="n">collection_path</span> <span class="o">=</span> <span class="s">"/home/username/Documents/Anki/User 1/collection.anki2"</span>
 <span class="n">col</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">collection_path</span><span class="p">)</span>
 
-<span class="n">tody</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">()</span> <span class="c">#anki function returns current integer time</span>
-<span class="n">nextTwenty</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="mi">60</span> <span class="c">#integer time in 20 minutes</span>
+<span class="n">tody</span> <span class="o">=</span> <span class="n">intTime</span><span class="p">()</span> <span class="c1">#anki function returns current integer time
+</span><span class="n">nextTwenty</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="mi">60</span> <span class="c1">#integer time in 20 minutes
+</span>
+<span class="n">query</span><span class="o">=</span><span class="s">"select count(id) from cards where queue = 1 and due &lt; %s"</span> <span class="o">%</span> <span class="n">nextTwenty</span>
+<span class="n">learnAheadCards</span> <span class="o">=</span> <span class="n">col</span><span class="p">.</span><span class="n">db</span><span class="p">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 
-<span class="n">query</span><span class="o">=</span><span class="s">"select count(id) from cards where queue = 1 and due &lt; </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">nextTwenty</span>
-<span class="n">learnAheadCards</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"You have %s learning cards due in Anki"</span> <span class="o">%</span> <span class="n">learnAheadCards</span><span class="p">)</span> 
 
-<span class="k">print</span><span class="p">(</span><span class="s">"You have </span><span class="si">%</span><span class="s">s learning cards due in Anki"</span> <span class="o">%</span> <span class="n">learnAheadCards</span><span class="p">)</span> 
-
-<span class="n">col</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">col</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
 </code></pre></div></div>
 
-<p>This is just meant to be an example of a python script that can read the Anki database without being an addon, so the code is pretty simple. Notice that the collection is loaded as <code class="highlighter-rouge">col</code>, so the functions that you would normally find under <code class="highlighter-rouge">mw.col</code> are now just under <code class="highlighter-rouge">col</code>.</p>
+<p>This is just meant to be an example of a python script that can read the Anki database without being an addon, so the code is pretty simple. Notice that the collection is loaded as <code class="language-plaintext highlighter-rouge">col</code>, so the functions that you would normally find under <code class="language-plaintext highlighter-rouge">mw.col</code> are now just under <code class="language-plaintext highlighter-rouge">col</code>.</p>
 
 <p>The key lines are:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'/usr/share/anki'</span><span class="p">)</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'/usr/share/anki'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>This appends the Anki directory to python’s path so that we can import Anki libraries. These have to be the first two lines, or at least they have to come before we load any of Anki’s files.</p>
@@ -227,7 +227,7 @@
 <span class="n">col</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">collection_path</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Here’s the rest of the magic. We import <code class="highlighter-rouge">Collection</code> from Anki and use it to open up a user’s collection.anki2 file. You can either point it to the normal location of the file, or you can copy the <em>.anki2</em> file somewhere else first and then open the copy. This is handy if you want a script to run when you might have Anki running. If you try to open the database while Anki is running, you’ll get an error message about a locked database.</p>
+<p>Here’s the rest of the magic. We import <code class="language-plaintext highlighter-rouge">Collection</code> from Anki and use it to open up a user’s collection.anki2 file. You can either point it to the normal location of the file, or you can copy the <em>.anki2</em> file somewhere else first and then open the copy. This is handy if you want a script to run when you might have Anki running. If you try to open the database while Anki is running, you’ll get an error message about a locked database.</p>
 
 <h2 id="writing-to-the-collection">Writing to the collection</h2>
 

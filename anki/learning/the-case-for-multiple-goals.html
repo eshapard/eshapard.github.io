@@ -307,7 +307,7 @@
 
 <p>As a simple starting point for designing such an experiment, let’s assume that all <em>experimental</em> cards are vocabulary words from an obscure language (such as Navajo). Hopefully, this would give them all about the same initial difficulty. Then cards are randomly scheduled for 1 hour, 8 hours, 1 day, 3 days, 7 days, or 14 days later. This series of delays would give us several points on the forgetting curve and these data points could be used to fit an equation.</p>
 
-<p>When next reviewed, the cards are re-presented after a few minutes if failed and then once remembered, randomly scheduled to one of the same series of intervals times 2.5 (so 2.5 hours, 20 hours, 2.5 days, etc.). This would go on indefinitely, with experimental cards being rescheduled for <code class="highlighter-rouge">random.choice([1,8,24,72,168,336]) * 2.5^(number of study sessions)</code>.</p>
+<p>When next reviewed, the cards are re-presented after a few minutes if failed and then once remembered, randomly scheduled to one of the same series of intervals times 2.5 (so 2.5 hours, 20 hours, 2.5 days, etc.). This would go on indefinitely, with experimental cards being rescheduled for <code class="language-plaintext highlighter-rouge">random.choice([1,8,24,72,168,336]) * 2.5^(number of study sessions)</code>.</p>
 
 <p>This would allow us to not only fit an equation to subsequent forgetting curves, but also to get an idea of how review at 95% recall differs from review at 50% recall and how that possibly changes over time.</p>
 

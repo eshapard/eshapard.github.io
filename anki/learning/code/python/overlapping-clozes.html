@@ -195,61 +195,61 @@
 
 <p>Here’s the most important function; the one that takes a string and spits out question and answer sides for each cloze deletion.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># python3</span>
-<span class="c"># Cloze-Deletion Parsing Function</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python3
+# Cloze-Deletion Parsing Function
+</span><span class="kn">import</span> <span class="nn">re</span>
 
-<span class="c"># function to remove the cloze codes from other cloze deletions</span>
-<span class="k">def</span> <span class="nf">removeClozeCodes</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\){[0-9]+::'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'(?&lt;!\\):[^:]*?:[0-9]+}'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\:'</span><span class="p">,</span><span class="s">':'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\\{'</span><span class="p">,</span><span class="s">'{'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># function to remove the cloze codes from other cloze deletions
+</span><span class="k">def</span> <span class="nf">removeClozeCodes</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'(?&lt;!\\){[0-9]+::'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'(?&lt;!\\):[^:]*?:[0-9]+}'</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'\\:'</span><span class="p">,</span><span class="s">':'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'\\{'</span><span class="p">,</span><span class="s">'{'</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">text</span>
 
 
-<span class="c"># mkCLozes</span>
-<span class="c">## Returns a numbered dictionary of cards. </span>
-<span class="c">## cards[n] = card with cloze number n deleted</span>
-<span class="c">## cards[n][0] = list of tuples (string, type) for question side</span>
-<span class="c">## cards[n][1] = list of tuples (string, type) for answer side</span>
-<span class="c">## type codes:</span>
-<span class="c">##    0 = normal text</span>
-<span class="c">##    1 = cloze deletion text</span>
-<span class="c">##    2 = hint text</span>
-<span class="k">def</span> <span class="nf">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">startMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\){([0-9]+)::'</span>
-    <span class="n">endMatch</span> <span class="o">=</span> <span class="s">r'(?&lt;!\\):([^:]*?):([0-9]+)}'</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">startMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="c1"># mkCLozes
+## Returns a numbered dictionary of cards. 
+## cards[n] = card with cloze number n deleted
+## cards[n][0] = list of tuples (string, type) for question side
+## cards[n][1] = list of tuples (string, type) for answer side
+## type codes:
+##    0 = normal text
+##    1 = cloze deletion text
+##    2 = hint text
+</span><span class="k">def</span> <span class="nf">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">startMatch</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'(?&lt;!\\){([0-9]+)::'</span>
+    <span class="n">endMatch</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'(?&lt;!\\):([^:]*?):([0-9]+)}'</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">startMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
     <span class="n">starts</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">ends</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">clozeHint</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">cards</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
             <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+        <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">span</span><span class="p">())</span>
     
-    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">endMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">endMatch</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clozeHint</span><span class="p">:</span>
             <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">hint</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
+        <span class="n">hint</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">hint</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ends</span><span class="p">:</span>
             <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+        <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">span</span><span class="p">())</span>
     
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Mismatching starts and ends to clozes: </span><span class="si">%</span><span class="s">s"</span> <span class="o">%</span> <span class="n">s</span> <span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Mismatching starts and ends to clozes: %s"</span> <span class="o">%</span> <span class="n">s</span> <span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
-        <span class="c"># the next two lists will be lists of tuples</span>
-        <span class="c"># (string, type) 0=normal  1=cloze 2=hint</span>
-        <span class="n">clozeQuestion</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># the next two lists will be lists of tuples
+</span>        <span class="c1"># (string, type) 0=normal  1=cloze 2=hint
+</span>        <span class="n">clozeQuestion</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">clozeAnswer</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">])):</span>
@@ -257,48 +257,48 @@
             <span class="n">b</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
             <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:</span><span class="n">a</span><span class="p">]</span>
-            <span class="c"># all cloze tags left in new string should be removed</span>
-            <span class="c"># they are from other clozes</span>
-            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+            <span class="c1"># all cloze tags left in new string should be removed
+</span>            <span class="c1"># they are from other clozes
+</span>            <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
             <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
-            <span class="c"># add strings to list</span>
-            <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-            <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="c1"># add strings to list
+</span>            <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+            <span class="n">clozeAnswer</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
             <span class="n">c</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">clz</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">b</span><span class="p">:</span><span class="n">c</span><span class="p">]</span>
-            <span class="c"># remove any cloze tags left by other cloze deletions</span>
-            <span class="n">clz</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clz</span><span class="p">)</span>
-            <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clz</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+            <span class="c1"># remove any cloze tags left by other cloze deletions
+</span>            <span class="n">clz</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clz</span><span class="p">)</span>
+            <span class="n">clozeAnswer</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clz</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
-                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"["</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
-                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">"["</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeHint</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">"]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">"[...]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+                <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">"[...]"</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
         <span class="n">clozeA</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">d</span><span class="p">:]</span>
-        <span class="c"># all cloze tags left in new string should be removed</span>
-        <span class="c"># they are from other clozes</span>
-        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
+        <span class="c1"># all cloze tags left in new string should be removed
+</span>        <span class="c1"># they are from other clozes
+</span>        <span class="n">clozeQ</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeQ</span><span class="p">)</span>
         <span class="n">clozeA</span> <span class="o">=</span> <span class="n">removeClozeCodes</span><span class="p">(</span><span class="n">clozeA</span><span class="p">)</span>
-        <span class="c"># add strings to list</span>
-        <span class="n">clozeQuestion</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-        <span class="n">clozeAnswer</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-        <span class="c"># add strings to card dictionary</span>
-        <span class="n">cards</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clozeQuestion</span><span class="p">,</span> <span class="n">clozeAnswer</span><span class="p">)</span>
+        <span class="c1"># add strings to list
+</span>        <span class="n">clozeQuestion</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeQ</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">clozeAnswer</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">clozeA</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+        <span class="c1"># add strings to card dictionary
+</span>        <span class="n">cards</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">clozeQuestion</span><span class="p">,</span> <span class="n">clozeAnswer</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cards</span>
 </code></pre></div></div>
 <h3 id="usage">Usage</h3>
 <h4 id="cloze-start-and-end-codes">Cloze Start and End Codes</h4>
 <p>The codes used for starting and ending the cloze deletions are similar to Anki’s.</p>
 
-<p>Cloze deletions are prefixed by <code class="highlighter-rouge">{1::</code> where 1 can be any arbitrary number. End a cloze deletion with <code class="highlighter-rouge">::1}</code> (where 1 is the same number as in the start code.</p>
+<p>Cloze deletions are prefixed by <code class="language-plaintext highlighter-rouge">{1::</code> where 1 can be any arbitrary number. End a cloze deletion with <code class="language-plaintext highlighter-rouge">::1}</code> (where 1 is the same number as in the start code.</p>
 
 <p>I figured that these codes would be easy enough to type, but also rare enough that you’d never need to use this sort of sequence for the content of your card. If for some reason you <strong>do</strong> want to use a code like this in your card (e.g. making flashcards about how to use this function), you can escape any of these codes by prefixing them with a backslash. (see example code below)</p>
 
 <h4 id="hints">Hints</h4>
-<p>Add any hint text you want between the two colons of the end code. e.g. <code class="highlighter-rouge">{1::This is the cloze text:and this is the hint:1}</code></p>
+<p>Add any hint text you want between the two colons of the end code. e.g. <code class="language-plaintext highlighter-rouge">{1::This is the cloze text:and this is the hint:1}</code></p>
 
 <p>The limitation is that you can’t use a colon in your hint.</p>
 
@@ -315,42 +315,42 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">curses</span>
 <span class="kn">import</span> <span class="nn">cloze</span>
 
-<span class="c"># set up ncurses</span>
-<span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">initscr</span><span class="p">()</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">noecho</span><span class="p">()</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">cbreak</span><span class="p">()</span>
-<span class="c"># colorFunctions</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">start_color</span><span class="p">()</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">use_default_colors</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">COLORS</span><span class="p">):</span>
-    <span class="n">curses</span><span class="o">.</span><span class="n">init_pair</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># set up ncurses
+</span><span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="p">.</span><span class="n">initscr</span><span class="p">()</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">noecho</span><span class="p">()</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">cbreak</span><span class="p">()</span>
+<span class="c1"># colorFunctions
+</span><span class="n">curses</span><span class="p">.</span><span class="n">start_color</span><span class="p">()</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">use_default_colors</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">curses</span><span class="p">.</span><span class="n">COLORS</span><span class="p">):</span>
+    <span class="n">curses</span><span class="p">.</span><span class="n">init_pair</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="c"># curses color pairs for demonstration</span>
-<span class="n">clozeColor</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># curses color pairs for demonstration
+</span><span class="n">clozeColor</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">hintColor</span> <span class="o">=</span> <span class="mi">4</span>
 
-<span class="c"># demonstate the mkClozes function</span>
-<span class="c"># test string</span>
-<span class="n">s</span> <span class="o">=</span> <span class="s">"Start a cloze deletion with {8::'</span><span class="se">\\</span><span class="s">{1::'::8} (that was an escaped cloze start) and say {1::</span><span class="se">\"</span><span class="s">hello world</span><span class="se">\"</span><span class="s">:what programmers always say first:1} as your first cloze. End a cloze deletion with {9::'</span><span class="se">\\</span><span class="s">::1}'::9} (or whatever number you're using). {4::You can {3::nest:birds do it:3} one cloze in another:what was that about nesting?:4} and {5::clozes can {6::even overlap:... over-:5}, which can be very useful:... over- ...:6}. And several {7::cloze deletions::7} can share {7::the same number::7}. {100::And yes, any arbitrary number will work:Does any arbitrary number work?:100} in a cloze deletion. {7::I'm part of cloze deletion #7 too!::7}"</span>
-<span class="n">cards</span> <span class="o">=</span> <span class="n">cloze</span><span class="o">.</span><span class="n">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cards</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+<span class="c1"># demonstate the mkClozes function
+# test string
+</span><span class="n">s</span> <span class="o">=</span> <span class="s">"Start a cloze deletion with {8::'</span><span class="se">\\</span><span class="s">{1::'::8} (that was an escaped cloze start) and say {1::</span><span class="se">\"</span><span class="s">hello world</span><span class="se">\"</span><span class="s">:what programmers always say first:1} as your first cloze. End a cloze deletion with {9::'</span><span class="se">\\</span><span class="s">::1}'::9} (or whatever number you're using). {4::You can {3::nest:birds do it:3} one cloze in another:what was that about nesting?:4} and {5::clozes can {6::even overlap:... over-:5}, which can be very useful:... over- ...:6}. And several {7::cloze deletions::7} can share {7::the same number::7}. {100::And yes, any arbitrary number will work:Does any arbitrary number work?:100} in a cloze deletion. {7::I'm part of cloze deletion #7 too!::7}"</span>
+<span class="n">cards</span> <span class="o">=</span> <span class="n">cloze</span><span class="p">.</span><span class="n">mkClozes</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cards</span><span class="p">.</span><span class="n">keys</span><span class="p">()):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">"Card </span><span class="si">%</span><span class="s">s:</span><span class="se">\n\n</span><span class="s">"</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="p">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">"Card %s:</span><span class="se">\n\n</span><span class="s">"</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">text</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">cards</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">clozeColor</span><span class="p">))</span>
+                <span class="n">stdscr</span><span class="p">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="p">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">clozeColor</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="o">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">hintColor</span><span class="p">))</span>
+                <span class="n">stdscr</span><span class="p">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">curses</span><span class="p">.</span><span class="n">color_pair</span><span class="p">(</span><span class="n">hintColor</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">stdscr</span><span class="o">.</span><span class="n">getkey</span><span class="p">()</span>
-        <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="n">stdscr</span><span class="p">.</span><span class="n">addstr</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">stdscr</span><span class="p">.</span><span class="n">getkey</span><span class="p">()</span>
+        <span class="n">stdscr</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
 
-<span class="n">curses</span><span class="o">.</span><span class="n">nocbreak</span><span class="p">()</span>
-<span class="n">stdscr</span><span class="o">.</span><span class="n">keypad</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">echo</span><span class="p">()</span>
-<span class="n">curses</span><span class="o">.</span><span class="n">endwin</span><span class="p">()</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">nocbreak</span><span class="p">()</span>
+<span class="n">stdscr</span><span class="p">.</span><span class="n">keypad</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">echo</span><span class="p">()</span>
+<span class="n">curses</span><span class="p">.</span><span class="n">endwin</span><span class="p">()</span>
 </code></pre></div></div>
 <h2 id="background">Background</h2>
 
@@ -372,7 +372,7 @@
 
 <p>Using the function above, you could create all three cards with the following:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {3::{1::14::1}{2::92::2}::3}, Columbus Sailed the Ocean Blue.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In {3::{1::14::1}{2::92::2}::3}, Columbus Sailed the Ocean Blue.
 </code></pre></div></div>
 <blockquote>
   <p>You <em>can</em> create a single note that will generate these cards in Anki, but the process is much more convoluted. I’ve describe how to create overlapping clozes in Anki in <a href="/anki/the-power-of-making-new-cards-on-the-fly-in-anki.html">this post</a>.</p>

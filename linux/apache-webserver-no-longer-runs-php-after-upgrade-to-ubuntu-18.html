@@ -190,12 +190,12 @@
 
 <p>All the packages were installed, but turns out, the Apache php7.2 module needed to be <em>enabled</em>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod php7.2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod php7.2
 
 sudo systemctl restart apache2
 </code></pre></div></div>
 
-<p>Actually, I screwed up and tried to enable the older php7.1 packaged. So I did <code class="highlighter-rouge">sudo a2dismod php7.1</code> to undo that and it worked fine.</p>
+<p>Actually, I screwed up and tried to enable the older php7.1 packaged. So I did <code class="language-plaintext highlighter-rouge">sudo a2dismod php7.1</code> to undo that and it worked fine.</p>
 
       </article>
 

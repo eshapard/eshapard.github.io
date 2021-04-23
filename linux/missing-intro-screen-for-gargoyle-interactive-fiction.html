@@ -219,7 +219,7 @@
   </li>
   <li>In case you’re missing one of the above
     <ul>
-      <li>Ubuntu: <code class="highlighter-rouge">sudo apt install zenity feh libxml2-utils</code></li>
+      <li>Ubuntu: <code class="language-plaintext highlighter-rouge">sudo apt install zenity feh libxml2-utils</code></li>
     </ul>
   </li>
 </ul>
@@ -237,7 +237,7 @@
 	<span class="c"># NB: Customize filename location below</span>
 	<span class="c">#     it's the directory the file-select</span>
 	<span class="c">#     dialogue opens to</span>
-	<span class="nv">gamefile</span><span class="o">=</span><span class="k">$(</span>zenity <span class="nt">--file-selection</span> <span class="nt">--title</span><span class="o">=</span><span class="s2">"Select Game"</span> <span class="nt">--filename</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Games/interactive_fiction/"</span><span class="k">)</span>
+	<span class="nv">gamefile</span><span class="o">=</span><span class="si">$(</span>zenity <span class="nt">--file-selection</span> <span class="nt">--title</span><span class="o">=</span><span class="s2">"Select Game"</span> <span class="nt">--filename</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/Games/interactive_fiction/"</span><span class="si">)</span>
 	<span class="nb">echo</span> <span class="s2">"Gamefile: </span><span class="nv">$gamefile</span><span class="s2">"</span>
 	<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> <span class="o">]</span>
 	<span class="k">then
@@ -247,18 +247,18 @@ else
 	</span><span class="nv">gamefile</span><span class="o">=</span><span class="nv">$1</span>
 <span class="k">fi</span> 
 <span class="c"># get ifid</span>
-<span class="nv">ifid</span><span class="o">=</span><span class="k">$(</span>./babel <span class="nt">-ifid</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> | cut <span class="nt">-c7-</span><span class="k">)</span>
+<span class="nv">ifid</span><span class="o">=</span><span class="si">$(</span>./babel <span class="nt">-ifid</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> | <span class="nb">cut</span> <span class="nt">-c7-</span><span class="si">)</span>
 <span class="c"># extract ifiction file (xml)</span>
 ./babel <span class="nt">-ifiction</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> <span class="nt">-to</span> /tmp
 <span class="c"># get cover</span>
 ./babel <span class="nt">-cover</span> <span class="s2">"</span><span class="nv">$gamefile</span><span class="s2">"</span> <span class="nt">-to</span> /tmp
 <span class="c"># Get Title and author</span>
-<span class="nv">title</span><span class="o">=</span><span class="k">$(</span>sed <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/title/text()'</span> -<span class="k">)</span>
-<span class="nv">author</span><span class="o">=</span><span class="k">$(</span>sed <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/author/text()'</span> -<span class="k">)</span>
+<span class="nv">title</span><span class="o">=</span><span class="si">$(</span><span class="nb">sed</span> <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/title/text()'</span> -<span class="si">)</span>
+<span class="nv">author</span><span class="o">=</span><span class="si">$(</span><span class="nb">sed</span> <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/author/text()'</span> -<span class="si">)</span>
 <span class="c"># find cover format</span>
-<span class="nv">ext</span><span class="o">=</span><span class="k">$(</span>sed <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/cover/format/text()'</span> -<span class="k">)</span>
+<span class="nv">ext</span><span class="o">=</span><span class="si">$(</span><span class="nb">sed</span> <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/cover/format/text()'</span> -<span class="si">)</span>
 <span class="c"># extract destription</span>
-zenity <span class="nt">--info</span> <span class="nt">--width</span><span class="o">=</span>800 <span class="nt">--title</span><span class="o">=</span><span class="s2">"</span><span class="nv">$title</span><span class="s2"> by </span><span class="nv">$author</span><span class="s2">"</span> <span class="nt">--text</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>sed <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/description/text()'</span> -<span class="k">)</span><span class="s2">"</span>
+zenity <span class="nt">--info</span> <span class="nt">--width</span><span class="o">=</span>800 <span class="nt">--title</span><span class="o">=</span><span class="s2">"</span><span class="nv">$title</span><span class="s2"> by </span><span class="nv">$author</span><span class="s2">"</span> <span class="nt">--text</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">sed</span> <span class="s1">'2 s/xmlns=".*"//g'</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.iFiction| xmllint <span class="nt">--xpath</span> <span class="s1">'/ifindex/story/bibliographic/description/text()'</span> -<span class="si">)</span><span class="s2">"</span>
 <span class="c"># show cover</span>
 feh <span class="nt">-F</span> <span class="nt">--title</span> <span class="s2">"</span><span class="nv">$title</span><span class="s2"> by </span><span class="nv">$author</span><span class="s2">"</span> /tmp/<span class="k">${</span><span class="nv">ifid</span><span class="k">}</span>.<span class="k">${</span><span class="nv">ext</span><span class="k">}</span>
 <span class="c"># run with gargoyle</span>
@@ -267,7 +267,7 @@ feh <span class="nt">-F</span> <span class="nt">--title</span> <span class="s2">
 
 <h2 id="usage">Usage</h2>
 
-<p><code class="highlighter-rouge">whatever-you-name-it.sh [if-game-file]</code></p>
+<p><code class="language-plaintext highlighter-rouge">whatever-you-name-it.sh [if-game-file]</code></p>
 
 <p>If you don’t supply a game file as an argument, you’ll get a file-select dialogue from zenity.. choose the game.</p>
 

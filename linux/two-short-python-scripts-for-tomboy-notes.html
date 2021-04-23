@@ -184,21 +184,21 @@
 
 <p>This first one copies whatever text is currently selected and creates a Tomboy note with it. NB: You must have <em>xclip</em> installed.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">dbus</span><span class="p">,</span> <span class="n">subprocess</span>
-<span class="c">#Get the D-Bus session bus</span>
-<span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
-<span class="c">#Access the Tombox D-Bus object</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
-<span class="c"># Access the Tomboy remote control interface</span>
-<span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">dbus</span><span class="p">,</span> <span class="n">subprocess</span>
+<span class="c1">#Get the D-Bus session bus
+</span><span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">SessionBus</span><span class="p">()</span>
+<span class="c1">#Access the Tombox D-Bus object
+</span><span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="p">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
+<span class="c1"># Access the Tomboy remote control interface
+</span><span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
 
-<span class="n">new_note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">CreateNote</span><span class="p">()</span>
-<span class="n">title</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteTitle</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
-<span class="n">contents</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">'xclip'</span><span class="p">,</span><span class="s">'-o'</span><span class="p">])</span>
+<span class="n">new_note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">CreateNote</span><span class="p">()</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">GetNoteTitle</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
+<span class="n">contents</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">'xclip'</span><span class="p">,</span><span class="s">'-o'</span><span class="p">])</span>
 <span class="n">new_contents</span> <span class="o">=</span> <span class="n">title</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
-<span class="n">tomboy</span><span class="o">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
-<span class="n">tomboy</span><span class="o">.</span><span class="n">SetNoteContents</span><span class="p">(</span><span class="n">new_note</span><span class="p">,</span> <span class="n">new_contents</span><span class="p">)</span>
+<span class="n">tomboy</span><span class="p">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">new_note</span><span class="p">)</span>
+<span class="n">tomboy</span><span class="p">.</span><span class="n">SetNoteContents</span><span class="p">(</span><span class="n">new_note</span><span class="p">,</span> <span class="n">new_contents</span><span class="p">)</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -209,32 +209,32 @@
 
 <p>Use this next one in the command line. Just pipe the output of some useful command to it and it will create a Tomboy note. (Reads standard input and uses any arguments as the title of the note).</p>
 
-<p>Example: <code class="highlighter-rouge">$fortune | tbnote Random Fortune</code></p>
+<p>Example: <code class="language-plaintext highlighter-rouge">$fortune | tbnote Random Fortune</code></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">dbus</span><span class="p">,</span> <span class="n">time</span>
-<span class="n">contents</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">sys</span><span class="p">,</span> <span class="n">dbus</span><span class="p">,</span> <span class="n">time</span>
+<span class="n">contents</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">makeNote</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-    <span class="c">#Get the D-Bus session bus</span>
-    <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
-    <span class="c">#Access the Tombox D-Bus object</span>
-    <span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
-    <span class="c"># Access the Tomboy remote control interface</span>
-    <span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
+    <span class="c1">#Get the D-Bus session bus
+</span>    <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">SessionBus</span><span class="p">()</span>
+    <span class="c1">#Access the Tombox D-Bus object
+</span>    <span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="p">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
+    <span class="c1"># Access the Tomboy remote control interface
+</span>    <span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">CreateNamedNote</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+            <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">CreateNamedNote</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">CreateNote</span><span class="p">()</span>
+            <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">CreateNote</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">CreateNote</span><span class="p">()</span>
-    <span class="n">contents</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteContents</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
-    <span class="n">tomboy</span><span class="o">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-    <span class="n">tomboy</span><span class="o">.</span><span class="n">SetNoteContents</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">CreateNote</span><span class="p">()</span>
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">GetNoteContents</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+    <span class="n">tomboy</span><span class="p">.</span><span class="n">DisplayNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="n">tomboy</span><span class="p">.</span><span class="n">SetNoteContents</span><span class="p">(</span><span class="n">note</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">makeNote</span><span class="p">(</span><span class="s">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">contents</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">makeNote</span><span class="p">(</span><span class="s">" "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">contents</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">makeNote</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span><span class="n">contents</span><span class="p">)</span>
 </code></pre></div></div>

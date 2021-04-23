@@ -196,7 +196,7 @@
 
 <h2 id="a-new-tactic">A new tactic</h2>
 
-<p>What I decided to do was to make new notes on the fly. I created a hot-key in i3 to launch a new Tomboy note <code class="highlighter-rouge">tomboy --new-note</code>. New notes are not placed in any notebooks, so the <em>Unfiled Notes</em> category easily identifies them.</p>
+<p>What I decided to do was to make new notes on the fly. I created a hot-key in i3 to launch a new Tomboy note <code class="language-plaintext highlighter-rouge">tomboy --new-note</code>. New notes are not placed in any notebooks, so the <em>Unfiled Notes</em> category easily identifies them.</p>
 
 <p>If I make these temporary ad-hoc notes as new <em>unfiled</em> notes, then they can accumulate in the <em>Unfiled Notes</em> category and if I don’t touch them in 30 days or so, they must not be that important, so I can automatically delete them.</p>
 
@@ -208,30 +208,30 @@
 
 <p>Here’s the code for <em>delOldTomboyNotes.py</em>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/python</span>
-<span class="kn">import</span> <span class="nn">dbus</span><span class="p">,</span> <span class="n">datetime</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/python
+</span><span class="kn">import</span> <span class="nn">dbus</span><span class="p">,</span> <span class="n">datetime</span>
 
-<span class="n">thirtyDaysAgo</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">thirtyDaysAgo</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="p">.</span><span class="n">timedelta</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
 
-<span class="c">#Get the D-Bus session bus</span>
-<span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SessionBus</span><span class="p">()</span>
-<span class="c">#Access the Tombox D-Bus object</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
-<span class="c"># Access the Tomboy remote control interface</span>
-<span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
+<span class="c1">#Get the D-Bus session bus
+</span><span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">SessionBus</span><span class="p">()</span>
+<span class="c1">#Access the Tombox D-Bus object
+</span><span class="n">obj</span> <span class="o">=</span> <span class="n">bus</span><span class="p">.</span><span class="n">get_object</span><span class="p">(</span><span class="s">"org.gnome.Tomboy"</span><span class="p">,</span><span class="s">"/org/gnome/Tomboy/RemoteControl"</span><span class="p">)</span>
+<span class="c1"># Access the Tomboy remote control interface
+</span><span class="n">tomboy</span> <span class="o">=</span> <span class="n">dbus</span><span class="p">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">"org.gnome.Tomboy.RemoteControl"</span><span class="p">)</span>
 
-<span class="c">#Get all notes</span>
-<span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
+<span class="c1">#Get all notes
+</span><span class="n">allNotes</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">ListAllNotes</span><span class="p">()</span>
 
-<span class="c">#loop through notes</span>
-<span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
-    <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="o">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:notebook'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="s">u'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c">#weed out templates</span>
-            <span class="n">changeDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="o">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">)))</span>
-            <span class="k">if</span> <span class="n">changeDate</span> <span class="o">&lt;</span> <span class="n">thirtyDaysAgo</span><span class="p">:</span> <span class="c">#changed more than 30 days ago</span>
-                <span class="c">#print("Delete this note!")</span>
-                <span class="n">tomboy</span><span class="o">.</span><span class="n">DeleteNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+<span class="c1">#loop through notes
+</span><span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">allNotes</span><span class="p">:</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">tomboy</span><span class="p">.</span><span class="n">GetTagsForNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="sa">u</span><span class="s">'system:notebook'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="sa">u</span><span class="s">'system:template'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">):</span> <span class="c1">#weed out templates
+</span>            <span class="n">changeDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tomboy</span><span class="p">.</span><span class="n">GetNoteChangeDate</span><span class="p">(</span><span class="n">note</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">changeDate</span> <span class="o">&lt;</span> <span class="n">thirtyDaysAgo</span><span class="p">:</span> <span class="c1">#changed more than 30 days ago
+</span>                <span class="c1">#print("Delete this note!")
+</span>                <span class="n">tomboy</span><span class="p">.</span><span class="n">DeleteNote</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
 </code></pre></div></div>
 
 
