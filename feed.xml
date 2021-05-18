@@ -7,6 +7,30 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Saving An Interactive Fiction Transcript In Gargoyle</title>
+        <description>
+          
+          Tiny Intro Blurb…
+
+
+        </description>
+        <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html</guid>
+      </item>
+    
+      <item>
+        <title>Saving A Game Transcript In Gargoyle</title>
+        <description>
+          
+          Yeah, so this is sort of embarrassing. I play interactive fiction using Gargoyle every now and then, and I’ve been trying to figure out a way around Gargoyle’s obvious lack of any transcript-export feature. Turns out, you just have to type script into the parser. From then on, all the...
+        </description>
+        <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/fun/saving-a-game-transcript-in-gargoyle.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/fun/saving-a-game-transcript-in-gargoyle.html</guid>
+      </item>
+    
+      <item>
         <title>Using Evapotraspiration Rates To Calculate How Much To Water</title>
         <description>
           
@@ -202,28 +226,6 @@
         <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</guid>
-      </item>
-    
-      <item>
-        <title>Quickly View I3Wm Hotkeys</title>
-        <description>
-          
-          Use the code below to quickly view all the active hotkeys in your i3wm config file: i3keys #!/bin/bash grep &quot;^[ ]*bindsym&quot; ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less Background i3wm has a lot of functions that come assigned to hotkeys by default. I’m constantly forgetting...
-        </description>
-        <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</guid>
-      </item>
-    
-      <item>
-        <title>Two Short Python Scripts For Tomboy Notes</title>
-        <description>
-          
-          OK, here are two more scripts I wrote to do useful things with python and Tomboy notes. tbclip This first one copies whatever text is currently selected and creates a Tomboy note with it. NB: You must have xclip installed. #!/usr/bin/python import sys, dbus, subprocess #Get the D-Bus session bus...
-        </description>
-        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</guid>
       </item>
     
   </channel>

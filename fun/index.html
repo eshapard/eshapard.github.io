@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Posts Tagged &ldquo;github&rdquo;</title>
+  <title>fun</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,44 @@
   
 
   
-  <meta property="og:title" content="Posts Tagged &ldquo;github&rdquo;" />
+  <meta property="og:title" content="fun" />
   
 
    
-  <meta property="og:description" content="Posts Tagged &amp;ldquo;github&amp;rdquo;: Github Jekyll Theme Changes Posted on February 10, 2017 OK, so I changed the theme of my github pages site by changing the `theme:` setting in the *_config.yaml* file. The theme did not change right away. I thought maybe I'd have to wait a while, but after...">
+  <meta property="og:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/tag/github/" />
-  <link rel="canonical" href="http://eshapard.github.io/tag/github/" />
+  <meta property="og:url" content="http://eshapard.github.io/fun/" />
+  <link rel="canonical" href="http://eshapard.github.io/fun/" />
   
 
   
@@ -78,11 +103,36 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Posts Tagged &ldquo;github&rdquo;" />
+  <meta name="twitter:title" content="fun" />
   
 
   
-  <meta name="twitter:description" content="Posts Tagged &amp;ldquo;github&amp;rdquo;: Github Jekyll Theme Changes Posted on February 10, 2017 OK, so I changed the theme of my github pages site by changing the `theme:` setting in the *_config.yaml* file. The theme did not change right away. I thought maybe I'd have to wait a while, but after...">
+  <meta name="twitter:description" content="
+  {% for post in site.categories[page.category] %}
+  
+    
+      {{ post.title }}
+
+      {% if post.subtitle %}
+      
+        {{ post.subtitle }}
+      
+      {% endif %}
+    
+
+    
+    Posted on {{ post.date | date: &quot;%B %-d, %Y&quot; }}
+    
+
+    
+      {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
+      [Read&amp;nbsp;More]
+    
+
+  
+  {% endfor %}
+
+">
   
 
   
@@ -144,250 +194,83 @@
 </nav>
 
 
-    <div class="intro-header"></div>
+    <!-- TODO this file has become a mess, refactor it -->
 
-<div role="main" class="container">
-  <h2 class="post_title">Posts Tagged &ldquo;github&rdquo;:</h2>
 
-<div class="posts-list">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-heading">
+          <h1>fun</h1>
+		  
+		  
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="posts-list">
   
   <article class="post-preview">
-    <a href="/jekyll/github-jekyll-theme-changes.html">
-      <h3 class="post-title">Github Jekyll Theme Changes</h3>
+    <a href="/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html">
+      <h3 class="post-title">Saving An Interactive Fiction Transcript In Gargoyle</h3>
 
       
     </a>
 
     <p class="post-meta">
-    Posted on February 10, 2017
+    Posted on April 22, 2021
     </p>
 
     <div class="post-entry">
-      OK, so I changed the theme of my github pages site by changing the `theme:` setting in the *_config.yaml* file. The theme did not change right away. I thought maybe I'd have to wait a while, but after 12 hours or so, still no change to the theme. I know...
-      <a href="/jekyll/github-jekyll-theme-changes.html" class="post-read-more">[Read&nbsp;More]</a>
+      Tiny Intro Blurb…
+
+
+      <a href="/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html" class="post-read-more">[Read&nbsp;More]</a>
     </div>
 
-    <div class="blog-tags">
-      Tags: 
-      
-        <a href="/tag/github">github</a>
-      
-    </div>
   </article>
   
-  
-  
-  
-  
-  
+  <article class="post-preview">
+    <a href="/fun/saving-a-game-transcript-in-gargoyle.html">
+      <h3 class="post-title">Saving A Game Transcript In Gargoyle</h3>
+
+      
+    </a>
+
+    <p class="post-meta">
+    Posted on April 22, 2021
+    </p>
+
+    <div class="post-entry">
+      Yeah, so this is sort of embarrassing. I play interactive fiction using Gargoyle every now and then, and I’ve been trying to figure out a way around Gargoyle’s obvious lack of any transcript-export feature. Turns out, you just have to type script into the parser. From then on, all the...
+      <a href="/fun/saving-a-game-transcript-in-gargoyle.html" class="post-read-more">[Read&nbsp;More]</a>
+    </div>
+
+  </article>
   
 </div>
 
+	    
+    </div>
+  </div>
 </div>
+
 
     <footer>
   <div class="container beautiful-jekyll-footer">
