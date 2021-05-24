@@ -7,19 +7,6 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Saving An Interactive Fiction Transcript In Gargoyle</title>
-        <description>
-          
-          Tiny Intro Blurb…
-
-
-        </description>
-        <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/fun/saving-an-interactive-fiction-transcript-in-gargoyle.html</guid>
-      </item>
-    
-      <item>
         <title>Saving A Game Transcript In Gargoyle</title>
         <description>
           
@@ -226,6 +213,17 @@
         <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</guid>
+      </item>
+    
+      <item>
+        <title>Quickly View I3Wm Hotkeys</title>
+        <description>
+          
+          Use the code below to quickly view all the active hotkeys in your i3wm config file: i3keys #!/bin/bash grep &quot;^[ ]*bindsym&quot; ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less Background i3wm has a lot of functions that come assigned to hotkeys by default. I’m constantly forgetting...
+        </description>
+        <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</guid>
       </item>
     
   </channel>
