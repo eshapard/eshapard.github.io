@@ -222,18 +222,18 @@
 
 <p>This means that your regular reminders are going to be ignored unless you run <em>remind</em> in a non-daemon mode as well.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">-q</code> option, causes <em>remind</em> do do just about the opposite of <em>daemon mode</em>; it causes it to <strong>not</strong> hang around in the background for timed reminders. Or, in the words of the man page, “not queue timed reminders for later execution”. Essentially, <code class="language-plaintext highlighter-rouge">-q</code> causes <em>remind</em> to run, and then <strong>quit</strong> without sticking around in the background waiting to post timed reminders on the screen.</p>
+<p>The <code class="language-plaintext highlighter-rouge">-q</code> option, causes <em>remind</em> do do just about the opposite of <em>daemon mode</em>; it causes it to <strong>not</strong> hang around waiting for timed reminders. Or, in the words of the man page, “not queue timed reminders for later execution”. Essentially, <code class="language-plaintext highlighter-rouge">-q</code> causes <em>remind</em> to run, and then <strong>quit</strong> without sticking around in the background (as usual), or foreground (as in <em>daemon mode</em>), waiting to post timed reminders on the screen.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">-a</code> option does something similar. It causes <em>remind</em> to “not immediately trigger timed reminders that trigger on the current day. Not knowing that this is <em>remind’s</em> default behavior could lead to problems.</p>
+<p>The <code class="language-plaintext highlighter-rouge">-a</code> option does something similar. It causes <em>remind</em> to “not immediately trigger timed reminders that trigger on the current day. Not knowing that this is <em>remind’s</em> default behavior could lead to problems. I’m not sure why anyone would expect that the default behaviour is to immediately trigger any events set to trigger later today, that is indeed, the default. Weird, huh?</p>
 
-<p>By combining <code class="language-plaintext highlighter-rouge">-a</code> and <code class="language-plaintext highlighter-rouge">-q</code>, we eliminate all timed reminders, only process ‘normal’ reminders for the current day, and then quit; perfect for those <code class="language-plaintext highlighter-rouge">RUN ONCE</code> commands. Here’s an example crontab line that will run rem at 4 AM, sending standard output to /dev/null:</p>
+<p>By combining <code class="language-plaintext highlighter-rouge">-a</code> and <code class="language-plaintext highlighter-rouge">-q</code>, we eliminate all timed reminders, only process ‘normal’ (untimed) reminders for the current day, and then quit; perfect for those <code class="language-plaintext highlighter-rouge">RUN ONCE</code> commands. Here’s an example crontab line that will run rem at 4 AM, sending standard output to /dev/null:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q &gt;/dev/null
 </code></pre></div></div>
 
 <p>As far as I know, there’s no option to just run the <code class="language-plaintext highlighter-rouge">RUN ONCE</code> commands, but piping the text output to /dev/null accomplishes about the same thing.</p>
 
-<p>However, if this cron job is the only way the RUN commands are getting processed, and you’re running this only once a day, you might throw in the <code class="language-plaintext highlighter-rouge">-o</code> option to ignore the ONCE directive just for good measure.</p>
+<p>However, if this cron job is the <strong>only way</strong> the RUN commands are getting processed, <strong>and you’re running this only once a day</strong>, you might throw in the <code class="language-plaintext highlighter-rouge">-o</code> option to ignore the ONCE directive just for good measure. The ONCE commands shouldn’t be getting processed any other way, but just in case something goes wrong and remind thinks it’s already processed those ONCE commands, you’ll be all set. If I remember correctly, remind checks the access date on the main remind file to try to figure out if its run the ONCE commands already. I seem to remember this not being a fool-proof system.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 4 * * * rem -a -q -o &gt;/dev/null
 </code></pre></div></div>
