@@ -51,17 +51,6 @@
       </item>
     
       <item>
-        <title>The Esperanto &quot;Community&quot; Sucks</title>
-        <description>
-          
-          I studied Esperanto for a couple years and regret it. I don’t consider it a total loss, but I would have gotten more out of studying Spanish, Italian, or French. There are many reasons I regret wasting my time studying Esperanto. Here’s one no one talks about much: Esperanto attracts...
-        </description>
-        <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/language/the-esperanto-community-sucks.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/language/the-esperanto-community-sucks.html</guid>
-      </item>
-    
-      <item>
         <title>Score Nested Cloze Deletions When You Remember The Parent</title>
         <description>
           
@@ -224,6 +213,17 @@
         <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</guid>
+      </item>
+    
+      <item>
+        <title>Two Short Python Scripts For Tomboy Notes</title>
+        <description>
+          
+          OK, here are two more scripts I wrote to do useful things with python and Tomboy notes. tbclip This first one copies whatever text is currently selected and creates a Tomboy note with it. NB: You must have xclip installed. #!/usr/bin/python import sys, dbus, subprocess #Get the D-Bus session bus...
+        </description>
+        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</guid>
       </item>
     
   </channel>
