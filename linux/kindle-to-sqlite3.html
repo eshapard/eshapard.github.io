@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Kindle to Sqlite3</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Kindle to Sqlite3" />
+  
+
+   
+  <meta property="og:description" content="I use a little python script to grab clippings out of my (early model) kindle’s My Clippings.txt file and import them into an sqlite3 database. The clips and notes are in a consistant format, so it’s possible to parse the file with some regular expressions, and a little logic. I...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/linux/kindle-to-sqlite3.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/kindle-to-sqlite3.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Kindle to Sqlite3" />
+  
+
+  
+  <meta name="twitter:description" content="I use a little python script to grab clippings out of my (early model) kindle’s My Clippings.txt file and import them into an sqlite3 database. The clips and notes are in a consistant format, so it’s possible to parse the file with some regular expressions, and a little logic. I...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Kindle to Sqlite3</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on June 21, 2021</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I use a little python script to grab clippings out of my (early model) kindle’s <code class="language-plaintext highlighter-rouge">My Clippings.txt</code> file and import them into an sqlite3 database. The clips and notes are in a consistant format, so it’s possible to parse the file with some regular expressions, and a little logic. I found a script that did most of the work already, and converted it to send the clips to a database.</p>
+
+<p>The sqlite3 database has a table for holding these clips. This is the basic structure of the table:</p>
+
+<pre><code class="language-sqlite3">CREATE TABLE IF NOT EXISTS "clips" (
+    `clipID`     INTEGER PRIMARY KEY AUTOINCREMENT,
+    `bid`        INTEGER,
+    `type`       TEXT,
+    `location`   INTEGER NOT NULL,
+    `text`       TEXT,
+    `datestring` TEXT
+);
+</code></pre>
+
+<p>For a little added efficiency, the import script will check for the latest date in the table and ignore any clips in <code class="language-plaintext highlighter-rouge">My Clippings.txt</code> from before that date.</p>
+
+<p>This works well until my kindle runs out of charge completely and resets the date back to 1970. Then, because the kindle doesn’t really show the date anywhere, I don’t notice the problem for a while. (You’ll see there’s a little hack in the code that I use to grab those clips.)</p>
+
+<h2 id="grabclippingspy">grabClippings.py</h2>
+<ul>
+  <li>requires zc.lockfile</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import re
+from datetime import datetime
+import sqlite3
+from shutil import copyfile
+import zc.lockfile
+
+# EDIT THESE TWO FILEPATHS
+DATABASE = u"/home/xxxx/Sync/SRS/kindleClips.sqlite3"
+MYCLIPPINGS = u"/media/xxxx/Kindle/documents/My Clippings.txt"
+
+BOUNDARY = u"==========\r\n"
+TEMPFILE = u"/tmp/kindleClippings.txt"
+book_ids = {}
+
+def get_sections(filename):
+    with open(filename, 'rb') as f:
+        content = f.read().decode('utf-8')
+    content = content.replace(u'\ufeff', u'')
+    return content.split(BOUNDARY)
+
+
+def get_clip(section):
+    clip = {}
+
+    lines = [l for l in section.split(u'\r\n') if l]
+    if len(lines) != 3:
+        return
+
+    clip['book'] = lines[0]
+    match = re.search(r'(\d+)-\d+', lines[1]) #Matches only highlights
+    if not match:
+        match = re.search(r'(\d+)', lines[1])
+        if not match:
+            return
+    position = match.group(1)
+
+    #Grab Date String
+    dmatch = re.search(r'Added on (.*)$', lines[1])
+    if dmatch:
+        date = datetime.strptime(dmatch.group(1), '%A, %B %d, %Y, %I:%M %p')
+    else:
+        date = None
+
+    if "- Highlight Loc." in lines[1]:
+        clipType = "highlight"
+    elif "- Note Loc." in lines[1]:
+        clipType = "note"
+    else:
+        clipType = "bookmark"
+
+    clip['position'] = int(position)
+    clip['content'] = lines[2]
+    clip['type'] = clipType
+    clip['date'] = date
+    clip['bid'] = get_book_id(clip['book'])
+
+    return clip
+
+
+def sql_file(clip):
+    """
+    Export clip to sql file if unique
+    """
+    #print("adding clip to database: %s" % clip)
+    #Add to sql file
+    if clip['content']:
+        # check if exists
+        c.execute("select count(clipID) from clips where bid = ? and type = ? and location = ? and text = ? and datestring = ?", (clip['bid'],clip['type'],clip['position'],clip['content'], str(clip['date'])))
+        ret = c.fetchone()
+        if not ret[0]:
+            # insert
+            c.execute("insert into clips (bid, type, location, text, datestring) values (?,?,?,?,?)", (clip['bid'], clip['type'], clip['position'], clip['content'], str(clip['date'])))
+    else:
+        # check if it exists
+        c.execute("select count(clipID) from clips where bid = ? and type = ? and location = ? and  datestring = ?)", (clip['bid'], clip['type'], clip['position'], str(clip['date'])))
+        ret = c.fetchone()
+        if not ret[0]:
+            # insert
+            c.execute("insert into clips (bid, type, location, datestring) values (?,?,?,?)", (clip['bid'], clip['type'], clip['position'], str(clip['date'])))
+
+def find_most_recent():
+    c.execute("select datestring from clips order by datetime(datestring) DESC limit 1")
+    result = c.fetchone()
+    if result:
+        lastdate = datetime.strptime(result[0], '%Y-%m-%d %H:%M:%S')
+    else:
+        lastdate = datetime.strptime('1900-01-01 00:00:00', '%Y-%m-%d %H:%M:%S')
+    return lastdate
+
+def add_book(book):
+    #find title, subtitle, and author
+    title = None
+    subtitle = None
+    author = None
+    if '(' in book:
+        author = book.split('(')[1].split(')')[0].strip()
+        title = book.split('(')[0].strip()
+    if title and '-' in title:
+        subtitle = title.split('-')[1].strip()
+        title = title.split('-')[0].strip()
+    if not subtitle and title and ':' in title:
+        subtitle = title.split(':')[1].strip()
+        title = title.split(':')[0].strip()
+    #insert
+    c.execute("insert into books (book, Title, SubTitle, Author) values (?, ?, ?, ?)", (book, title, subtitle, author))
+    conn.commit()
+
+def get_book_id(book):
+    global book_ids
+    bid = None
+    if book in book_ids and book_ids[book]:
+        return book_ids[book]
+    while not bid:
+        c.execute("select id from books where book = ?", (book,))
+        result = c.fetchone()
+        if result:
+            bid = result[0]
+            book_ids[book] = bid
+            return bid
+        else:
+            print('We need to add the book')
+            add_book(book)
+
+def main():
+    global book_ids
+    # extract clips
+    mostRecent = find_most_recent()
+    #mostRecent = datetime.strptime('1971-01-01 00:00:00', '%Y-%m-%d %H:%M:%S') #hack
+    # Hack above: when date gets screwed up on kindle, year reverts to 1970, so 
+    #             highlights should all be before 1971. Change the &gt; sign in date
+    #             comparison 'if' statement below to &lt; to use.
+    print("Most Recent in Database: %s" % mostRecent)
+    sections = get_sections(TEMPFILE)
+    for section in sections:
+        clip = get_clip(section)
+        if clip:
+            #print(clip['date'])
+            if clip['date'] and clip['date'] &gt; mostRecent:
+                sql_file(clip)
+
+if __name__ == '__main__':
+    try:
+        lock = zc.lockfile.LockFile('/tmp/grabClippings.lock')
+    except zc.lockfile.LockError:
+        print("Can't create lock file")
+        exit()
+    #copy clippings file
+    if os.path.isfile(MYCLIPPINGS):
+        copyfile(MYCLIPPINGS, TEMPFILE)
+    if not os.path.isfile(TEMPFILE):
+        print("Temp file does not exist")
+        exit()
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    main()
+
+    conn.commit()
+    conn.close()
+    lock.close()
+</code></pre></div></div>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/fun/saving-a-game-transcript-in-gargoyle.html" data-toggle="tooltip" data-placement="top" title="Saving A Game Transcript In Gargoyle">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

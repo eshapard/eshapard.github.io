@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Kindle to Sqlite3</title>
+        <description>
+          
+          I use a little python script to grab clippings out of my (early model) kindle’s My Clippings.txt file and import them into an sqlite3 database. The clips and notes are in a consistant format, so it’s possible to parse the file with some regular expressions, and a little logic. I...
+        </description>
+        <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/kindle-to-sqlite3.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/kindle-to-sqlite3.html</guid>
+      </item>
+    
+      <item>
         <title>Saving A Game Transcript In Gargoyle</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</guid>
-      </item>
-    
-      <item>
-        <title>Two Short Python Scripts For Tomboy Notes</title>
-        <description>
-          
-          OK, here are two more scripts I wrote to do useful things with python and Tomboy notes. tbclip This first one copies whatever text is currently selected and creates a Tomboy note with it. NB: You must have xclip installed. #!/usr/bin/python import sys, dbus, subprocess #Get the D-Bus session bus...
-        </description>
-        <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/two-short-python-scripts-for-tomboy-notes.html</guid>
       </item>
     
   </channel>
