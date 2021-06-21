@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Useful Kindle Stats</title>
+
+  <meta name="author" content="eshapard" />
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="My Crappy Code Blog - Watch me code stuff... poorly" href="/feed.xml" />
+
+  
+
+  
+    
+      
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    
+      <link rel="stylesheet" href="/css/bootstrap-social.css" />
+    
+      <link rel="stylesheet" href="/css/main.css" />
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+    
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+    
+  
+
+  
+
+  
+
+  
+
+    <!-- Facebook OpenGraph tags -->
+  
+
+  
+  <meta property="og:title" content="Useful Kindle Stats" />
+  
+
+   
+  <meta property="og:description" content="I use a script to export highlights and notes from my kindle’s My Clippings.txt file to an sqlite3 database. Kindle to Sqlite3 Having these clippings in a database allows me to get some interesting and potentially useful statistics. Highlight (Information) Density I created this measurement to show how densely packed...">
+  
+
+
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:url" content="http://eshapard.github.io/linux/useful-kindle-stats.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/useful-kindle-stats.html" />
+  
+
+  
+  <meta property="og:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+  
+
+  <!-- Twitter summary cards -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:creator" content="@" />
+
+  
+  <meta name="twitter:title" content="Useful Kindle Stats" />
+  
+
+  
+  <meta name="twitter:description" content="I use a script to export highlights and notes from my kindle’s My Clippings.txt file to an sqlite3 database. Kindle to Sqlite3 Having these clippings in a database allows me to get some interesting and potentially useful statistics. Highlight (Information) Density I created this measurement to show how densely packed...">
+  
+
+  
+  <meta name="twitter:image" content="http://eshapard.github.io/img/ejs_logo.png" />
+  
+
+</head>
+
+
+  <body>
+
+    
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="http://eshapard.github.io">My Crappy Code Blog</a>
+      
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li>
+            
+            
+
+
+
+
+
+<a href="/categories/">Categories</a>
+
+          </li>
+        
+        
+      </ul>
+    </div>
+
+	
+	<div class="avatar-container">
+	  <div class="avatar-img-border">
+	    <a href="http://eshapard.github.io ">
+	      <img class="avatar-img" src="/img/ejs_logo.png" />
+		</a>
+	  </div>
+	</div>
+	
+
+  </div>
+</nav>
+
+
+    <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>Useful Kindle Stats</h1>
+		  
+		  
+		  
+		  <span class="post-meta">Posted on June 21, 2021</span>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+        <p>I use a script to export highlights and notes from my kindle’s <code class="language-plaintext highlighter-rouge">My Clippings.txt</code> file to an sqlite3 database.</p>
+
+<p><a href="2021-06-21-kindle-to-sqlite3.html">Kindle to Sqlite3</a></p>
+
+<p>Having these clippings in a database allows me to get some interesting and potentially useful statistics.</p>
+
+<h2 id="highlight-information-density">Highlight (Information) Density</h2>
+
+<p>I created this measurement to show how densely packed the highlights I’ve made are, and therefore how densely packed the information (good enough to highlight) in the book is. If there are a lot of highlights in a few pages, that’s dense. Books with few highlights but many pages are fluffy.</p>
+
+<ul>
+  <li>Of course, kindle books don’t have page numbers, so I go by <em>locations</em> instead.</li>
+</ul>
+
+<p>I find it useful sometimes to rank books from densest to fluffiest. When given the choice, I’d rather spend time reading or reviewing a dense book, rather than one full of fluff.</p>
+
+<p>As part of the database, I have a table for information about the books themselves. Here’s a minimal version of that table:</p>
+
+<pre><code class="language-sqlite3">CREATE TABLE IF NOT EXISTS "books" (
+    `id`	INTEGER,
+    `book`	TEXT,
+    `Title`	TEXT,
+    `SubTitle`	TEXT,
+    `Author`	TEXT,
+    `density`	REAL,
+    `ptscore`	REAL,
+    PRIMARY KEY(`id`)
+);
+</code></pre>
+
+<p>To calculate the highlight density of a book I use the following simple python function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calc_hl_density</span><span class="p">():</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select id, density from books"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bid</span><span class="p">,</span> <span class="n">density</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchall</span><span class="p">():</span>
+        <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select min(location), max(location), count(clipID) from clips where bid = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">bid</span><span class="p">,))</span>
+        <span class="k">for</span> <span class="n">minl</span><span class="p">,</span> <span class="n">maxl</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchall</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">density</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">maxl</span><span class="p">)</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">minl</span><span class="p">))</span>
+                <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update books set density = ? where id = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">density</span><span class="p">,</span> <span class="n">bid</span><span class="p">))</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="page-turners">Page-Turners</h2>
+
+<p>Since the kindle time-stamps all highlights, it’s also possible to measure the number of locations read over time. A larger number should mean that I found the book hard to put down, so I kept reading it. This is a good thing for a book, but it’s not necessarily going to be caught by the highlight density. It’s possible for a book to be both dense and boring.</p>
+
+<p>The worst is probably a combination of being boring and fluffy. Sometimes I find myself slogging through a boring book because I think there may be some gems hidden in he depths somewhere. This probably isn’t the best use of my time. I figure it represents a high opportunity cost.</p>
+
+<p>NB: Sometimes my kindle loses track of time and resets back to thinking it’s 1970, so I have to filter out all those dates. Filtering out any date before 1980 is overkill, but will work nicely. I’d have to not notice the problem for ten years for it to fail!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span> <span class="nf">calc_pageturn_score</span><span class="p">():</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select id, ptscore from books"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">bid</span><span class="p">,</span> <span class="n">ptScore</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchall</span><span class="p">():</span>
+        <span class="c1">#find first highlight/note
+</span>        <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select min(datestring), max(datestring) from clips where bid = ? and datestring &gt; '1980-01-01'"</span><span class="p">,</span> <span class="p">(</span><span class="n">bid</span><span class="p">,))</span>
+        <span class="n">firstDate</span><span class="p">,</span> <span class="n">lastDate</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="c1"># bail out if only one day of reading
+</span>        <span class="k">if</span> <span class="n">firstDate</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">==</span> <span class="n">lastDate</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="c1"># find start location and end location
+</span>        <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select location from clips where bid = ? and datestring = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">firstDate</span><span class="p">))</span>
+        <span class="n">firstLoc</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select location from clips where bid = ? and datestring = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">bid</span><span class="p">,</span> <span class="n">lastDate</span><span class="p">))</span>
+        <span class="n">lastLoc</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># calculate locations read
+</span>        <span class="n">locsRead</span> <span class="o">=</span> <span class="n">lastLoc</span> <span class="o">-</span> <span class="n">firstLoc</span>
+        <span class="c1"># calculate time between first and last clips (format is YYYY-MM-DD HH:MM:SS)
+</span>        <span class="n">fDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">firstDate</span><span class="p">,</span> <span class="s">"%Y-%m-%d %H:%M:%S"</span><span class="p">)</span>
+        <span class="n">lDate</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">lastDate</span><span class="p">,</span> <span class="s">"%Y-%m-%d %H:%M:%S"</span><span class="p">)</span>
+        <span class="n">dDiff</span> <span class="o">=</span> <span class="n">lDate</span> <span class="o">-</span> <span class="n">fDate</span>
+        <span class="n">dDays</span> <span class="o">=</span> <span class="n">dDiff</span><span class="p">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mf">86400.0</span>
+        <span class="c1"># calc page-turn score (locations read per day)
+</span>        <span class="n">ptScore</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">locsRead</span><span class="p">)</span> <span class="o">/</span> <span class="n">dDays</span>
+        <span class="c1"># update database
+</span>        <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"update books set ptscore = ? where id = ?"</span><span class="p">,</span> <span class="p">(</span><span class="n">ptScore</span><span class="p">,</span> <span class="n">bid</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Now you have some kind of a score to judge how much of a page-turner a book is. Of course, there are plenty of other factors that contribute to this, so this isn’t a perfect measurement by any means. For example, if you’re on vacation, then any book you’re currently reading might get a boost in its page-turn score just because you have more time for reading. Also, fiction books where you may not make many highlights will be horribly skewed. But it’s a start.</p>
+
+      </article>
+
+      
+
+      
+
+      <ul class="pager blog-pager">
+        
+        <li class="previous">
+          <a href="/linux/kindle-to-sqlite3.html" data-toggle="tooltip" data-placement="top" title="Kindle to Sqlite3">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+
+      
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="https://github.com/eshapard" title="GitHub">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+		  
+	  
+          <li>
+            <a href="https://reddit.com/u/BonoboBanana" title="Reddit">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+      
+		  
+		  
+		  
+		  
+      
+      
+      
+      
+      
+		  
+        </ul>
+        <p class="copyright text-muted">
+		  eshapard
+		  &nbsp;&bull;&nbsp;
+		  2021
+
+		  
+		  &nbsp;&bull;&nbsp;
+		  <a href="http://eshapard.github.io">eshapard.github.io</a>
+		  
+	    </p>
+	        <!-- Please don't remove this, keep my open source work credited :) -->
+		<p class="theme-by text-muted">
+		  Theme by
+		  <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+		</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+    
+
+
+
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/js/main.js"></script>
+    
+  
+
+
+
+
+  
+  </body>
+</html>

@@ -196,6 +196,21 @@
 
 <p>This works well until my kindle runs out of charge completely and resets the date back to 1970. Then, because the kindle doesn’t really show the date anywhere, I don’t notice the problem for a while. (You’ll see there’s a little hack in the code that I use to grab those clips.)</p>
 
+<p>There’s also a table for keeping track of the books themselves that’s required:</p>
+
+<pre><code class="language-sqlite3">CREATE TABLE IF NOT EXISTS "books" (                                                          
+    `id`        INTEGER,
+    `book`      TEXT,
+    `Title`     TEXT,                                                                        
+    `SubTitle`  TEXT,
+    `Author`    TEXT,
+    PRIMARY KEY(`id`)
+);
+</code></pre>
+<ul>
+  <li>I think those are all the required fields. My version has some other fields for extra information.</li>
+</ul>
+
 <h2 id="grabclippingspy">grabClippings.py</h2>
 <ul>
   <li>requires zc.lockfile</li>
@@ -378,6 +393,10 @@ if __name__ == '__main__':
           <a href="/fun/saving-a-game-transcript-in-gargoyle.html" data-toggle="tooltip" data-placement="top" title="Saving A Game Transcript In Gargoyle">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="next">
+          <a href="/linux/useful-kindle-stats.html" data-toggle="tooltip" data-placement="top" title="Useful Kindle Stats">Next Post &rarr;</a>
+        </li>
         
       </ul>
 

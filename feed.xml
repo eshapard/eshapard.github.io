@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Useful Kindle Stats</title>
+        <description>
+          
+          I use a script to export highlights and notes from my kindle’s My Clippings.txt file to an sqlite3 database. Kindle to Sqlite3 Having these clippings in a database allows me to get some interesting and potentially useful statistics. Highlight (Information) Density I created this measurement to show how densely packed...
+        </description>
+        <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/useful-kindle-stats.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/useful-kindle-stats.html</guid>
+      </item>
+    
+      <item>
         <title>Kindle to Sqlite3</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</guid>
-      </item>
-    
-      <item>
-        <title>Quickly View I3Wm Hotkeys</title>
-        <description>
-          
-          Use the code below to quickly view all the active hotkeys in your i3wm config file: i3keys #!/bin/bash grep &quot;^[ ]*bindsym&quot; ~/.i3/config | sed -e 's/^[ ]*bindsym //' -e 's/^[ ]*$mod/win/' | less Background i3wm has a lot of functions that come assigned to hotkeys by default. I’m constantly forgetting...
-        </description>
-        <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/linux/quickly-view-i3wm-hotkeys.html</guid>
       </item>
     
   </channel>
