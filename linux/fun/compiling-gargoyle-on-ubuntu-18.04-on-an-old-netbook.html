@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Anki And The Hidden Dangers Of Filtered Decks</title>
+  <title>Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook</title>
 
   <meta name="author" content="eshapard" />
 
@@ -52,19 +52,19 @@
   
 
   
-  <meta property="og:title" content="Anki And The Hidden Dangers Of Filtered Decks" />
+  <meta property="og:title" content="Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook" />
   
 
    
-  <meta property="og:description" content="In a Nutshell If you move a card in the learning queue into or out of a filtered deck (including by rebuilding or deleting the deck), then Anki will set all learning cards to new status and re-learning cards back to review status. While not quite a fix, you can...">
+  <meta property="og:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...">
   
 
 
   <meta property="og:type" content="website" />
 
   
-  <meta property="og:url" content="http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html" />
-  <link rel="canonical" href="http://eshapard.github.io/anki/anki-and-the-hidden-dangers-of-filtered-decks.html" />
+  <meta property="og:url" content="http://eshapard.github.io/linux/fun/compiling-gargoyle-on-ubuntu-18.04-on-an-old-netbook.html" />
+  <link rel="canonical" href="http://eshapard.github.io/linux/fun/compiling-gargoyle-on-ubuntu-18.04-on-an-old-netbook.html" />
   
 
   
@@ -78,11 +78,11 @@
   <meta name="twitter:creator" content="@" />
 
   
-  <meta name="twitter:title" content="Anki And The Hidden Dangers Of Filtered Decks" />
+  <meta name="twitter:title" content="Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook" />
   
 
   
-  <meta name="twitter:description" content="In a Nutshell If you move a card in the learning queue into or out of a filtered deck (including by rebuilding or deleting the deck), then Anki will set all learning cards to new status and re-learning cards back to review status. While not quite a fix, you can...">
+  <meta name="twitter:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...">
   
 
   
@@ -157,11 +157,11 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="post-heading">
-          <h1>Anki And The Hidden Dangers Of Filtered Decks</h1>
+          <h1>Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook</h1>
 		  
 		  
 		  
-		  <span class="post-meta">Posted on October 26, 2017</span>
+		  <span class="post-meta">Posted on January 30, 2022</span>
 		  
         </div>
       </div>
@@ -178,43 +178,81 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
       <article role="main" class="blog-post">
-        <h2 id="in-a-nutshell">In a Nutshell</h2>
+        <p>I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile.</p>
 
-<p>If you move a card in the <em>learning</em> queue into or out of a filtered deck (including by rebuilding or deleting the deck), then Anki will set all learning cards to <em>new</em> status and re-learning cards back to <em>review</em> status.</p>
+<ul id="markdown-toc">
+  <li><a href="#prereqs" id="markdown-toc-prereqs">PreReqs</a>    <ul>
+      <li><a href="#zork" id="markdown-toc-zork">Zork</a></li>
+    </ul>
+  </li>
+</ul>
 
-<p>While not quite a fix, you can avoid trouble by using a small addon I wrote called <a href="https://gist.github.com/eshapard/b15e0df7d115b20cb58f57f44ba17c08">filterSafety</a>. It will prevent learning cards from being added to or removed from a filtered deck.</p>
+<h1 id="prereqs">PreReqs</h1>
 
-<h2 id="background">Background</h2>
+<p>This is what I think I had to install (from <code class="language-plaintext highlighter-rouge">sudo apt install</code>) to get the current release (Gargoyle 2019.1.1) to compile. The source code comes in a tar.gz and the instructions have some hints for another distribution, but not Ubuntu.</p>
 
-<p>This feature of filtered decks is right there in the manual, but like the Spanish Inquisition, no one expects it. Without warning, Anki goes about converting learning cards when you move them in and out of a filtered deck. When users figure out what’s happening, it’s a rude surprise.</p>
+<p>I’m not positive that these are the packages I installed, or that you really need all of these, but here it goes:</p>
 
-<blockquote>
-  <p>In the current implementation, if you empty or delete a filtered deck while cards are still in learning, they will be turned back into new cards. In the case of failed reviews in relearning, any remaining relearning steps will be skipped.</p>
-</blockquote>
+<ul>
+  <li>jam</li>
+  <li>libsdl-sound1.2</li>
+  <li>libsdl-sound1.2-dev</li>
+  <li>libsdl-mixer-2.0-0</li>
+  <li>libsdl-mixer-dev</li>
+  <li>libfreetype-dev</li>
+  <li>libjpeg-dev</li>
+</ul>
 
-<h3 id="root-of-the-problem">Root of the problem</h3>
+<p>Note: I have yet to encounter an IF game with sound, so editing the Jamrules file and changing useSDL to ‘no’ might save you some aggrivation.</p>
 
-<p>The problem is that a filtered deck can have its own learning steps. This means that there can be a mismatch between which step a learning card is on when in its original deck, and the steps in a filtered deck. You might have 3 short steps of 10, 20, and 30 minutes in the original deck, but in the filtered deck, you might have steps of 100, 200, and 300 minutes. Should a learning card on step 3 remain on step 3 when you move it to a filtered deck? That would give it an interval 10 times larger!</p>
+<p>Tip: There’s a list of prereqs for Fedora in the INSTALL file, but the names don’t match Ubuntu’s. To find the Ubuntu equivalent for most of these, it helps to do <code class="language-plaintext highlighter-rouge">sudo apt-cache search XXXX</code> for the name and pipe that into grep, searching for ‘dev’ (most of the prereqs listed are -devel packages).</p>
 
-<p>So clearly, there’s a bit of a problem here. The solution was to just convert learning cards back to new, and re-learning cards back to review.</p>
+<p>Example: The INSTALL file lists ‘freetype-devel’ as a prerequisite, so doing:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-cache search freetype | grep dev
+``
+returns 'libfreetype-dev' as one of the options.
 
-<p>What could have been done, is to at least convert learning cards back to their previous learning state. That would require that you keep track of their previous state, and Anki wasn’t programmed to do that.</p>
+## Compiling
 
-<p>I’d imagine that most people would prefer that their learning cards get the new learning steps as they’re moved around, rather than turning into new cards again.</p>
+There's an issue a ran into compiling on another machine. Compiling seemed to go fine, but then running the gargoyle binary resulted in an error message about not being able to find a labgarglk.so file that was in the same directory. I guess I maybe found a solution that you might try. That's what the `-s "LD_LIBRARY_PATH=."` is for. It tries to get the binary to look in the current directory. This shouldn't be necessary once you move the libgarglk.so file to the right place, so it's optional.
 
-<h3 id="possible-solution">Possible solution</h3>
+* `jam -s "LD_LIBRARY_PATH=."`
+* `jam install`
+* ./build/dist/gargoyle
 
-<p>It would be possible to hijack the code that moves cards into and out of temporary decks with an addon. The new code could check the revlog table to figure out which learning step the card is on, and edit the <em>Left</em> field for the card accordingly (it holds the step number and the total number of learning steps). This would allow learning cards to remain in the learning queue.</p>
+The first command builds the binaries (see note above about the LD_LIBRARY_PATH). The second one copies them to ./build/dist/. And the last one, of course, tries to execute the new binary.
 
-<p>I found this out from someone else who had the time to look through Anki’s not-so-well commented code and figure this out. I hadn’t been annoyed enough to put in the time to do that. It also probably would have taken me longer since I’m not that great at coding.</p>
+### It'll probably look like it failed
 
-<h3 id="a-simple-work-around">A simple work-around</h3>
+If gargoyle fails to run, complaining about not finding libgarglk.so (which is in the same build/dist directory), then you can try setting the LD_LIBRARY_PATH to '.' and export, then try again, or copy garglk.ini to `/usr/local/lib` and see if that fixes it.
 
-<p>Instead of a fix for the problem, I created a much simpler work-around. We basically avoid the problem entirely by preventing cards in the learning queue from being either moved into or out of a filtered deck. This lets us rebuild filtered decks. Learning cards stay in and new cards just get added to them.</p>
+This seems to be a quirk that isn't much advertised, but I guess I found something about it in the Issues section of their github page.
 
-<p>It’s a simple solution, but it’s good enough for me.</p>
+## Install
 
-<p><a href="https://gist.github.com/eshapard/b15e0df7d115b20cb58f57f44ba17c08">filterSafety</a></p>
+Make a directory on `/usr/local` to hold the contents of `build/dist`. Then copy them over.
+
+``
+sudo mkdir -p /usr/local/libexec/gargoyle
+sudo cp build/dist/* /usr/local/libexec/gargoyle/
+</code></pre></div></div>
+
+<p>Now symlink the gargoyle executable and the libgarglk.so library to where the OS will find them.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ln -s /usr/local/libexec/gargoyle/gargoyle /usr/local/bin/gargoyle
+sudo ln -s /usr/local/libexec/gargoyle/libgarglk.so /usr/lib/libgarglk.so
+</code></pre></div></div>
+
+<p>And one last step: Put the default garglk.ini in /etc/.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo cp garglk/garglk.ini /etc/garglk.ini
+</code></pre></div></div>
+
+<h2 id="zork">Zork</h2>
+
+<p>Zork is one of those classics of Interactive Fiction that… well I’m not sure it’s a classic. It’s old and it gets mentioned a lot, so I figured it was either pretty popular when it came out, or very influential, or both. I really didn’t know much about it, but I wanted to try it out.</p>
+
+<p>I have an old Samsung NC10 that I got for $25 off of Craigslist and it’s still hanging in there. It’s pretty ideal for playing IF because it’s a good compact size and these games don’t require a lot of power or a big screen. The bad news is that it’s got a 32bit processor, so if the old Ubuntu repositories don’t have something, I often have to compile from source.</p>
 
       </article>
 
@@ -223,7 +261,9 @@
           Tags:
           
           
-            <a href="/tag/anki">anki</a>
+            <a href="/tag/games">games</a>
+          
+            <a href="/tag/interactive-fiction">interactive-fiction</a>
           
           
         </div>
@@ -234,13 +274,9 @@
       <ul class="pager blog-pager">
         
         <li class="previous">
-          <a href="/anki/the-power-of-making-new-cards-on-the-fly-in-anki.html" data-toggle="tooltip" data-placement="top" title="Anki - The Power of Making New Cards on the Fly">&larr; Previous Post</a>
+          <a href="/linux/useful-kindle-stats.html" data-toggle="tooltip" data-placement="top" title="Useful Kindle Stats">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="next">
-          <a href="/anki/my-current-anki-deck-settings.html" data-toggle="tooltip" data-placement="top" title="My Current Anki Deck Settings">Next Post &rarr;</a>
-        </li>
         
       </ul>
 

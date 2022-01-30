@@ -7,6 +7,17 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook</title>
+        <description>
+          
+          I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...
+        </description>
+        <pubDate>Sun, 30 Jan 2022 00:00:00 +0000</pubDate>
+        <link>http://eshapard.github.io/linux/fun/compiling-gargoyle-on-ubuntu-18.04-on-an-old-netbook.html</link>
+        <guid isPermaLink="true">http://eshapard.github.io/linux/fun/compiling-gargoyle-on-ubuntu-18.04-on-an-old-netbook.html</guid>
+      </item>
+    
+      <item>
         <title>Useful Kindle Stats</title>
         <description>
           
@@ -213,17 +224,6 @@
         <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/python/put-not-much-emails-to-sleep.html</link>
         <guid isPermaLink="true">http://eshapard.github.io/python/put-not-much-emails-to-sleep.html</guid>
-      </item>
-    
-      <item>
-        <title>Export Taskwarrior Dates To Remind</title>
-        <description>
-          
-          I’ve been playing around with the geeky, efficient, command-line scheduling program remind. It’s very cool once you get used to it. I wanted to automatically export any duedates from taskwarrior, so this is what I came up with. Export Taskwarrior Dates I found a script that did this (written in...
-        </description>
-        <pubDate>Thu, 31 May 2018 00:00:00 +0000</pubDate>
-        <link>http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</link>
-        <guid isPermaLink="true">http://eshapard.github.io/export-taskwarrior-dates-to-remind.html</guid>
       </item>
     
   </channel>
