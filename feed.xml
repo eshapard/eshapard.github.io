@@ -10,7 +10,7 @@
         <title>Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook</title>
         <description>
           
-          I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...
+          I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Compiling It’ll probably look like...
         </description>
         <pubDate>Sun, 30 Jan 2022 00:00:00 +0000</pubDate>
         <link>http://eshapard.github.io/linux/fun/compiling-gargoyle-on-ubuntu-18.04-on-an-old-netbook.html</link>

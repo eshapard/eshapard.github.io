@@ -56,7 +56,7 @@
   
 
    
-  <meta property="og:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...">
+  <meta property="og:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Compiling It’ll probably look like...">
   
 
 
@@ -82,7 +82,7 @@
   
 
   
-  <meta name="twitter:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Zork PreReqs This is what...">
+  <meta name="twitter:description" content="I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Compiling It’ll probably look like...">
   
 
   
@@ -182,6 +182,11 @@
 
 <ul id="markdown-toc">
   <li><a href="#prereqs" id="markdown-toc-prereqs">PreReqs</a>    <ul>
+      <li><a href="#compiling" id="markdown-toc-compiling">Compiling</a>        <ul>
+          <li><a href="#itll-probably-look-like-it-failed" id="markdown-toc-itll-probably-look-like-it-failed">It’ll probably look like it failed</a></li>
+        </ul>
+      </li>
+      <li><a href="#install" id="markdown-toc-install">Install</a></li>
       <li><a href="#zork" id="markdown-toc-zork">Zork</a></li>
     </ul>
   </li>
@@ -204,50 +209,52 @@
   <li>libjpeg-dev</li>
 </ul>
 
-<p>Note: I have yet to encounter an IF game with sound, so editing the Jamrules file and changing useSDL to ‘no’ might save you some aggrivation.</p>
+<p>Note: I have yet to encounter an IF game with sound, so editing the Jamrules file and changing USESDL to ‘no’ might save you some aggravation.</p>
 
 <p>Tip: There’s a list of prereqs for Fedora in the INSTALL file, but the names don’t match Ubuntu’s. To find the Ubuntu equivalent for most of these, it helps to do <code class="language-plaintext highlighter-rouge">sudo apt-cache search XXXX</code> for the name and pipe that into grep, searching for ‘dev’ (most of the prereqs listed are -devel packages).</p>
 
 <p>Example: The INSTALL file lists ‘freetype-devel’ as a prerequisite, so doing:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-cache search freetype | grep dev
-``
-returns 'libfreetype-dev' as one of the options.
+</code></pre></div></div>
+<p>returns ‘libfreetype-dev’ as one of the options.</p>
 
-## Compiling
+<h2 id="compiling">Compiling</h2>
 
-There's an issue a ran into compiling on another machine. Compiling seemed to go fine, but then running the gargoyle binary resulted in an error message about not being able to find a labgarglk.so file that was in the same directory. I guess I maybe found a solution that you might try. That's what the `-s "LD_LIBRARY_PATH=."` is for. It tries to get the binary to look in the current directory. This shouldn't be necessary once you move the libgarglk.so file to the right place, so it's optional.
+<p>There’s an issue a ran into compiling on another machine. Compiling seemed to go fine, but then running the gargoyle binary resulted in an error message about not being able to find a labgarglk.so file that was in the same directory. I guess I maybe found a solution that you might try. That’s what the <code class="language-plaintext highlighter-rouge">-s "LD_LIBRARY_PATH=."</code> is for. It tries to get the binary to look in the current directory. This shouldn’t be necessary once you move the libgarglk.so file to the right place, so it’s optional.</p>
 
-* `jam -s "LD_LIBRARY_PATH=."`
-* `jam install`
-* ./build/dist/gargoyle
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">jam -s "LD_LIBRARY_PATH=."</code></li>
+  <li><code class="language-plaintext highlighter-rouge">jam install</code></li>
+  <li>./build/dist/gargoyle</li>
+</ul>
 
-The first command builds the binaries (see note above about the LD_LIBRARY_PATH). The second one copies them to ./build/dist/. And the last one, of course, tries to execute the new binary.
+<p>The first command builds the binaries (see note above about the LD_LIBRARY_PATH). The second one copies them to ./build/dist/. And the last one, of course, tries to execute the new binary.</p>
 
-### It'll probably look like it failed
+<h3 id="itll-probably-look-like-it-failed">It’ll probably look like it failed</h3>
 
-If gargoyle fails to run, complaining about not finding libgarglk.so (which is in the same build/dist directory), then you can try setting the LD_LIBRARY_PATH to '.' and export, then try again, or copy garglk.ini to `/usr/local/lib` and see if that fixes it.
+<p>If gargoyle fails to run, complaining about not finding libgarglk.so (which is in the same build/dist directory), then you can try setting the LD_LIBRARY_PATH to ‘.’ and export, then try again, or copy garglk.ini to <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> and see if that fixes it.</p>
 
-This seems to be a quirk that isn't much advertised, but I guess I found something about it in the Issues section of their github page.
+<p>This seems to be a quirk that isn’t much advertised, but I guess I found something about it in the Issues section of their github page.</p>
 
-## Install
+<h2 id="install">Install</h2>
 
-Make a directory on `/usr/local` to hold the contents of `build/dist`. Then copy them over.
+<p>Make a directory on <code class="language-plaintext highlighter-rouge">/usr/local</code> to hold the contents of <code class="language-plaintext highlighter-rouge">build/dist</code>. Then copy them over.</p>
 
-``
+<p>``
 sudo mkdir -p /usr/local/libexec/gargoyle
-sudo cp build/dist/* /usr/local/libexec/gargoyle/
+sudo cp build/dist/* /usr/local/libexec/gargoyle/</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Now symlink the gargoyle executable and the libgarglk.so library to where the OS will find them.
+
 </code></pre></div></div>
+<p>sudo ln -s /usr/local/libexec/gargoyle/gargoyle /usr/local/bin/gargoyle
+sudo ln -s /usr/local/libexec/gargoyle/libgarglk.so /usr/lib/libgarglk.so</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+And one last step: Put the default garglk.ini in /etc/.
 
-<p>Now symlink the gargoyle executable and the libgarglk.so library to where the OS will find them.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ln -s /usr/local/libexec/gargoyle/gargoyle /usr/local/bin/gargoyle
-sudo ln -s /usr/local/libexec/gargoyle/libgarglk.so /usr/lib/libgarglk.so
 </code></pre></div></div>
-
-<p>And one last step: Put the default garglk.ini in /etc/.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo cp garglk/garglk.ini /etc/garglk.ini
-</code></pre></div></div>
+<p>sudo cp garglk/garglk.ini /etc/garglk.ini
+```</p>
 
 <h2 id="zork">Zork</h2>
 
