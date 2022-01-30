@@ -218,7 +218,9 @@
 
 <h2 id="compiling">Compiling</h2>
 
-<p>There’s an issue a ran into compiling on another machine. Compiling seemed to go fine, but then running the gargoyle binary resulted in an error message about not being able to find a labgarglk.so file that was in the same directory. I guess I maybe found a solution that you might try. That’s what the <code class="language-plaintext highlighter-rouge">-s "LD_LIBRARY_PATH=."</code> is for. It tries to get the binary to look in the current directory. This shouldn’t be necessary once you move the libgarglk.so file to the right place, so it’s optional.</p>
+<p>There’s an issue a ran into compiling on another machine. Compiling seemed to go fine, but then running the gargoyle binary resulted in an error message about not being able to find a labgarglk.so file that was in the same directory.</p>
+
+<p>I guess I maybe found a solution some time ago (on another machine) that you might try. That’s what the <code class="language-plaintext highlighter-rouge">-s "LD_LIBRARY_PATH=."</code> is for. It tries to get the binary to look in the current directory. This shouldn’t be necessary once you move the libgarglk.so file to the right place, so it’s optional.</p>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">jam -s "LD_LIBRARY_PATH=."</code></li>
@@ -232,7 +234,7 @@
 
 <p>If gargoyle fails to run, complaining about not finding libgarglk.so (which is in the same build/dist directory), then you can try setting the LD_LIBRARY_PATH to ‘.’ and export, then try again, or copy garglk.ini to <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> and see if that fixes it.</p>
 
-<p>This seems to be a quirk that isn’t much advertised, but I guess I found something about it in the Issues section of their github page.</p>
+<p>This seems to be a quirk that isn’t much advertised, but I guess I found something about it in the Issues section of their github page. This was very frustrating for me the first time around. Everything had compiled correctly, but by all appearances, it was broken. 😡</p>
 
 <h2 id="install">Install</h2>
 
