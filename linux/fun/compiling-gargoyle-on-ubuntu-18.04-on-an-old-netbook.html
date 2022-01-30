@@ -240,21 +240,20 @@
 
 <p>Make a directory on <code class="language-plaintext highlighter-rouge">/usr/local</code> to hold the contents of <code class="language-plaintext highlighter-rouge">build/dist</code>. Then copy them over.</p>
 
-<p>``
-sudo mkdir -p /usr/local/libexec/gargoyle
-sudo cp build/dist/* /usr/local/libexec/gargoyle/</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-Now symlink the gargoyle executable and the libgarglk.so library to where the OS will find them.
-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mkdir -p /usr/local/libexec/gargoyle
+sudo cp build/dist/* /usr/local/libexec/gargoyle/
 </code></pre></div></div>
-<p>sudo ln -s /usr/local/libexec/gargoyle/gargoyle /usr/local/bin/gargoyle
-sudo ln -s /usr/local/libexec/gargoyle/libgarglk.so /usr/lib/libgarglk.so</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-And one last step: Put the default garglk.ini in /etc/.
 
+<p>Now symlink the gargoyle executable and the libgarglk.so library to where the OS will find them.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ln -s /usr/local/libexec/gargoyle/gargoyle /usr/local/bin/gargoyle
+sudo ln -s /usr/local/libexec/gargoyle/libgarglk.so /usr/lib/libgarglk.so
 </code></pre></div></div>
-<p>sudo cp garglk/garglk.ini /etc/garglk.ini
-```</p>
+
+<p>And one last step: Put the default garglk.ini in /etc/.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo cp garglk/garglk.ini /etc/garglk.ini
+</code></pre></div></div>
 
 <h2 id="zork">Zork</h2>
 
