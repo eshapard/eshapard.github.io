@@ -7,7 +7,7 @@
     <atom:link href="http://eshapard.github.io/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Compiling Gargoyle On Ubuntu 18.04 On An Old Netbook</title>
+        <title>Compiling Gargoyle On Ubuntu 18.10 On An Old Netbook</title>
         <description>
           
           I decided to play the classic interactive fiction game Zork, which is available as a Hugo re-write. Unfortunately, the gargoyle-free package for Ubuntu doesn’t have the (non-free) Hugo interpreter. Straight-up Gargoyle from github does, but it was a bit of a pain to compile. PreReqs Compiling It’ll probably look like...
